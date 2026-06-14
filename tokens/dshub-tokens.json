@@ -347,11 +347,15 @@
     "font": {
       "family": {
         "base": {
-          "value": "Inter",
+          "value": "Inter Display",
           "type": "fontFamilies"
         },
         "display": {
-          "value": "Inter",
+          "value": "Suisse Int'l",
+          "type": "fontFamilies"
+        },
+        "decorate": {
+          "value": "Stapel Condensed",
           "type": "fontFamilies"
         }
       },
