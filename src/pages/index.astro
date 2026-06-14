@@ -5,6 +5,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import A_Text from '../components/atoms/A_Text/A_Text.astro';
 import A_Button from '../components/atoms/A_Button/A_Button.astro';
+import Q_Icon from '../components/quarks/Q_Icon/Q_Icon.astro';
+import { ICONS } from '../components/quarks/Q_Icon/icons';
+
+const iconNames = Object.keys(ICONS);
 
 const cases = Object.values(import.meta.glob('../content/cases/*.json', { eager: true })).map(
   (m) => m.default,
@@ -57,22 +61,39 @@ const termsWithDef = terms.filter((t) => t.definition);
         <A_Button contentType="text" size="lg" loading>Loading</A_Button>
       </div>
 
-      <A_Text variant="caption" color="tertiary">contentType=text-lefticon / icon / primary (иконка-заглушка ▸)</A_Text>
+      <A_Text variant="caption" color="tertiary">contentType=text-lefticon / icon / primary (с Q_Icon)</A_Text>
       <div class="row">
         <A_Button contentType="text-lefticon" size="lg">
-          Предложить кейс
-          <span slot="icon">▸</span>
+          Все кейсы
+          <Q_Icon slot="icon" name="arrow-right" size={24} />
         </A_Button>
-        <A_Button contentType="icon" size="lg" aria-label="Иконка"><span slot="icon">♥</span></A_Button>
-        <A_Button contentType="primary" size="md" aria-label="Primary"><span slot="icon">▸</span></A_Button>
+        <A_Button contentType="icon" size="lg" aria-label="В избранное">
+          <Q_Icon slot="icon" name="heart" size={24} title="В избранное" />
+        </A_Button>
+        <A_Button contentType="primary" size="md" aria-label="Фильтр">
+          <Q_Icon slot="icon" name="filter" size={16} title="Фильтр" />
+        </A_Button>
       </div>
 
       <A_Text variant="caption" color="tertiary">contentType=neutral — большой XL-CTA-пилл</A_Text>
       <div class="row">
         <A_Button contentType="neutral">
-          Label
-          <span slot="icon">▸</span>
+          Смотреть кейсы
+          <Q_Icon slot="icon" name="arrow-right" size={24} />
         </A_Button>
+      </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Иконки (Q_Icon) — из Figma</A_Text>
+      <A_Text variant="caption" color="tertiary">{iconNames.length} иконок · currentColor · ориентация из Figma</A_Text>
+      <div class="icon-gallery">
+        {iconNames.map((n) => (
+          <div class="icon-cell">
+            <Q_Icon name={n} size={24} />
+            <A_Text variant="caption" color="tertiary">{n}</A_Text>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -135,5 +156,22 @@ const termsWithDef = terms.filter((t) => t.definition);
     background: var(--surface-card);
     border: var(--border-hairline) solid var(--stroke-subtle);
     border-radius: var(--radius-lg);
+  }
+  .icon-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--space-md);
+  }
+  .icon-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl) var(--space-md);
+    background: var(--surface-card);
+    border: var(--border-hairline) solid var(--stroke-subtle);
+    border-radius: var(--radius-md);
+    color: var(--icons-primary);
+    text-align: center;
   }
 </style>

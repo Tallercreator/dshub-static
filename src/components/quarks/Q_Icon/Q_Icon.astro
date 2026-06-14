@@ -1,0 +1,50 @@
+---
+// Q_Icon — квАрк. Инлайн-SVG из реестра icons.ts (Figma Q_Icon_16/24).
+// Цвет наследуется через currentColor (родитель задаёт `color`). Ориентация —
+// CSS transform из Figma. viewBox квадратируется с паддингом, чтобы поворот не
+// обрезался и иконки были одного визуального размера.
+import { ICONS, type IconName } from './icons';
+
+interface Props {
+  name: IconName;
+  size?: number; // px; по умолчанию 24 (= size-icon-lg)
+  title?: string; // если задан — иконка смысловая (role=img), иначе декоративная
+  class?: string;
+}
+
+const { name, size = 24, title, class: extra } = Astro.props;
+const icon = ICONS[name];
+if (!icon) throw new Error(`Q_Icon: неизвестная иконка "${name}"`);
+
+// Квадратный viewBox с паддингом ~15% вокруг глифа.
+const [vx, vy, vw, vh] = icon.viewBox.split(/\s+/).map(Number);
+const side = Math.max(vw, vh) * 1.3;
+const nx = vx - (side - vw) / 2;
+const ny = vy - (side - vh) / 2;
+const viewBox = `${nx} ${ny} ${side} ${side}`;
+
+const cls = ['q-icon', extra].filter(Boolean).join(' ');
+const inner = (title ? `<title>${title}</title>` : '') + icon.body;
+---
+
+<svg
+  class={cls}
+  width={size}
+  height={size}
+  viewBox={viewBox}
+  fill="none"
+  preserveAspectRatio="xMidYMid meet"
+  style={icon.transform ? `transform:${icon.transform}` : undefined}
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+  set:html={inner}
+/>
+
+<style>
+  .q-icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    color: inherit;
+  }
+</style>

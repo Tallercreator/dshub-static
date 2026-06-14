@@ -2,6 +2,7 @@
 // O_Links — блок ссылок. Блок type:"links" { links:[{text,url,external}] }
 // (схема одногруппника). Внешние ссылки открываются в новой вкладке.
 import A_Text from '../../atoms/A_Text/A_Text.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
 
 interface LinkItem {
   text: string;
@@ -23,7 +24,7 @@ const { links = [] } = Astro.props;
         rel={l.external ? 'noopener noreferrer' : undefined}
       >
         <A_Text variant="body" color="accent">{l.text}</A_Text>
-        {l.external && <span class="ext" aria-hidden="true">↗</span>}
+        {l.external && <Q_Icon name="upright-arrow" size={16} class="ext" />}
       </a>
     </li>
   ))}
