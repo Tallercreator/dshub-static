@@ -1,0 +1,26 @@
+---
+// O_LogoWall — организм. = Figma W_TitleCards / Cards_Logo+Button_Hero (29:4082).
+// Ряд плиток-логотипов (M_LogoItem ← Q_BrandMark) + тёмная XL-кнопка «Смотреть
+// все кейсы». Под героем на Главной.
+import M_LogoItem from '../../molecules/M_LogoItem/M_LogoItem.astro';
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import type { BrandName } from '../../quarks/Q_BrandMark/brands';
+import styles from './O_LogoWall.module.css';
+
+interface Props {
+  brands?: BrandName[];
+  href?: string;
+  class?: string;
+}
+const { brands = ['otp', 'alfa', 'sber', 'dodo', 'avito', 'mts'], href = '/cases', class: extra } =
+  Astro.props;
+---
+
+<div class:list={[styles.wall, extra]}>
+  {brands.map((b) => <M_LogoItem brand={b} href={href} class={styles.tile} />)}
+  <A_Button contentType="neutral" href={href} class={styles.cta}>
+    Смотреть все кейсы
+    <Q_Icon slot="icon" name="arrow-right" size={24} />
+  </A_Button>
+</div>

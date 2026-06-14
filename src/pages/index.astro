@@ -21,6 +21,7 @@ import M_MetaRow from '../components/molecules/M_MetaRow/M_MetaRow.astro';
 import M_FilterChips from '../components/molecules/M_FilterChips/M_FilterChips.astro';
 import M_CollapseToggle from '../components/molecules/M_CollapseToggle/M_CollapseToggle.astro';
 import M_AppliedFilters from '../components/molecules/M_AppliedFilters/M_AppliedFilters.astro';
+import S_Hero from '../components/superorganisms/S_Hero/S_Hero.astro';
 import { ICONS } from '../components/quarks/Q_Icon/icons';
 
 const iconNames = Object.keys(ICONS);
@@ -38,6 +39,8 @@ const termsWithDef = terms.filter((t) => t.definition);
 ---
 
 <BaseLayout title="DSHub — каркас (styleguide)">
+  <S_Hero />
+
   <main class="wrap">
     <header class="head">
       <A_Text variant="caption" color="accent">DSHub · каркас v0</A_Text>

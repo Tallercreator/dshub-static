@@ -1,0 +1,31 @@
+---
+// W_SectionHeader — обёртка. = Figma W_SectionHeader (node 29:3998). Заголовок
+// секции: size display/h2/h3. title — слотом (можно 2 строки через <br>).
+// Опц. label (под заголовком), link (A_Link справа), labelRight (текст справа).
+import A_Link from '../../atoms/A_Link/A_Link.astro';
+import styles from './W_SectionHeader.module.css';
+
+interface Props {
+  size?: 'display' | 'h2' | 'h3';
+  label?: string;
+  labelRight?: string;
+  linkText?: string;
+  linkHref?: string;
+  description?: string; // только для h3
+  class?: string;
+}
+const { size = 'display', label, labelRight, linkText, linkHref, description, class: extra } =
+  Astro.props;
+const Heading = size === 'h3' ? 'h3' : 'h2';
+---
+
+<div class:list={[styles.header, styles[size], extra]}>
+  <div class={styles.left}>
+    <Heading class={styles.title}><slot /></Heading>
+    {label && <span class={styles.label}>{label}</span>}
+    {description && <p class={styles.desc}>{description}</p>}
+  </div>
+
+  {linkText && <A_Link href={linkHref ?? '#'} class={styles.link}>{linkText}</A_Link>}
+  {labelRight && <span class={styles.label}>{labelRight}</span>}
+</div>

@@ -1,0 +1,25 @@
+/* O_LogoWall.module.css — ряд логотипов + CTA (Figma 29:4082). */
+
+.wall {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+}
+.tile {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.cta {
+  flex: 0 0 auto;
+}
+
+/* на узких экранах — горизонтальный скролл вместо сжатия */
+@media (max-width: 1024px) {
+  .wall {
+    overflow-x: auto;
+    padding-bottom: var(--space-md);
+  }
+  .tile {
+    flex: 0 0 160px;
+  }
+}

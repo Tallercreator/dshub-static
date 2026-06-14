@@ -1,0 +1,21 @@
+---
+// S_Hero — суперорганизм. Герой Главной = фон-призрак (O_LogoWall Hero:
+// огромный condensed-текст + радиальный градиент к белому) + W_SectionHeader
+// (заголовок) + O_LogoWall (ряд логотипов + CTA).
+import W_SectionHeader from '../../wrappers/W_SectionHeader/W_SectionHeader.astro';
+import O_LogoWall from '../../organisms/O_LogoWall/O_LogoWall.astro';
+import styles from './S_Hero.module.css';
+---
+
+<section class={styles.hero}>
+  <div class={styles.ghost} aria-hidden="true">
+    <span class={styles.ghostLine}>Дизайн-системы</span>
+    <span class={styles.ghostLine}>бест практис</span>
+  </div>
+  <div class={styles.fade} aria-hidden="true"></div>
+
+  <div class={styles.content}>
+    <W_SectionHeader size="display" class={styles.heading}>Что внутри<br />систем сегодня</W_SectionHeader>
+    <O_LogoWall />
+  </div>
+</section>
