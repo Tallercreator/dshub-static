@@ -3,7 +3,12 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  /* всегда резервируем место под вертикальный скроллбар — иначе при переходе
+     между короткой и длинной страницей центрированный контент скачет по гориз. */
+  scrollbar-gutter: stable;
+}
 
 body {
   min-height: 100vh;
