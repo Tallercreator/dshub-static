@@ -14,7 +14,9 @@
   "accentColor": "#00a88e",
   "cover": {
     "brandWordmark": "Kaspersky",
-    "bg": "#00a88e"
+    "bg": "#00a88e",
+    "image": "/covers/kaspersky-hexa-ui.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

@@ -1,0 +1,18 @@
+---
+// W_FilterGroup — обёртка. Группа фильтра в сайдбаре Кейсов (Figma W_FilterGroup
+// 32:4408): заголовок (Suisse Book 20) + список опций (M_FilterOption, слотом).
+import styles from './W_FilterGroup.module.css';
+
+interface Props {
+  title: string;
+  class?: string;
+}
+const { title, class: extra } = Astro.props;
+---
+
+<div class:list={[styles.group, extra]}>
+  <h3 class={styles.title}>{title}</h3>
+  <div class={styles.list}>
+    <slot />
+  </div>
+</div>

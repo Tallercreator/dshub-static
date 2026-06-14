@@ -1,0 +1,23 @@
+/* W_FilterGroup.module.css — группа фильтра (Figma 32:4408). */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl); /* 20 */
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular); /* Book */
+  font-size: var(--font-size-lg); /* 20 */
+  line-height: 1.2;
+  letter-spacing: -0.04em; /* Figma -0.8px@20 */
+  color: var(--text-primary);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg); /* 12 */
+}

@@ -14,7 +14,9 @@
   "accentColor": "#ff4e64",
   "cover": {
     "brandWordmark": "IVI",
-    "bg": "#ff4e64"
+    "bg": "#ff4e64",
+    "image": "/covers/ivi-ivi-ds.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

@@ -1,0 +1,32 @@
+---
+// S_PageHero — суперорганизм. Хедер-полоса страницы раздела (Figma S_hero +
+// O_LogoWall type=Cases). Гигантский ghost-текст раздела (Stapel, opacity 0.08) +
+// радиальная белая вуаль + центральная иллюстрация. Декоративный (aria-hidden):
+// заголовок раздела — sr-only на самой странице. O_Header глобальный, не входит.
+// Переиспользуем для /cases, /glossary, /resources (свой ghost + иллюстрация).
+import styles from './S_PageHero.module.css';
+
+interface Props {
+  ghostLines: string[]; // строки ghost-текста (повтор слова раздела)
+  illustration: string; // src иллюстрации
+  illustrationAlt?: string;
+  class?: string;
+}
+const { ghostLines, illustration, illustrationAlt = '', class: extra } = Astro.props;
+---
+
+<section class:list={[styles.hero, extra]} aria-hidden="true">
+  <div class={styles.ghost}>
+    {ghostLines.map((line) => <span class={styles.ghostLine}>{line}</span>)}
+  </div>
+  <div class={styles.veil}></div>
+  <img
+    class={styles.illo}
+    src={illustration}
+    alt={illustrationAlt}
+    width="234"
+    height="246"
+    decoding="async"
+    fetchpriority="high"
+  />
+</section>

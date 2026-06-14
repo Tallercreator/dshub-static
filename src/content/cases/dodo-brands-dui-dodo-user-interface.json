@@ -13,7 +13,8 @@
   "accentColor": "#ff6900",
   "cover": {
     "brandWordmark": "Dodo Brands",
-    "bg": "#ff6900"
+    "bg": "#ff6900",
+    "image": "/covers/dodo-brands-dui-dodo-user-interface.png"
   },
   "sidebar": {
     "focus": null,

@@ -15,7 +15,9 @@
   "accentColor": "#ffcc00",
   "cover": {
     "brandWordmark": "Яндекс",
-    "bg": "#ffcc00"
+    "bg": "#ffcc00",
+    "image": "/covers/yandeks-gravity-ui.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

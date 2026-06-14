@@ -14,7 +14,9 @@
   "accentColor": "#0077ff",
   "cover": {
     "brandWordmark": "VK/Mail (Paradigm)",
-    "bg": "#0077ff"
+    "bg": "#0077ff",
+    "image": "/covers/vk-mail-paradigm-paradigm.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

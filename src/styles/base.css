@@ -27,6 +27,10 @@ img, svg, video { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; color: inherit; }
 a { color: inherit; text-decoration: none; }
 
+/* атрибут hidden должен скрывать ВСЕГДА — иначе display из классов (напр.
+   .card{display:flex}) перебивает его, и JS-фильтрация не прячет элементы */
+[hidden] { display: none !important; }
+
 /* единый фокус-стиль для доступности (важно для DS-проекта) */
 :focus-visible { outline: 2px solid var(--stroke-accent); outline-offset: 2px; }
 

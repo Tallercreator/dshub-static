@@ -15,7 +15,9 @@
   "accentColor": "#0077ff",
   "cover": {
     "brandWordmark": "VK (VKUI)",
-    "bg": "#0077ff"
+    "bg": "#0077ff",
+    "image": "/covers/vk-vkui-vkui.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

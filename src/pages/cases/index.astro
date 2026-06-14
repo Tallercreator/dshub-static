@@ -1,0 +1,42 @@
+---
+// /cases — страница списка кейсов (Figma T_Cases 34:7599). Сайдбар фильтров +
+// сетка карточек (S_CasesGrid) + форма «Предложить кейс» (S_Form). Шапка/футер —
+// глобальные из BaseLayout. Фасеты фильтров считаются из данных кейсов.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import S_PageHero from '../../components/superorganisms/S_PageHero/S_PageHero.astro';
+import S_CasesGrid from '../../components/superorganisms/S_CasesGrid/S_CasesGrid.astro';
+import S_Form from '../../components/superorganisms/S_Form/S_Form.astro';
+
+const cases = Object.values(import.meta.glob('../../content/cases/*.json', { eager: true }))
+  .map((m) => m.default)
+  .filter((c) => c.published !== false);
+
+// фасеты фильтров из данных
+function facetCounts(values) {
+  const m = new Map();
+  for (const v of values) if (v) m.set(v, (m.get(v) ?? 0) + 1);
+  return [...m.entries()]
+    .map(([value, count]) => ({ value, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
+const companyTypes = facetCounts(cases.map((c) => c.companyType));
+const caseTypes = facetCounts(cases.map((c) => c.caseType));
+// focus: только теги, встречающиеся ≥2 раз (длинный хвост одиночек не выводим)
+const focusTags = facetCounts(cases.flatMap((c) => c.focus ?? [])).filter((f) => f.count >= 2);
+---
+
+<BaseLayout title="Кейсы — DSHub">
+  <S_PageHero
+    ghostLines={['Кейсы Кейсы Кейс', 'Кейсы Кейсы Кейс']}
+    illustration="/illustrations/switch-green.png"
+  />
+
+  <S_CasesGrid
+    cases={cases}
+    companyTypes={companyTypes}
+    caseTypes={caseTypes}
+    focusTags={focusTags}
+  />
+  <S_Form />
+</BaseLayout>

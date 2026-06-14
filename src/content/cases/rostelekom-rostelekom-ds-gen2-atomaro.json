@@ -15,7 +15,9 @@
   "accentColor": "#7700ff",
   "cover": {
     "brandWordmark": "Ростелеком",
-    "bg": "#7700ff"
+    "bg": "#7700ff",
+    "image": "/covers/rostelekom-rostelekom-ds-gen2-atomaro.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

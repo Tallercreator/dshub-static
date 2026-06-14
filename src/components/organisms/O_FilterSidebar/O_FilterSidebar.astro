@@ -1,0 +1,60 @@
+---
+// O_FilterSidebar — организм. Сайдбар фильтров страницы Кейсов (Figma
+// O_FilterSidebar 32:4717): M_FilterChips (тип компании) → группы W_FilterGroup
+// (тип кейса, фокус) → кнопка «Сбросить все».
+//
+// Содержимое фильтров — из реальных данных кейсов (в Figma были плейсхолдеры).
+// data-атрибуты заложены под клиентскую фильтрацию (следующий шаг).
+import M_FilterChips from '../../molecules/M_FilterChips/M_FilterChips.astro';
+import M_FilterOption from '../../molecules/M_FilterOption/M_FilterOption.astro';
+import W_FilterGroup from '../../wrappers/W_FilterGroup/W_FilterGroup.astro';
+import A_Tag from '../../atoms/A_Tag/A_Tag.astro';
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './O_FilterSidebar.module.css';
+
+interface Facet {
+  value: string;
+  count: number;
+}
+interface Props {
+  companyTypes: Facet[];
+  caseTypes: Facet[];
+  focusTags: Facet[];
+  class?: string;
+}
+const { companyTypes, caseTypes, focusTags, class: extra } = Astro.props;
+---
+
+<aside class:list={[styles.sidebar, extra]} aria-label="Фильтры кейсов">
+  <M_FilterChips>
+    {companyTypes.map((c) => (
+      <A_Tag
+        variant="white"
+        size="md"
+        role="button"
+        tabindex="0"
+        aria-pressed="false"
+        data-filter="company"
+        data-value={c.value}
+      >{c.value}</A_Tag>
+    ))}
+  </M_FilterChips>
+
+  <W_FilterGroup title="Тип кейса">
+    {caseTypes.map((t) => (
+      <M_FilterOption name="type" value={t.value}>{t.value}</M_FilterOption>
+    ))}
+  </W_FilterGroup>
+
+  <W_FilterGroup title="Фокус">
+    {focusTags.map((f) => (
+      <M_FilterOption name="focus" value={f.value}>{f.value}</M_FilterOption>
+    ))}
+  </W_FilterGroup>
+
+  <A_Button contentType="text-righticon" size="md" class={styles.reset} data-reset-filters>
+    Сбросить все
+    <Q_Icon slot="icon" name="cross-small" size={16} />
+  </A_Button>
+</aside>

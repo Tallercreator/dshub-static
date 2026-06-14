@@ -1,0 +1,284 @@
+---
+// S_CasesGrid — суперорганизм. Основная зона страницы Кейсов (Figma S_CasesGrid
+// 34:7336): сайдбар фильтров слева + результаты справа (бар «Выбрано:» +
+// счётчик «Найдено N кейсов» + сетка карточек O_CaseCard в 2 колонки).
+//
+// Интерактив (vanilla <script>): чипы companyType + чекбоксы caseType/focus
+// фильтруют карточки (data-company/type/focus), счётчик и бар «Выбрано»
+// обновляются, «Сбросить все» очищает. URL ?company=&type=&focus= — читается на
+// загрузке (в т.ч. переход с тегов карточек /cases?focus=…) и синхронизируется.
+import O_FilterSidebar from '../../organisms/O_FilterSidebar/O_FilterSidebar.astro';
+import M_AppliedFilters from '../../molecules/M_AppliedFilters/M_AppliedFilters.astro';
+import W_CardGrid from '../../wrappers/W_CardGrid/W_CardGrid.astro';
+import O_CaseCard from '../../organisms/O_CaseCard/O_CaseCard.astro';
+import styles from './S_CasesGrid.module.css';
+
+interface CaseItem {
+  slug: string;
+  title: string;
+  companyType?: string;
+  caseType?: string;
+  focus?: string[];
+  accentColor?: string;
+  cover?: { image?: string; darkBadge?: boolean };
+}
+interface Facet {
+  value: string;
+  count: number;
+}
+interface Props {
+  cases: CaseItem[];
+  companyTypes: Facet[];
+  caseTypes: Facet[];
+  focusTags: Facet[];
+  class?: string;
+}
+const { cases, companyTypes, caseTypes, focusTags, class: extra } = Astro.props;
+
+function plural(n: number, forms: [string, string, string]) {
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return forms[0];
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return forms[1];
+  return forms[2];
+}
+const word = plural(cases.length, ['кейс', 'кейса', 'кейсов']);
+---
+
+<div class:list={[styles.wrap, extra]} data-cases-root>
+  <section class={styles.section} aria-labelledby="cases-page-title">
+    <h1 class={styles.srTitle} id="cases-page-title">Кейсы</h1>
+
+    <O_FilterSidebar companyTypes={companyTypes} caseTypes={caseTypes} focusTags={focusTags} />
+
+    <div class={styles.results}>
+      <div data-applied hidden>
+        <M_AppliedFilters>
+          <div data-applied-chips></div>
+        </M_AppliedFilters>
+      </div>
+
+      <p class={styles.count} data-cases-count>Найдено {cases.length} {word}</p>
+
+      <W_CardGrid cols={2} class={styles.grid}>
+        {cases.map((c) => (
+          <O_CaseCard
+            class={styles.card}
+            href={`/cases/${c.slug}`}
+            title={c.title}
+            label={c.companyType}
+            badgeVariant={c.cover?.darkBadge ? 'white' : 'black'}
+            focus={c.focus}
+            accentColor={c.accentColor}
+            coverImage={c.cover?.image}
+            data-case
+            data-company={c.companyType}
+            data-type={c.caseType}
+            data-focus={(c.focus ?? []).join('|')}
+          />
+        ))}
+      </W_CardGrid>
+
+      <p class={styles.empty} data-cases-empty hidden>По выбранным фильтрам кейсов не нашлось.</p>
+    </div>
+  </section>
+</div>
+
+<style is:global>
+  /* чип применённого фильтра (инжектится скриптом — нужен глобальный стиль) */
+  .js-applied-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    height: var(--size-control-xl);
+    padding-inline: var(--space-xl);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background var(--duration-fast) ease;
+  }
+  .js-applied-chip:hover {
+    background: var(--neutral-20);
+  }
+  .js-applied-chip > span[aria-hidden] {
+    font-size: 0.85em;
+    opacity: 0.6;
+  }
+  .js-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector<HTMLElement>('[data-cases-root]');
+    if (!root || root.dataset.filterBound) return;
+    root.dataset.filterBound = '1';
+
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-case]')];
+    const countEl = root.querySelector<HTMLElement>('[data-cases-count]');
+    const emptyEl = root.querySelector<HTMLElement>('[data-cases-empty]');
+    const appliedBar = root.querySelector<HTMLElement>('[data-applied]');
+    const appliedChips = root.querySelector<HTMLElement>('[data-applied-chips]');
+    const companyChips = [...root.querySelectorAll<HTMLElement>('[data-filter="company"]')];
+    const checks = [
+      ...root.querySelectorAll<HTMLInputElement>('input[name="type"], input[name="focus"]'),
+    ];
+    // фокус-теги из URL, которых нет чекбоксом в сайдбаре (редкие)
+    const extraFocus = new Set<string>();
+
+    const plural = (n: number) => {
+      const a = n % 10;
+      const b = n % 100;
+      if (a === 1 && b !== 11) return 'кейс';
+      if (a >= 2 && a <= 4 && (b < 10 || b >= 20)) return 'кейса';
+      return 'кейсов';
+    };
+    const esc = (s: string) =>
+      s.replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m] || m));
+
+    const getSel = () => ({
+      company: companyChips
+        .filter((c) => c.getAttribute('aria-pressed') === 'true')
+        .map((c) => c.dataset.value || ''),
+      type: checks.filter((c) => c.name === 'type' && c.checked).map((c) => c.value),
+      focus: [
+        ...checks.filter((c) => c.name === 'focus' && c.checked).map((c) => c.value),
+        ...extraFocus,
+      ],
+    });
+
+    const renderApplied = (sel: ReturnType<typeof getSel>) => {
+      if (!appliedBar || !appliedChips) return;
+      const items: [string, string][] = [
+        ...sel.company.map((v) => ['company', v] as [string, string]),
+        ...sel.type.map((v) => ['type', v] as [string, string]),
+        ...sel.focus.map((v) => ['focus', v] as [string, string]),
+      ];
+      if (!items.length) {
+        appliedBar.hidden = true;
+        appliedChips.innerHTML = '';
+        return;
+      }
+      appliedBar.hidden = false;
+      appliedChips.innerHTML = items
+        .map(
+          ([g, v]) =>
+            `<button type="button" class="js-applied-chip" data-remove data-group="${g}" data-value="${esc(
+              v,
+            )}">${esc(v)}<span aria-hidden="true">✕</span><span class="js-sr-only">убрать фильтр</span></button>`,
+        )
+        .join('');
+    };
+
+    const syncURL = (sel: ReturnType<typeof getSel>) => {
+      const p = new URLSearchParams();
+      if (sel.company.length) p.set('company', sel.company.join(','));
+      if (sel.type.length) p.set('type', sel.type.join(','));
+      if (sel.focus.length) p.set('focus', sel.focus.join(','));
+      const qs = p.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+    };
+
+    const apply = () => {
+      const sel = getSel();
+      let n = 0;
+      for (const card of cards) {
+        const company = card.dataset.company || '';
+        const type = card.dataset.type || '';
+        const focus = (card.dataset.focus || '').split('|').filter(Boolean);
+        const ok =
+          (!sel.company.length || sel.company.includes(company)) &&
+          (!sel.type.length || sel.type.includes(type)) &&
+          (!sel.focus.length || sel.focus.some((f) => focus.includes(f)));
+        card.hidden = !ok;
+        if (ok) n++;
+      }
+      if (countEl) countEl.textContent = `Найдено ${n} ${plural(n)}`;
+      if (emptyEl) emptyEl.hidden = n !== 0;
+      renderApplied(sel);
+      syncURL(sel);
+    };
+
+    const reset = () => {
+      companyChips.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+      checks.forEach((c) => (c.checked = false));
+      extraFocus.clear();
+      apply();
+    };
+
+    companyChips.forEach((chip) => {
+      const toggle = () => {
+        chip.setAttribute(
+          'aria-pressed',
+          chip.getAttribute('aria-pressed') === 'true' ? 'false' : 'true',
+        );
+        apply();
+      };
+      chip.addEventListener('click', toggle);
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    });
+    checks.forEach((c) => c.addEventListener('change', apply));
+
+    root
+      .querySelectorAll<HTMLElement>('[data-reset-filters], [data-applied] [class*="reset"]')
+      .forEach((b) =>
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          reset();
+        }),
+      );
+
+    appliedChips?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-remove]');
+      if (!btn) return;
+      const group = btn.dataset.group;
+      const value = btn.dataset.value || '';
+      if (group === 'company') {
+        companyChips
+          .find((c) => c.dataset.value === value)
+          ?.setAttribute('aria-pressed', 'false');
+      } else {
+        const cb = checks.find((c) => c.name === group && c.value === value);
+        if (cb) cb.checked = false;
+        else extraFocus.delete(value);
+      }
+      apply();
+    });
+
+    // предвыбор из URL (в т.ч. переход с тегов карточек /cases?focus=…)
+    const params = new URLSearchParams(location.search);
+    const fromUrl = (key: string) => (params.get(key) || '').split(',').filter(Boolean);
+    fromUrl('company').forEach((v) =>
+      companyChips.find((c) => c.dataset.value === v)?.setAttribute('aria-pressed', 'true'),
+    );
+    fromUrl('type').forEach((v) => {
+      const cb = checks.find((c) => c.name === 'type' && c.value === v);
+      if (cb) cb.checked = true;
+    });
+    fromUrl('focus').forEach((v) => {
+      const cb = checks.find((c) => c.name === 'focus' && c.value === v);
+      if (cb) cb.checked = true;
+      else extraFocus.add(v);
+    });
+    apply();
+  })();
+</script>

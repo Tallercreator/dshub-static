@@ -1,0 +1,21 @@
+/* O_FilterSidebar.module.css — сайдбар фильтров (Figma 32:4717). */
+
+.sidebar {
+  flex: 0 0 var(--sidebar-w, 296px);
+  width: var(--sidebar-w, 296px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-md); /* ~42 (Figma) → 48 */
+  align-self: start;
+}
+
+.reset {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    flex-basis: auto;
+    width: 100%;
+  }
+}

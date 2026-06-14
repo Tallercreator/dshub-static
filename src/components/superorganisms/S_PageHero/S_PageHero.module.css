@@ -1,0 +1,57 @@
+/* S_PageHero.module.css — хедер-полоса раздела (Figma S_hero + O_LogoWall Cases). */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--neutral-0);
+  height: clamp(360px, 38vw, 540px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ghost-текст раздела */
+.ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0.08;
+  pointer-events: none;
+  user-select: none;
+}
+.ghostLine {
+  font-family: var(--font-family-decorate);
+  font-weight: var(--font-weight-medium);
+  font-size: clamp(110px, 21vw, 308px);
+  line-height: 0.72;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--neutral-140);
+  white-space: nowrap;
+}
+
+/* радиальная белая вуаль — гасит ghost к краям */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 72% 66% at 50% 50%,
+    transparent 26%,
+    var(--neutral-0) 78%
+  );
+}
+
+/* центральная иллюстрация */
+.illo {
+  position: relative;
+  z-index: 2;
+  width: clamp(168px, 16vw, 226px);
+  height: auto;
+}

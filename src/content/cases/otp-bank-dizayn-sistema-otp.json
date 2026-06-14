@@ -13,7 +13,8 @@
   "accentColor": "#76b82a",
   "cover": {
     "brandWordmark": "ОТП Банк",
-    "bg": "#76b82a"
+    "bg": "#76b82a",
+    "image": "/covers/otp-bank-dizayn-sistema-otp.png"
   },
   "sidebar": {
     "focus": "токенная архитектура, переход на Variables, структура библиотек, коммуникации и версионирование.",

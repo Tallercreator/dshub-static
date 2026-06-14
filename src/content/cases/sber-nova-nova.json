@@ -15,7 +15,9 @@
   "accentColor": "#21a038",
   "cover": {
     "brandWordmark": "Сбер (Nova)",
-    "bg": "#21a038"
+    "bg": "#21a038",
+    "image": "/covers/sber-nova-nova.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,

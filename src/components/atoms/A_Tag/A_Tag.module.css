@@ -29,6 +29,11 @@
 .white:hover:not(.disabled) { background: var(--neutral-20); }
 .white:active:not(.disabled) { background: var(--neutral-30); color: var(--text-secondary); }
 
+/* выбранный чип-фильтр (toggle через aria-pressed) */
+.tag[aria-pressed='true'] { background: var(--neutral-150); color: var(--neutral-0); cursor: pointer; }
+.tag[role='button'] { cursor: pointer; }
+.tag[role='button']:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
 /* disabled */
 .disabled { pointer-events: none; }
 .black.disabled { background: var(--opacity-black); color: var(--neutral-50); }

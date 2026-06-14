@@ -15,7 +15,9 @@
   "accentColor": "#22c38e",
   "cover": {
     "brandWordmark": "Контур",
-    "bg": "#22c38e"
+    "bg": "#22c38e",
+    "image": "/covers/kontur-kontur-gaydy.png",
+    "darkBadge": true
   },
   "sidebar": {
     "focus": null,
