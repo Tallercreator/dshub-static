@@ -6,8 +6,8 @@
 import styles from './A_Button.module.css';
 
 interface Props {
-  // = Figma Content_type: Icon · Text · Text+Lefticon · Primary · Neutral
-  contentType?: 'icon' | 'text' | 'text-lefticon' | 'primary' | 'neutral';
+  // = Figma Content_type: Icon · Text · Text+RightIcon · Primary · Neutral
+  contentType?: 'icon' | 'text' | 'text-righticon' | 'primary' | 'neutral';
   // = Figma Size: Small_32 · Medium_40 · Large_48 (Neutral всегда XLarge_110)
   size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
@@ -30,9 +30,8 @@ const {
 
 const Tag = href ? 'a' : 'button';
 const isInactive = disabled || loading;
-const hasLabel = contentType === 'text' || contentType === 'text-lefticon' || contentType === 'neutral';
+const hasLabel = contentType === 'text' || contentType === 'text-righticon' || contentType === 'neutral';
 const hasIcon = contentType !== 'text';
-const iconLeft = contentType === 'text-lefticon';
 
 const cls = [
   styles.button,
@@ -55,7 +54,6 @@ const cls = [
   {...rest}
 >
   <span class={styles.spinner} aria-hidden="true"></span>
-  {hasIcon && iconLeft && <span class={styles.icon}><slot name="icon" /></span>}
   {hasLabel && <span class={styles.label}><slot /></span>}
-  {hasIcon && !iconLeft && <span class={styles.icon}><slot name="icon" /></span>}
+  {hasIcon && <span class={styles.icon}><slot name="icon" /></span>}
 </Tag>
