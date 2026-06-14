@@ -1,0 +1,15 @@
+{
+  "slug": "kontrakt-shema-dannyh",
+  "term": "Контракт (схема данных)",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Компонент + схема данных от бэка",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

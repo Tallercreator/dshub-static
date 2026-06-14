@@ -1,0 +1,15 @@
+{
+  "slug": "css-peremennye-css-custom-properties",
+  "term": "CSS-переменные (CSS custom properties)",
+  "category": "Инфраструктура",
+  "visualType": "example",
+  "visualNote": "Код-сниппет: --color-primary: #3B3B8A → применение",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

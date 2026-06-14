@@ -1,0 +1,15 @@
+{
+  "slug": "uxcorom",
+  "term": "UXcorom",
+  "category": "Метрики",
+  "visualType": "example",
+  "visualNote": "Стилизованный дашборд здоровья Сбер BTO",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

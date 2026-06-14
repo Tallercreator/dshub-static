@@ -1,0 +1,15 @@
+{
+  "slug": "taby-tabs",
+  "term": "Табы (Tabs)",
+  "category": "Компонент · навигация",
+  "visualType": "interactive",
+  "visualNote": "Переключение вкладок контента",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

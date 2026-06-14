@@ -1,0 +1,13 @@
+{
+  "slug": "vkui-ofitsialnaya-dokumentatsiya",
+  "title": "VKUI — официальная документация",
+  "source": "Vkui",
+  "type": "Сайт",
+  "url": "https://vkui.io",
+  "description": "Компоненты, токены, MCP-сервер, SSR, адаптивность. Первая российская ДС с интеграцией AI-агентов.",
+  "tags": [
+    "VK",
+    "Документация",
+    "Компоненты"
+  ]
+}

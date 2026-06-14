@@ -1,0 +1,15 @@
+{
+  "slug": "monorepozitoriy",
+  "term": "Монорепозиторий",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Структура монорепо: один git, много пакетов",
+  "definition": "Один Git-репозиторий, содержащий несколько пакетов. В Сбер BTO — каждый компонент — отдельная npm-библиотека внутри монорепо.",
+  "meta": {
+    "usedIn": "GitHub/GitLab репозиторий с несколькими package.json. Инструменты: pnpm workspaces, Turborepo, Nx.",
+    "relatedTo": []
+  },
+  "sources": "Сбер BTO (компонент = отдельная npm-библиотека), Gravity UI, Intergalactic",
+  "relatedCases": [],
+  "relatedTerms": []
+}

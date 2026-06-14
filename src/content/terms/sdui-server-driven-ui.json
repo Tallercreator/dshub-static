@@ -1,0 +1,15 @@
+{
+  "slug": "sdui-server-driven-ui",
+  "term": "SDUI (Server-Driven UI)",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Та же схема, что BDUI (синоним)",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "pereklyuchatel-switch",
+  "term": "Переключатель (Switch)",
+  "category": "Компонент · контролы",
+  "visualType": "interactive",
+  "visualNote": "Живой тоггл вкл/выкл",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

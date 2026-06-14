@@ -1,0 +1,15 @@
+{
+  "slug": "teg-chip-tag-chip",
+  "term": "Тег / Чип (Tag/Chip)",
+  "category": "Компонент · данные",
+  "visualType": "component",
+  "visualNote": "Метка/фильтр, removable",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

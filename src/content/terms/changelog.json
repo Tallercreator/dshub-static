@@ -1,0 +1,15 @@
+{
+  "slug": "changelog",
+  "term": "Changelog",
+  "category": "Процесс",
+  "visualType": "text",
+  "visualNote": "Определение + пример строки релиза (текст)",
+  "definition": "История изменений ДС: что добавлено, что изменено, что удалено. Каждый релиз документируется. В Gravity UI — отдельный CHANGELOG.md на каждый пакет.",
+  "meta": {
+    "usedIn": "GitHub CHANGELOG.md, раздел «Что нового» в документации, Telegram-каналы обновлений.",
+    "relatedTo": []
+  },
+  "sources": "Gravity UI, VKUI, Hexa UI, Ростелеком (Telegram-канал), Контур.Гайды (Telegram)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

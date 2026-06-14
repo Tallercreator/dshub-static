@@ -1,0 +1,15 @@
+{
+  "slug": "mapping-tokenov",
+  "term": "Маппинг токенов",
+  "category": "Процесс",
+  "visualType": "diagram",
+  "visualNote": "Таблица соответствия старых→новых токенов при миграции",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

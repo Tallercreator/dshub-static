@@ -1,0 +1,15 @@
+{
+  "slug": "ssr-server-side-rendering",
+  "term": "SSR (Server-Side Rendering)",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Серверный рендер: поток, избегание FOUC",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

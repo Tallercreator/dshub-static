@@ -1,0 +1,15 @@
+{
+  "slug": "razdelitel-divider",
+  "term": "Разделитель (Divider)",
+  "category": "Компонент · данные",
+  "visualType": "component",
+  "visualNote": "Линия-разделитель блоков",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

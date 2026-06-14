@@ -1,0 +1,15 @@
+{
+  "slug": "knopka-button",
+  "term": "Кнопка (Button)",
+  "category": "Компонент · контролы",
+  "visualType": "anatomy",
+  "visualNote": "Варианты primary/secondary/ghost + состояния — герой модуля Анатомия",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

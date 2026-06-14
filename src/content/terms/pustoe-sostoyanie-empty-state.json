@@ -1,0 +1,15 @@
+{
+  "slug": "pustoe-sostoyanie-empty-state",
+  "term": "Пустое состояние (Empty state)",
+  "category": "Компонент · обратная связь",
+  "visualType": "example",
+  "visualNote": "Экран без данных: иллюстрация + текст + действие",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

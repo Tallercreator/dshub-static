@@ -1,0 +1,15 @@
+{
+  "slug": "rollback-otkat",
+  "term": "Rollback / откат",
+  "category": "Процесс",
+  "visualType": "text",
+  "visualNote": "Только определение",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

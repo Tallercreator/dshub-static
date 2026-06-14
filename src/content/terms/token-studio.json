@@ -1,0 +1,15 @@
+{
+  "slug": "token-studio",
+  "term": "Token Studio",
+  "category": "Инструменты",
+  "visualType": "example",
+  "visualNote": "Стилизованная панель плагина + workflow Token Studio→JSON→CSS",
+  "definition": "Figma-плагин для работы с дизайн-токенами: хранение в JSON, синхронизация с репозиторием. Рабочий workflow Ростелекома: Token Studio → JSON → CSS → прод.",
+  "meta": {
+    "usedIn": "Figma: плагин Token Studio. Экспорт в JSON, интеграция с Style Dictionary.",
+    "relatedTo": []
+  },
+  "sources": "Ростелеком DS (основной инструмент синхронизации)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

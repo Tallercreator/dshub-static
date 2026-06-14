@@ -1,0 +1,15 @@
+{
+  "slug": "alert-banner-alert",
+  "term": "Алерт / Баннер (Alert)",
+  "category": "Компонент · обратная связь",
+  "visualType": "component",
+  "visualNote": "Статусное сообщение info/success/warning/error",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

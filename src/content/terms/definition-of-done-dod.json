@@ -1,0 +1,15 @@
+{
+  "slug": "definition-of-done-dod",
+  "term": "Definition of Done (DoD)",
+  "category": "Процесс",
+  "visualType": "example",
+  "visualNote": "Стилизованный чеклист готовности компонента",
+  "definition": "Явный чеклист готовности компонента. Компонент не выпускается, пока не пройдён весь список. Единственная из российских DS с публично открытым DoD — Hexa UI.",
+  "meta": {
+    "usedIn": "Чеклист при создании компонента: состояния, документация, тесты, accessibility, changelog.",
+    "relatedTo": []
+  },
+  "sources": "Hexa UI (Kaspersky) — публичный DoD",
+  "relatedCases": [],
+  "relatedTerms": []
+}

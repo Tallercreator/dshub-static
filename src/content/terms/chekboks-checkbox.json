@@ -1,0 +1,15 @@
+{
+  "slug": "chekboks-checkbox",
+  "term": "Чекбокс (Checkbox)",
+  "category": "Компонент · контролы",
+  "visualType": "interactive",
+  "visualNote": "Состояния off/on/indeterminate/disabled",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

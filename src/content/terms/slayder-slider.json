@@ -1,0 +1,15 @@
+{
+  "slug": "slayder-slider",
+  "term": "Слайдер (Slider)",
+  "category": "Компонент · контролы",
+  "visualType": "interactive",
+  "visualNote": "Перетаскивание значения по шкале",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

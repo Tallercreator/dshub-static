@@ -1,0 +1,15 @@
+{
+  "slug": "sinhronizatsiya-dizayn-kod",
+  "term": "Синхронизация дизайн–код",
+  "category": "Процесс",
+  "visualType": "diagram",
+  "visualNote": "Figma ↔ код: двусторонняя синхронизация",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

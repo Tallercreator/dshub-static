@@ -1,0 +1,15 @@
+{
+  "slug": "semanticheskiy-token",
+  "term": "Семантический токен",
+  "category": "Архитектура",
+  "visualType": "diagram",
+  "visualNote": "3 слоя токенов: raw → semantic → component (общая схема)",
+  "definition": "Токен второго уровня — описывает роль, а не значение: color-background-primary, color-text-danger. Позволяет компонентам не зависеть от конкретных цветов.",
+  "meta": {
+    "usedIn": "Реализация тёмной темы, мультибрендовость, темизация. Figma Variables Modes.",
+    "relatedTo": []
+  },
+  "sources": "ОТП (семантические пары с учётом тёмной темы), Ozon, Альфа-Банк, Paradigm, Gravity UI",
+  "relatedCases": [],
+  "relatedTerms": []
+}

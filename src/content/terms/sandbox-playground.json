@@ -1,0 +1,15 @@
+{
+  "slug": "sandbox-playground",
+  "term": "Sandbox / playground",
+  "category": "Инструменты",
+  "visualType": "example",
+  "visualNote": "Стилизованная песочница компонента в браузере",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

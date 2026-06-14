@@ -1,0 +1,15 @@
+{
+  "slug": "foundations",
+  "term": "Foundations",
+  "category": "Архитектура",
+  "visualType": "diagram",
+  "visualNote": "Базовый слой под компонентами: цвет/тип/отступы/иконки/сетка",
+  "definition": "Базовый уровень ДС: токены цветов, типографика, отступы, иконки, сетка — то, на чём строятся компоненты. В кейсах хранится в отдельных файлах Figma.",
+  "meta": {
+    "usedIn": "Figma: отдельные файлы/страницы для цветов, шрифтов, отступов. В коде: CSS custom properties.",
+    "relatedTo": []
+  },
+  "sources": "ОТП (отдельные файлы для каждого уровня), Skillaz, Dodo, Gravity UI",
+  "relatedCases": [],
+  "relatedTerms": []
+}

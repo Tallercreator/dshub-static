@@ -1,0 +1,15 @@
+{
+  "slug": "governance-upravlenie-ds",
+  "term": "Governance (управление DS)",
+  "category": "Процесс",
+  "visualType": "text",
+  "visualNote": "Только определение",
+  "definition": "Процессы принятия решений: кто имеет право вносить изменения, как проходит ревью, кто утверждает. Отсутствие governance — частая причина хаоса при росте ДС.",
+  "meta": {
+    "usedIn": "Definition of Done, процедура ревью, контрибьюторская модель, «Стандарты» как роль.",
+    "relatedTo": []
+  },
+  "sources": "Ozon (Стандарты как буфер), Альфа (дашборд статистики), Сбер BTO (UXcorom), Hexa UI (DoD)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "color-picker",
+  "term": "Color picker",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "visualNote": "Выбор цвета: HEX/RGB/палитра",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

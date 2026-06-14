@@ -1,0 +1,15 @@
+{
+  "slug": "npm-paket",
+  "term": "npm-пакет",
+  "category": "Инфраструктура",
+  "visualType": "example",
+  "visualNote": "Стилизованный терминал: npm install @package/name",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

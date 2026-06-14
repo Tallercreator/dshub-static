@@ -1,0 +1,15 @@
+{
+  "slug": "reyting-rating",
+  "term": "Рейтинг (Rating)",
+  "category": "Компонент · данные",
+  "visualType": "interactive",
+  "visualNote": "Оценка звёздами",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "mod-tokenov-mode",
+  "term": "Мод токенов (Mode)",
+  "category": "Архитектура",
+  "visualType": "interactive",
+  "visualNote": "Переключатель режимов: light/dark, iOS/Android на компоненте",
+  "definition": "Альтернативный набор значений для токенов: светлая/тёмная тема, iOS/Android платформа. В Dodo переключение платформы меняет шрифты, цвета и компоненты автоматически.",
+  "meta": {
+    "usedIn": "Figma Variables (столбцы в коллекции). Dark/Light mode, iOS/Android mode.",
+    "relatedTo": []
+  },
+  "sources": "Dodo (платформенные моды), МТС Финтех (тёмная тема), Ростелеком (orange, purple, dark)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

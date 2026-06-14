@@ -1,0 +1,13 @@
+{
+  "slug": "dizayn-sistema-rostelekoma-gen2",
+  "title": "Дизайн-система Ростелекома (gen2)",
+  "source": "Design",
+  "type": "Сайт",
+  "url": "https://design.rt.ru",
+  "description": "Второе поколение ДС: Vue/React Storybook, слоты в Figma, история изменений.",
+  "tags": [
+    "Ростелеком",
+    "Storybook",
+    "Компоненты"
+  ]
+}

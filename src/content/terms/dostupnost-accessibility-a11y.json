@@ -1,0 +1,15 @@
+{
+  "slug": "dostupnost-accessibility-a11y",
+  "term": "Доступность (accessibility, a11y)",
+  "category": "Термины DS",
+  "visualType": "interactive",
+  "visualNote": "Контраст-чекер (модуль №4): два цвета → коэффициент",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

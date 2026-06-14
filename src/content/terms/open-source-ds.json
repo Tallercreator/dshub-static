@@ -1,0 +1,15 @@
+{
+  "slug": "open-source-ds",
+  "term": "Open-source DS",
+  "category": "Инфраструктура",
+  "visualType": "text",
+  "visualNote": "Определение + признаки (публичный GitHub/npm/лицензия)",
+  "definition": "Дизайн-система с открытым исходным кодом: публичный GitHub, открытые npm-пакеты, свободная лицензия. Примеры в России: Gravity UI (Apache-2.0), Hexa UI (Apache-2.0).",
+  "meta": {
+    "usedIn": "GitHub репозиторий с открытым кодом. npm-пакеты в открытом реестре.",
+    "relatedTo": []
+  },
+  "sources": "Gravity UI, Hexa UI, Intergalactic (Semrush), VKUI, Ростелеком (частично)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

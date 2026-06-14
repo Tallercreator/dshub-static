@@ -1,0 +1,15 @@
+{
+  "slug": "akkordeon-accordion",
+  "term": "Аккордеон (Accordion)",
+  "category": "Компонент · контейнеры",
+  "visualType": "interactive",
+  "visualNote": "Сворачиваемые секции",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

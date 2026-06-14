@@ -1,0 +1,13 @@
+{
+  "slug": "neyming-bez-boli-arhitektura-tokenov-cherez-bibliotechnuyu-s",
+  "title": "Нейминг без боли: архитектура токенов через библиотечную структуру",
+  "source": "Habr",
+  "type": "Статья",
+  "url": "https://habr.com/ru/companies/pgk/articles/912192",
+  "description": "Четырёхуровневая Figma-библиотека: Primitives → Style Guide → Base Components → Product.",
+  "tags": [
+    "Токены",
+    "Архитектура",
+    "Figma"
+  ]
+}

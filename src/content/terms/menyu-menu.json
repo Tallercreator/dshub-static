@@ -1,0 +1,15 @@
+{
+  "slug": "menyu-menu",
+  "term": "Меню (Menu)",
+  "category": "Компонент · навигация",
+  "visualType": "component",
+  "visualNote": "Список действий/ссылок",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

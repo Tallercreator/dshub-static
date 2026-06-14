@@ -1,0 +1,15 @@
+{
+  "slug": "avatar-avatar",
+  "term": "Аватар (Avatar)",
+  "category": "Компонент · данные",
+  "visualType": "component",
+  "visualNote": "Изображение или инициалы пользователя",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

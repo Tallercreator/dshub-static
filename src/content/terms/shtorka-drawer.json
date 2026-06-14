@@ -1,0 +1,15 @@
+{
+  "slug": "shtorka-drawer",
+  "term": "Шторка (Drawer)",
+  "category": "Компонент · контейнеры",
+  "visualType": "component",
+  "visualNote": "Боковая/нижняя выезжающая панель",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

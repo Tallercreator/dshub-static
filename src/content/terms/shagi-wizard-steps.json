@@ -1,0 +1,15 @@
+{
+  "slug": "shagi-wizard-steps",
+  "term": "Шаги (Wizard / Steps)",
+  "category": "Компонент · навигация",
+  "visualType": "component",
+  "visualNote": "Прогресс по этапам сценария",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

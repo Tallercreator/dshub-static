@@ -1,0 +1,15 @@
+{
+  "slug": "themeprovider",
+  "term": "ThemeProvider",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "React-дерево, обёрнутое провайдером темы",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

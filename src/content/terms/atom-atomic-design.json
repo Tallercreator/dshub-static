@@ -1,0 +1,15 @@
+{
+  "slug": "atom-atomic-design",
+  "term": "Атом (atomic design)",
+  "category": "Архитектура",
+  "visualType": "anatomy",
+  "visualNote": "Атомарные слои: кв*арк→атом→молекула",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

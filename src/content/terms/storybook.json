@@ -1,0 +1,15 @@
+{
+  "slug": "storybook",
+  "term": "Storybook",
+  "category": "Инструменты",
+  "visualType": "example",
+  "visualNote": "Стилизованный интерфейс Storybook (playground параметров)",
+  "definition": "Инструмент для разработки и документирования UI-компонентов в изоляции. Живой playground: переключение параметров в реальном времени.",
+  "meta": {
+    "usedIn": "Локальная разработка компонентов. Публичная документация ДС для внешних разработчиков.",
+    "relatedTo": []
+  },
+  "sources": "Ростелеком (Vue + React Storybook), Hexa UI, Skillaz, Контур.Гайды",
+  "relatedCases": [],
+  "relatedTerms": []
+}

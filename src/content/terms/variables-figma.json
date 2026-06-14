@@ -1,0 +1,15 @@
+{
+  "slug": "variables-figma",
+  "term": "Variables (Figma)",
+  "category": "Инструменты",
+  "visualType": "example",
+  "visualNote": "Стилизованная панель Variables в Figma",
+  "definition": "Нативный механизм Figma для хранения токенов. Позволяет переключать темы, платформы и состояния прямо в макете без детача компонентов.",
+  "meta": {
+    "usedIn": "Дизайн-файлы Figma. Коллекции Variables для цветов, типографики, отступов.",
+    "relatedTo": []
+  },
+  "sources": "ОТП, МТС Финтех, Dodo (мод платформ iOS/Android)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

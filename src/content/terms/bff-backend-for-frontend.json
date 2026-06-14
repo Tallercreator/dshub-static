@@ -1,0 +1,15 @@
+{
+  "slug": "bff-backend-for-frontend",
+  "term": "BFF (Backend for Frontend)",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Слой BFF между API и клиентами iOS/Android/Web",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

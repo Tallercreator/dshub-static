@@ -1,0 +1,15 @@
+{
+  "slug": "proniknovenie-ds",
+  "term": "Проникновение DS",
+  "category": "Метрики",
+  "visualType": "diagram",
+  "visualNote": "Простой стат/чарт: доля команд/экранов на DS",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

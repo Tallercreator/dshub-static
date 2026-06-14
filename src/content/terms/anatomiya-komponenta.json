@@ -1,0 +1,15 @@
+{
+  "slug": "anatomiya-komponenta",
+  "term": "Анатомия компонента",
+  "category": "Архитектура",
+  "visualType": "anatomy",
+  "visualNote": "Сам модуль Анатомия (части компонента)",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "slot-slot",
+  "term": "Слот (slot)",
+  "category": "Архитектура",
+  "visualType": "diagram",
+  "visualNote": "Контейнер-слот, принимающий любой компонент",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "paginatsiya-pagination",
+  "term": "Пагинация (Pagination)",
+  "category": "Компонент · навигация",
+  "visualType": "interactive",
+  "visualNote": "Постраничная навигация",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

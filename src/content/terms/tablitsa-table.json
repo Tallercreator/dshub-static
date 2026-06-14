@@ -1,0 +1,15 @@
+{
+  "slug": "tablitsa-table",
+  "term": "Таблица (Table)",
+  "category": "Компонент · данные",
+  "visualType": "component",
+  "visualNote": "Строки/колонки, сортировка",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

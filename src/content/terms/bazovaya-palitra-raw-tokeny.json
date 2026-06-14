@@ -1,0 +1,15 @@
+{
+  "slug": "bazovaya-palitra-raw-tokeny",
+  "term": "Базовая палитра (raw-токены)",
+  "category": "Архитектура",
+  "visualType": "diagram",
+  "visualNote": "Тот же диаграмм-шаблон слоёв токенов",
+  "definition": "Токены первого уровня — сырые значения без семантики: blue-500, gray-100. Не используются напрямую в компонентах — только как значения для семантических токенов.",
+  "meta": {
+    "usedIn": "Figma Variables (коллекция Primitives), Style Dictionary, Token Studio.",
+    "relatedTo": []
+  },
+  "sources": "ОТП, Ozon (Core-палитра), Альфа-Банк, Gravity UI, Intergalactic (Huetone)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

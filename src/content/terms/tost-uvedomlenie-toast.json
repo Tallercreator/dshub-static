@@ -1,0 +1,15 @@
+{
+  "slug": "tost-uvedomlenie-toast",
+  "term": "Тост / Уведомление (Toast)",
+  "category": "Компонент · обратная связь",
+  "visualType": "component",
+  "visualNote": "Всплывающее короткое сообщение",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

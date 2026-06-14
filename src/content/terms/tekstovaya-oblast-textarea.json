@@ -1,0 +1,15 @@
+{
+  "slug": "tekstovaya-oblast-textarea",
+  "term": "Текстовая область (Textarea)",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "visualNote": "Многострочный ввод с авто-ростом",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

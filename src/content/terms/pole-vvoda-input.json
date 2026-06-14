@@ -1,0 +1,15 @@
+{
+  "slug": "pole-vvoda-input",
+  "term": "Поле ввода (Input)",
+  "category": "Компонент · контролы",
+  "visualType": "anatomy",
+  "visualNote": "Состояния default/focus/error/disabled, части поля",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

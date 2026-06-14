@@ -12,6 +12,10 @@ const cases = Object.values(import.meta.glob('../content/cases/*.json', { eager:
 const terms = Object.values(import.meta.glob('../content/terms/*.json', { eager: true })).map(
   (m) => m.default,
 );
+const resources = Object.values(import.meta.glob('../content/resources/*.json', { eager: true })).map(
+  (m) => m.default,
+);
+const termsWithDef = terms.filter((t) => t.definition);
 ---
 
 <BaseLayout title="DSHub — каркас (styleguide)">
@@ -85,14 +89,27 @@ const terms = Object.values(import.meta.glob('../content/terms/*.json', { eager:
             </li>
           ))}
         </ul>
-        <A_Text variant="title" color="primary">Термины ({terms.length})</A_Text>
-        {terms.map((t) => (
+        <A_Text variant="title" color="primary">
+          Термины ({terms.length}) · с определением: {termsWithDef.length}
+        </A_Text>
+        {termsWithDef.slice(0, 4).map((t) => (
           <div class="term">
             <A_Text variant="title" color="primary">{t.term}</A_Text>
             <A_Text variant="caption" color="tertiary">{t.category} · {t.visualType}</A_Text>
             <A_Text variant="body" color="secondary">{t.definition}</A_Text>
           </div>
         ))}
+
+        <A_Text variant="title" color="primary">Ресурсы ({resources.length})</A_Text>
+        <ul class="links">
+          {resources.slice(0, 5).map((r) => (
+            <li>
+              <a href={r.url} target="_blank" rel="noopener noreferrer">
+                <A_Text variant="body" color="accent">→ [{r.source}] {r.title}</A_Text>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   </main>

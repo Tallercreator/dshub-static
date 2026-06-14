@@ -1,0 +1,13 @@
+{
+  "slug": "refaktoring-guru-katalog-patternov",
+  "title": "Рефакторинг.Гуру — каталог паттернов",
+  "source": "Refactoringu",
+  "type": "Сайт",
+  "url": "https://refactoringu.ru/ru/refactoring/catalog.html",
+  "description": "Каталог приёмов рефакторинга и паттернов проектирования — справочник для упрощения работы с кодом.",
+  "tags": [
+    "Рефакторинг",
+    "Паттерны",
+    "Инженерия"
+  ]
+}

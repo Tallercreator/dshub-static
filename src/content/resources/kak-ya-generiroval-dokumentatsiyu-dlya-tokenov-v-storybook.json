@@ -1,0 +1,12 @@
+{
+  "slug": "kak-ya-generiroval-dokumentatsiyu-dlya-tokenov-v-storybook",
+  "title": "Как я генерировал документацию для токенов в Storybook",
+  "source": "Habr",
+  "type": "Статья",
+  "url": "https://habr.com/ru/articles/779524",
+  "description": "Цветовая палитра, шрифты и иконки в Storybook через CSS-переменные — реальный кейс.",
+  "tags": [
+    "Storybook",
+    "Документация"
+  ]
+}

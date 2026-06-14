@@ -1,0 +1,15 @@
+{
+  "slug": "loader-spinner-spinner",
+  "term": "Лоадер / Спиннер (Spinner)",
+  "category": "Компонент · обратная связь",
+  "visualType": "component",
+  "visualNote": "Индикатор загрузки",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

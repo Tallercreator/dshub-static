@@ -1,0 +1,15 @@
+{
+  "slug": "poisk-search",
+  "term": "Поиск (Search)",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "visualNote": "Поле поиска с подсказками",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

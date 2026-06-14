@@ -1,0 +1,15 @@
+{
+  "slug": "selekt-select",
+  "term": "Селект (Select)",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "visualNote": "Выпадающий выбор значения",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

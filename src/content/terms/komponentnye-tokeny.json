@@ -1,0 +1,15 @@
+{
+  "slug": "komponentnye-tokeny",
+  "term": "Компонентные токены",
+  "category": "Архитектура",
+  "visualType": "diagram",
+  "visualNote": "Тот же диаграмм-шаблон слоёв токенов",
+  "definition": "Токены третьего уровня — привязаны к конкретному компоненту: button-primary-background, input-border-error. В Figma реализуются через отдельные коллекции Variables.",
+  "meta": {
+    "usedIn": "Input Family в Figma, сложные компоненты с многими цветовыми состояниями.",
+    "relatedTo": []
+  },
+  "sources": "ОТП (компонентные Variables под каждый компонент), Skillaz, Hexa UI",
+  "relatedCases": [],
+  "relatedTerms": []
+}

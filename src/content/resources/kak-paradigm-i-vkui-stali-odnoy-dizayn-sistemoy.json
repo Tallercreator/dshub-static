@@ -1,0 +1,13 @@
+{
+  "slug": "kak-paradigm-i-vkui-stali-odnoy-dizayn-sistemoy",
+  "title": "Как Paradigm и VKUI стали одной дизайн-системой",
+  "source": "VC.ru",
+  "type": "Статья",
+  "url": "https://vc.ru/design/963959",
+  "description": "История объединения ДС ВКонтакте и Mail.ru через 120 общих токенов. Как сохранить две библиотеки на одном фундаменте.",
+  "tags": [
+    "Токены",
+    "Архитектура",
+    "VK"
+  ]
+}

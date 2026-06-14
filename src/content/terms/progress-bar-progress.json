@@ -1,0 +1,15 @@
+{
+  "slug": "progress-bar-progress",
+  "term": "Прогресс-бар (Progress)",
+  "category": "Компонент · обратная связь",
+  "visualType": "interactive",
+  "visualNote": "Индикатор выполнения",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

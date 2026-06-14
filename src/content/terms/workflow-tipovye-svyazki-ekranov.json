@@ -1,0 +1,15 @@
+{
+  "slug": "workflow-tipovye-svyazki-ekranov",
+  "term": "Workflow (типовые связки экранов)",
+  "category": "Процесс",
+  "visualType": "diagram",
+  "visualNote": "Последовательность экранов типового сценария",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "adaptivnost-adaptivityprovider",
+  "term": "Адаптивность (AdaptivityProvider)",
+  "category": "Архитектура",
+  "visualType": "interactive",
+  "visualNote": "Ресайз вьюпорта → компонент адаптируется",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

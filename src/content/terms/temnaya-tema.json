@@ -1,0 +1,15 @@
+{
+  "slug": "temnaya-tema",
+  "term": "Тёмная тема",
+  "category": "Архитектура",
+  "visualType": "interactive",
+  "visualNote": "Тоггл light/dark",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

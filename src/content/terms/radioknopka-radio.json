@@ -1,0 +1,15 @@
+{
+  "slug": "radioknopka-radio",
+  "term": "Радиокнопка (Radio)",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "visualNote": "Выбор одного варианта из группы",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

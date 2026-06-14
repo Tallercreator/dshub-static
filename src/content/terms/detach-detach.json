@@ -1,0 +1,15 @@
+{
+  "slug": "detach-detach",
+  "term": "Детач (detach)",
+  "category": "Процесс",
+  "visualType": "diagram",
+  "visualNote": "Связь мастер→инстанс с разрывом",
+  "definition": "Разрыв связи экземпляра компонента с мастером в Figma. В Dodo — не нарушение, а инструмент тестирования гипотез. Метрика: % детачей в Library Analytics.",
+  "meta": {
+    "usedIn": "Figma: правая кнопка → Detach instance. Library Analytics: отчёт по детачам.",
+    "relatedTo": []
+  },
+  "sources": "Dodo (детач как инструмент, метрика здоровья ДС)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

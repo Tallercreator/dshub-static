@@ -1,0 +1,15 @@
+{
+  "slug": "bdui-backend-driven-ui",
+  "term": "BDUI (Backend-Driven UI)",
+  "category": "Инфраструктура",
+  "visualType": "diagram",
+  "visualNote": "Сервер отдаёт JSON-описание → клиент рендерит",
+  "definition": "Подход, при котором сервер возвращает не данные, а описание интерфейса (JSON). Компоненты рендерятся клиентом по схеме. Позволяет менять UI без релиза приложения.",
+  "meta": {
+    "usedIn": "Мобильные приложения: экраны-каталоги, промо-блоки, онбординг. Серверная отдача JSON-схемы.",
+    "relatedTo": []
+  },
+  "sources": "Ozon (Uni + BDUI), Авито (Bricks), МТС Финтех (Server-Driven UI в Мой МТС)",
+  "relatedCases": [],
+  "relatedTerms": []
+}

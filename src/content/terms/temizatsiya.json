@@ -1,0 +1,15 @@
+{
+  "slug": "temizatsiya",
+  "term": "Темизация",
+  "category": "Архитектура",
+  "visualType": "interactive",
+  "visualNote": "Замена набора токенов → рестайл компонента (Песочница/пресеты)",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

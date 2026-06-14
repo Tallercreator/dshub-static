@@ -1,0 +1,15 @@
+{
+  "slug": "wcag",
+  "term": "WCAG",
+  "category": "Термины DS",
+  "visualType": "interactive",
+  "visualNote": "Уровни A/AA/AAA на контраст-чекере",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}

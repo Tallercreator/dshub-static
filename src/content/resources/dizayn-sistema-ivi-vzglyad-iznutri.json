@@ -1,0 +1,13 @@
+{
+  "slug": "dizayn-sistema-ivi-vzglyad-iznutri",
+  "title": "Дизайн-система IVI. Взгляд изнутри",
+  "source": "Habr",
+  "type": "Статья",
+  "url": "https://habr.com/ru/companies/ivi/articles/565500",
+  "description": "Как IVI сделали единый JSON-формат для iOS, Android, Smart TV и email одновременно.",
+  "tags": [
+    "Архитектура",
+    "Кросс-платформа",
+    "Кейс"
+  ]
+}

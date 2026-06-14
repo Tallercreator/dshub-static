@@ -1,0 +1,15 @@
+{
+  "slug": "audit-ds",
+  "term": "Аудит DS",
+  "category": "Процесс",
+  "visualType": "text",
+  "visualNote": "Определение (пример: 4/32 команды)",
+  "definition": "",
+  "meta": {
+    "usedIn": null,
+    "relatedTo": []
+  },
+  "sources": null,
+  "relatedCases": [],
+  "relatedTerms": []
+}
