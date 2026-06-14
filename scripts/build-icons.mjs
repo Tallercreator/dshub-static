@@ -16,14 +16,16 @@ const OUT = resolve(__dirname, '../src/components/quarks/Q_Icon/icons.ts');
 
 // name → { url, transform }. transform = CSS из Figma-обёртки (orientation).
 const ICONS = {
+  // ВАЖНО: порядок как в Tailwind/Figma — rotate ПЕРЕД scale в CSS-строке.
+  // Иначе несимметричные глифы (check) зеркалятся неправильно.
   'chevron-right': { url: 'cc6a2e47-6076-4e26-910d-54bd04f535c6', transform: 'scaleY(-1)' },
-  'chevron-down': { url: '2b94097c-cf07-4204-80a2-8ca40457482b', transform: 'scaleY(-1) rotate(90deg)' },
+  'chevron-down': { url: '2b94097c-cf07-4204-80a2-8ca40457482b', transform: 'rotate(90deg) scaleY(-1)' },
   'arrow-right': { url: '2621f99c-fdf3-43b7-8298-a416016e0a7b', transform: 'rotate(90deg)' },
   'arrow-left': { url: 'b0cc642c-58c1-48ea-8157-3a3129ff8a5e', transform: '' },
-  heart: { url: '6ef69540-8257-4ab4-ab9a-1dc2c4eda6da', transform: 'scaleY(-1) rotate(180deg)' },
+  heart: { url: '6ef69540-8257-4ab4-ab9a-1dc2c4eda6da', transform: 'rotate(180deg) scaleY(-1)' },
   plus: { url: '106206aa-04c0-49b4-a0c2-4429af897a44', transform: '' },
   'cross-small': { url: 'ec2673e6-03c7-45f9-9981-77ad6e8807fc', transform: '' },
-  check: { url: '4b70d070-4024-4780-a408-933b9d29929d', transform: 'scaleY(-1) rotate(90deg)' },
+  check: { url: '4b70d070-4024-4780-a408-933b9d29929d', transform: 'rotate(90deg) scaleY(-1)' },
   filter: { url: 'ea2470d1-4dc9-48aa-a60e-5a4485e1b5c2', transform: '' },
   loupe: { url: 'a75f69a9-4eee-4b7b-9668-45f8cc85b0b8', transform: 'rotate(180deg)' },
   'rotate-arrows': { url: 'ac2b7a2d-5659-4566-92b5-9b1f84a28c16', transform: '' },

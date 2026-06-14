@@ -16,7 +16,7 @@ export const ICONS: Record<string, IconDef> = {
   },
   "chevron-down": {
     "viewBox": "0 0 8.6 15.6",
-    "transform": "scaleY(-1) rotate(90deg)",
+    "transform": "rotate(90deg) scaleY(-1)",
     "body": "<path id=\"Vector\" d=\"M0.8 0.8L7.8 7.8L0.8 14.8\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
   },
   "arrow-right": {
@@ -31,7 +31,7 @@ export const ICONS: Record<string, IconDef> = {
   },
   "heart": {
     "viewBox": "0 0 21.5999 19.8922",
-    "transform": "scaleY(-1) rotate(180deg)",
+    "transform": "rotate(180deg) scaleY(-1)",
     "body": "<path id=\"Vector\" d=\"M5.81176 0.804365C8.24441 0.71272 9.71644 2.09178 10.7611 3.34423C11.5372 2.47362 12.8261 0.804363 15.7363 0.804363C19.4872 0.804363 21.8069 5.33128 20.3696 9.38958C18.9031 13.5299 16.0713 15.914 12.5264 18.5171C11.4781 19.2869 10.0452 19.2858 9.00727 18.5021C5.25807 15.6711 2.19148 12.8854 1.17037 9.38958C-0.118554 4.97688 2.0825 0.944858 5.81176 0.804365Z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/>"
   },
   "plus": {
@@ -46,7 +46,7 @@ export const ICONS: Record<string, IconDef> = {
   },
   "check": {
     "viewBox": "0 0 11.6 17.6",
-    "transform": "scaleY(-1) rotate(90deg)",
+    "transform": "rotate(90deg) scaleY(-1)",
     "body": "<path id=\"Vector\" d=\"M0.800003 16.8L10.8 6.13334L5.8 0.800003\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>"
   },
   "filter": {
