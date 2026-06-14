@@ -1,0 +1,32 @@
+---
+// O_Image — блок изображения. Блок type:"image" { src, alt, caption? }.
+import A_Text from '../../atoms/A_Text/A_Text.astro';
+
+interface Props {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+const { src, alt = '', caption } = Astro.props;
+---
+<figure class="block-image">
+  <img src={src} alt={alt} loading="lazy" />
+  {caption && (
+    <figcaption><A_Text variant="caption" color="tertiary">{caption}</A_Text></figcaption>
+  )}
+</figure>
+
+<style>
+  .block-image {
+    margin-block: var(--layout-xs);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .block-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+  figcaption { text-align: center; }
+</style>

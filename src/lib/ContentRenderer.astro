@@ -1,13 +1,17 @@
 ---
-// ContentRenderer.astro — проходит по массиву блоков кейса/статьи и по полю
-// `type` выбирает компонент-организм (паттерн из 04-content-model.md).
-// Статический рендер (zero-JS): блоки презентационные. Интерактив (quiz и т.п.)
-// подключим React-островом позже.
+// ContentRenderer.astro — проходит по массиву блоков и по полю `type` выбирает
+// компонент-организм (паттерн из 04-content-model.md, согласован со схемой
+// одногруппника). Статические блоки — zero-JS (.astro); интерактивный квиз —
+// React-ОСТРОВ (client:visible), гидратируется только когда виден.
 import O_Heading from '../components/organisms/O_Heading/O_Heading.astro';
 import O_Paragraph from '../components/organisms/O_Paragraph/O_Paragraph.astro';
 import O_Quote from '../components/organisms/O_Quote/O_Quote.astro';
 import O_NumberedList from '../components/organisms/O_NumberedList/O_NumberedList.astro';
 import O_SummaryBox from '../components/organisms/O_SummaryBox/O_SummaryBox.astro';
+import O_Code from '../components/organisms/O_Code/O_Code.astro';
+import O_Links from '../components/organisms/O_Links/O_Links.astro';
+import O_Image from '../components/organisms/O_Image/O_Image.astro';
+import O_Quiz from '../components/organisms/O_Quiz/O_Quiz.tsx';
 
 interface Block {
   type: string;
@@ -18,6 +22,9 @@ interface Props {
 }
 
 const { blocks = [] } = Astro.props;
+
+// Сквозная нумерация квизов (как quizCounter у одногруппника).
+let quizNumber = 0;
 ---
 
 {
@@ -28,13 +35,24 @@ const { blocks = [] } = Astro.props;
       case 'paragraph':
         return <O_Paragraph text={b.text} />;
       case 'quote':
-        return <O_Quote text={b.text} author={b.author} />;
+        return <O_Quote text={b.text} author={b.author} title={b.title} />;
       case 'numbered-list':
         return <O_NumberedList items={b.items} />;
       case 'summary':
         return <O_SummaryBox items={b.items} />;
+      case 'code':
+        return <O_Code language={b.language} code={b.code} />;
+      case 'links':
+        return <O_Links links={b.links} />;
+      case 'image':
+        return <O_Image src={b.src} alt={b.alt} caption={b.caption} />;
+      case 'quiz-single':
+        quizNumber += 1;
+        return <O_Quiz client:visible mode="single" question={b.question} options={b.options} number={quizNumber} />;
+      case 'quiz-multiple':
+        quizNumber += 1;
+        return <O_Quiz client:visible mode="multiple" question={b.question} options={b.options} number={quizNumber} />;
       default:
-        // Неизвестный тип блока — тихо пропускаем (как в эталоне).
         return null;
     }
   })

@@ -6,10 +6,12 @@ import A_Text from '../../atoms/A_Text/A_Text.astro';
 interface Props {
   text: string;
   author?: string;
+  title?: string;
 }
-const { text, author } = Astro.props;
+const { text, author, title } = Astro.props;
 ---
 <figure class="block-quote">
+  {title && <A_Text variant="caption" color="accent" class="quote-title">{title}</A_Text>}
   <A_Text as="blockquote" variant="title" color="primary" class="quote-text">{text}</A_Text>
   {author && <A_Text as="figcaption" variant="caption" color="tertiary">{author}</A_Text>}
 </figure>

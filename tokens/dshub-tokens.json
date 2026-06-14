@@ -550,6 +550,14 @@
       "cta-pressed": {
         "value": "{neutral.150}",
         "type": "color"
+      },
+      "success-subtle": {
+        "value": "{lime.0}",
+        "type": "color"
+      },
+      "error-subtle": {
+        "value": "{pink.10}",
+        "type": "color"
       }
     },
     "text": {
@@ -646,6 +654,14 @@
         "type": "color"
       },
       "accent": {
+        "value": "{pink.60}",
+        "type": "color"
+      },
+      "success": {
+        "value": "{lime.30}",
+        "type": "color"
+      },
+      "error": {
         "value": "{pink.60}",
         "type": "color"
       }

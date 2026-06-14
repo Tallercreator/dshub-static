@@ -44,6 +44,26 @@
         "Компонент владеет своими стилями и ссылается только на семантику.",
         "Документация рядом с компонентом снижает порог входа для новых команд."
       ]
+    },
+    {
+      "type": "code",
+      "language": "css",
+      "code": ".button { background: var(--surface-button); color: var(--text-on-button); }"
+    },
+    {
+      "type": "quiz-single",
+      "question": "Зачем компонент ссылается на семантический токен, а не на сырой цвет?",
+      "options": [
+        { "id": 1, "text": "Чтобы смена темы/токена применилась ко всем компонентам разом", "correct": true },
+        { "id": 2, "text": "Чтобы код было дольше писать", "correct": false },
+        { "id": 3, "text": "Это требование браузера", "correct": false }
+      ]
+    },
+    {
+      "type": "links",
+      "links": [
+        { "text": "Design Tokens — спецификация W3C", "url": "https://www.w3.org/community/design-tokens/", "external": true }
+      ]
     }
   ]
 }

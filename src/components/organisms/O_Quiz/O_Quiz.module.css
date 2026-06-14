@@ -1,0 +1,53 @@
+/* O_Quiz.module.css — контейнер квиза + кнопка проверки (button-токены). */
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: var(--space-3xl);
+  background: var(--surface-card);
+  border: var(--border-hairline) solid var(--stroke-subtle);
+  border-radius: var(--radius-lg);
+  margin-block: var(--layout-xs);
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-snug);
+  color: var(--text-primary);
+  margin: 0;
+}
+.num {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-accent);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.submit {
+  align-self: flex-start;
+  height: var(--size-control-2xl);
+  padding-inline: var(--space-2xl);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  line-height: 1.2;
+  color: var(--text-on-button);
+  background: var(--surface-button);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--duration-fast) ease;
+}
+.submit:hover:not(:disabled) { background: var(--surface-button-hover); }
+.submit:disabled { background: var(--surface-button-disabled); color: var(--text-on-button-disabled); cursor: not-allowed; }

@@ -1,0 +1,24 @@
+---
+// O_Code — блок кода. Блок type:"code" { language, code }. Статический.
+interface Props {
+  language?: string;
+  code: string;
+}
+const { language, code } = Astro.props;
+---
+<pre class="block-code" data-lang={language}><code>{code}</code></pre>
+
+<style>
+  .block-code {
+    margin-block: var(--layout-xs);
+    padding: var(--space-2xl);
+    background: var(--surface-inverse);
+    color: var(--text-inverse-primary);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-normal);
+  }
+  .block-code code { font-family: inherit; }
+</style>
