@@ -1,4 +1,6 @@
-/* O_Header.module.css — шапка. Sticky, стеклянный фон (Figma O_Header). */
+/* O_Header.module.css — шапка. Sticky, сплошной белый фон (Surface/card) —
+ * сливается с белым первым экраном, без стекла. Серый Surface/page — только
+ * у пилюли M_Segment. */
 
 .header {
   position: sticky;
@@ -6,12 +8,13 @@
   z-index: 50;
   width: 100%;
   padding-block: var(--space-lg);
-  background: color-mix(in srgb, var(--surface-page) 72%, transparent);
-  backdrop-filter: blur(12px);
+  background: var(--surface-card);
 }
 
 .inner {
-  max-width: 1376px;
+  /* Тот же контейнер, что у S_Hero .content (1440 + 32) — чтобы лого/CTA шапки
+   * были на одной сетке с H1/«Смотреть все кейсы» героя. */
+  max-width: 1440px;
   margin-inline: auto;
   padding-inline: var(--layout-xs);
   display: flex;

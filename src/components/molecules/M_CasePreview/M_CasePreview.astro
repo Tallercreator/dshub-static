@@ -1,0 +1,21 @@
+---
+// M_CasePreview — молекула. Обложка карточки кейса (Figma M_CasePreview 23:1752).
+// Контейнер 280px со скруглением под картинку-обложку (зальём в высоком качестве
+// позже). Пока coverImage нет — мягкая подложка по accentColor кейса.
+import styles from './M_CasePreview.module.css';
+
+interface Props {
+  coverImage?: string;
+  accentColor?: string;
+  alt?: string;
+  class?: string;
+}
+const { coverImage, accentColor, alt = '', class: extra } = Astro.props;
+const style = accentColor && !coverImage ? `--cover-accent: ${accentColor}` : undefined;
+---
+
+<div class:list={[styles.preview, !coverImage && styles.placeholder, extra]} style={style}>
+  {coverImage && (
+    <img class={styles.img} src={coverImage} alt={alt} loading="lazy" decoding="async" />
+  )}
+</div>

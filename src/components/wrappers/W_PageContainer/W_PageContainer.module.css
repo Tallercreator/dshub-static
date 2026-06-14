@@ -1,0 +1,33 @@
+/* W_PageContainer.module.css — белый контейнер + панель-слот для секций Главной.
+ * linear: градиент + скруглённый верх (первая секция, наезжает на герой).
+ * solid: плоский белый (последующие секции). */
+
+.container {
+  background: var(--neutral-0);
+  padding-inline: var(--layout-xs); /* 32 */
+}
+
+.panel {
+  padding-inline: var(--layout-xs);
+}
+
+/* type=linear (Figma 31:5789) */
+.linear {
+  border-radius: var(--radius-5xl) var(--radius-5xl) 0 0; /* 48 верх */
+  background: linear-gradient(180deg, var(--neutral-10) 0%, var(--neutral-0) 40%);
+  padding-block: var(--layout-2xl); /* 80 */
+}
+
+/* type=solid (Figma 31:5967) — продолжает панель без верхнего отступа */
+.solid {
+  background: var(--neutral-0);
+  padding-top: 0;
+  padding-bottom: var(--layout-2xl); /* 80 */
+}
+
+/* type=solid-gray (Figma 31:7326) — серая панель со скруглением 48 по всем углам */
+.solid-gray {
+  background: var(--surface-page);
+  border-radius: var(--radius-5xl); /* 48 */
+  padding-block: var(--layout-2xl); /* 80 */
+}

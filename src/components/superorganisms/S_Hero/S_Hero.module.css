@@ -1,54 +1,99 @@
-/* S_Hero.module.css — герой Главной (Figma O_LogoWall Hero + заголовок + лого-стена). */
+/* S_Hero.module.css — герой Главной (Figma 28:3259).
+ * Слои: белый фон → ghost-band → радиальная вуаль → сердце → контент. */
 
 .hero {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
+  overflow: hidden;
+  background: var(--neutral-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* фон-призрак — огромный condensed-текст, едва видимый */
+/* ───────── ghost-band: гигантский condensed-текст за сердцем ───────── */
+.backdrop {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: clamp(380px, 50vw, 540px);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
 .ghost {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.08;
+  text-align: center;
+  opacity: 0.07;
 }
 .ghostLine {
   font-family: var(--font-family-decorate);
   font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  font-size: min(308px, 21vw);
+  font-size: clamp(120px, 21vw, 308px);
   line-height: 0.72;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.04em; /* Figma -12px@308 ≈ -0.04em; токена нет — display-приём */
+  text-transform: uppercase;
   color: var(--text-secondary);
   white-space: nowrap;
 }
 
-/* радиальный градиент: прозрачный центр → белые края (вуаль) */
-.fade {
+/* радиальная вуаль: прозрачный центр (ghost виден) → белые края (ghost гаснет) */
+.veil {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 62% 64% at 50% 46%, transparent 0%, var(--neutral-0) 92%);
+  background: radial-gradient(
+    ellipse 70% 64% at 50% 44%,
+    transparent 28%,
+    var(--neutral-0) 76%
+  );
 }
 
+/* ───────── сердце (Q_Illustration) — фокус, центр-верх ───────── */
+.heart {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: clamp(112px, 14vw, 184px);
+  transform: translateX(-50%);
+  width: clamp(168px, 16vw, 226px);
+  height: auto;
+}
+
+/* ───────── контент: H1 внизу слева + лого-стена ───────── */
 .content {
-  max-width: 1376px;
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
   margin-inline: auto;
-  padding: var(--layout-2xl) var(--layout-xs) var(--layout-md);
-  min-height: 520px;
+  padding-inline: var(--layout-xs);
+  padding-top: clamp(320px, 40vw, 432px);
+  padding-bottom: var(--layout-2xl);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: var(--layout-2xl);
+  gap: var(--layout-xs);
 }
-.heading {
-  max-width: 664px;
+.title {
+  max-width: 30ch;
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular); /* Suisse Book */
+  font-size: var(--font-size-2xl); /* Figma size/4xl = 32px */
+  line-height: var(--line-snug);
+  letter-spacing: -0.04em; /* Figma -1.28px@32; токена нет — display-приём */
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding-top: clamp(280px, 52vw, 360px);
+  }
+  .title {
+    font-size: var(--font-size-xl, 28px);
+  }
 }

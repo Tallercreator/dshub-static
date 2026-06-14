@@ -30,6 +30,8 @@ const ICONS = {
   loupe: { url: 'a75f69a9-4eee-4b7b-9668-45f8cc85b0b8', transform: 'rotate(180deg)' },
   'rotate-arrows': { url: 'ac2b7a2d-5659-4566-92b5-9b1f84a28c16', transform: '' },
   'upright-arrow': { url: '971c52df-55a3-40be-8735-b9a6c814704b', transform: '' },
+  // solid_airplane (Q_Icon_24, аффорданс «открыть» в карточке термина) — fill-иконка
+  send: { url: '35a76a5a-0c10-4b4f-a3a4-6209f0b7ecd9', transform: '' },
 };
 
 const ASSET = (id) => `https://www.figma.com/api/mcp/asset/${id}`;

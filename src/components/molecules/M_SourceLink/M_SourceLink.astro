@@ -1,0 +1,24 @@
+---
+// M_SourceLink — молекула. Верх карточки ресурса (Figma M_SourceLink 30:4620):
+// тег типа ресурса (A_Tag white) + источник-ссылка A_Link (↗, hover → лайм).
+// Источник — настоящая ссылка-СЕСТРА растянутой ссылки карточки (не вложенная),
+// поэтому ей поднят z-index — ловит hover/клик поверх растянутой зоны.
+import A_Tag from '../../atoms/A_Tag/A_Tag.astro';
+import A_Link from '../../atoms/A_Link/A_Link.astro';
+import styles from './M_SourceLink.module.css';
+
+interface Props {
+  label?: string; // тип ресурса
+  source?: string; // источник (Habr, Avito…)
+  url?: string; // ссылка на ресурс
+  class?: string;
+}
+const { label, source, url = '#', class: extra } = Astro.props;
+---
+
+<div class:list={[styles.row, extra]}>
+  {label && <A_Tag variant="white" size="md">{label}</A_Tag>}
+  {source && (
+    <A_Link href={url} external class={styles.source}>{source}</A_Link>
+  )}
+</div>

@@ -1,0 +1,46 @@
+---
+// S_TermsSection — суперорганизм. Секция глоссария Главной (Figma S_TermsSection
+// 30:4487): W_SectionHeader («Глоссарий» + подпись + «Перейти к разделу ↗») +
+// W_TermsGrid из O_TermCard. Карточки приходят готовыми (term/definition/variant).
+import W_SectionHeader from '../../wrappers/W_SectionHeader/W_SectionHeader.astro';
+import W_TermsGrid from '../../wrappers/W_TermsGrid/W_TermsGrid.astro';
+import O_TermCard from '../../organisms/O_TermCard/O_TermCard.astro';
+import styles from './S_TermsSection.module.css';
+
+interface TermItem {
+  term: string;
+  definition?: string;
+  variant?: 'pink' | 'lime' | 'image';
+  href?: string;
+  image?: string;
+}
+interface Props {
+  items: TermItem[];
+  href?: string; // ссылка «Перейти к разделу»
+  class?: string;
+}
+const { items, href = '/glossary', class: extra } = Astro.props;
+---
+
+<section class:list={[styles.section, extra]} aria-labelledby="terms-title">
+  <W_SectionHeader
+    size="display"
+    label="простым языком простые и сложные элементы"
+    linkText="Перейти к разделу"
+    linkHref={href}
+  >
+    <span id="terms-title">Глоссарий</span>
+  </W_SectionHeader>
+
+  <W_TermsGrid>
+    {items.map((t) => (
+      <O_TermCard
+        variant={t.variant}
+        term={t.term}
+        definition={t.definition}
+        href={t.href ?? href}
+        image={t.image}
+      />
+    ))}
+  </W_TermsGrid>
+</section>

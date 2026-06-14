@@ -1,0 +1,58 @@
+---
+// O_CaseCard — организм. Карточка кейса (Figma O_CaseCard 29:3736).
+// Обложка (M_CasePreview) + бейдж companyType (A_Tag, поверх обложки) +
+// теги focus[] (A_CategoryTag) + заголовок (Suisse Book 20).
+//
+// Паттерн «растянутой ссылки»: на кейс ведёт ТОЛЬКО заголовок (.titleLink),
+// его ::after растянут на всю карточку — клик по любой её части открывает кейс.
+// Карточка НЕ обёрнута в <a>, чтобы теги focus[] позже могли стать отдельными
+// ссылками на /cases?focus=… (фильтр в сайдбаре) без вложенных <a>.
+// TODO(фильтры): когда появится /cases — передать href в A_CategoryTag и
+// добавить .cats { position: relative; z-index: 1 }, чтобы теги ловили клик
+// поверх растянутой ссылки.
+import M_CasePreview from '../../molecules/M_CasePreview/M_CasePreview.astro';
+import A_Tag from '../../atoms/A_Tag/A_Tag.astro';
+import A_CategoryTag from '../../atoms/A_CategoryTag/A_CategoryTag.astro';
+import styles from './O_CaseCard.module.css';
+
+interface Props {
+  href: string;
+  title: string;
+  label?: string; // companyType — бейдж поверх обложки
+  badgeVariant?: 'black' | 'white'; // white — на тёмных обложках (контраст)
+  focus?: string[]; // категории под обложкой
+  accentColor?: string;
+  coverImage?: string;
+  class?: string;
+}
+const {
+  href,
+  title,
+  label,
+  badgeVariant = 'black',
+  focus = [],
+  accentColor,
+  coverImage,
+  class: extra,
+  ...rest
+} = Astro.props;
+---
+
+<article class:list={[styles.card, extra]} {...rest}>
+  <div class={styles.cover}>
+    <M_CasePreview coverImage={coverImage} accentColor={accentColor} />
+    {label && <A_Tag variant={badgeVariant} size="md" class={styles.badge}>{label}</A_Tag>}
+  </div>
+
+  {focus.length > 0 && (
+    <div class={styles.cats}>
+      {focus.slice(0, 2).map((f) => (
+        <A_CategoryTag href={`/cases?focus=${encodeURIComponent(f)}`}>{f}</A_CategoryTag>
+      ))}
+    </div>
+  )}
+
+  <h3 class={styles.title}>
+    <a class={styles.titleLink} href={href}>{title}</a>
+  </h3>
+</article>

@@ -1,0 +1,89 @@
+---
+// S_Form — суперорганизм. Форма «Предложить кейс» (Figma S_Form 30:5338):
+// центр-заголовок + колонка полей (A_Input ×4 + M_Consent) + кнопка отправки.
+// По бокам — декоративные иллюстрации (lime слева, pink справа), скрыты на узких.
+//
+// Отправка — Telegram-бот через Netlify Function `submit-case` (токен бота —
+// секрет, живёт в env функции, не в клиенте). Форма шлёт AJAX (vanilla <script>),
+// показывает инлайн-статус. A11y: подпись поля = placeholder + aria-label.
+import A_Input from '../../atoms/A_Input/A_Input.astro';
+import M_Consent from '../../molecules/M_Consent/M_Consent.astro';
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import styles from './S_Form.module.css';
+
+interface Props {
+  action?: string; // endpoint Netlify Function
+  class?: string;
+}
+const { action = '/.netlify/functions/submit-case', class: extra } = Astro.props;
+---
+
+<section class:list={[styles.section, extra]} aria-labelledby="form-title">
+  <div class={styles.glowLeft} aria-hidden="true"></div>
+  <div class={styles.glowRight} aria-hidden="true"></div>
+  <img class={styles.illoLeft} src="/illustrations/form-lime.png" alt="" aria-hidden="true" width="335" height="616" />
+  <img class={styles.illoRight} src="/illustrations/form-pink.png" alt="" aria-hidden="true" width="423" height="504" />
+
+  <h2 id="form-title" class={styles.title}>Хотите поделиться<br />своим кейсом?</h2>
+
+  <form class={styles.form} action={action} method="POST" data-case-form>
+    <div class={styles.group}>
+      <A_Input placeholder="Ваше имя" name="name" aria-label="Ваше имя" required />
+      <A_Input placeholder="Telegram" name="telegram" aria-label="Telegram" />
+      <A_Input placeholder="Другой контакт для связи" name="contact" aria-label="Другой контакт для связи" />
+      <A_Input placeholder="Название вашей компании" name="company" aria-label="Название вашей компании" />
+
+      <M_Consent name="consent" required class={styles.consent}>
+        Даю согласие на <span class={styles.policy}>обработку персональных данных</span>
+      </M_Consent>
+
+      {/* honeypot — скрытое поле для ботов (люди его не видят/не заполняют) */}
+      <input class={styles.hp} type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    </div>
+
+    <A_Button type="submit" contentType="text" size="md" class={styles.submit}>Отправить заявку</A_Button>
+
+    <p class={styles.status} data-form-status role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-case-form]');
+  if (form) {
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    const setStatus = (msg: string, kind: 'ok' | 'error' | 'pending' | '') => {
+      if (!status) return;
+      status.textContent = msg;
+      status.dataset.kind = kind;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(form));
+      if (button) button.disabled = true;
+      setStatus('Отправляем…', 'pending');
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        setStatus('Заявка отправлена — спасибо! Свяжемся с вами.', 'ok');
+      } catch {
+        setStatus('Не удалось отправить. Попробуйте позже или напишите нам в Telegram.', 'error');
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  }
+</script>

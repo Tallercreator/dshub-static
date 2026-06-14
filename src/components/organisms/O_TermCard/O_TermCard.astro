@@ -1,0 +1,40 @@
+---
+// O_TermCard — организм. Карточка термина глоссария (Figma O_CardTerms 29:4297).
+// Варианты (color × type из Figma): lime (лёгкие термины), pink (сложные),
+// image (конкретные компоненты — слот под иллюстрацию, заливаем картинкой позже).
+// Hover — CSS (правило проекта): subtle-градиент → solid-цвет; image → тёмный фон.
+// «Растянутая ссылка»: на термин ведёт заголовок (text) / весь слот (image).
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './O_TermCard.module.css';
+
+interface Props {
+  variant?: 'pink' | 'lime' | 'image';
+  term: string;
+  definition?: string;
+  href?: string;
+  image?: string;
+  class?: string;
+}
+const { variant = 'pink', term, definition, href = '/glossary', image, class: extra } =
+  Astro.props;
+const isImage = variant === 'image';
+---
+
+<article class:list={[styles.card, styles[variant], extra]}>
+  {isImage ? (
+    <>
+      <div class={styles.imageSlot}>
+        {image && <img class={styles.img} src={image} alt={term} loading="lazy" decoding="async" />}
+      </div>
+      <a class={styles.stretch} href={href} aria-label={term}></a>
+    </>
+  ) : (
+    <>
+      <Q_Icon name="send" size={24} class={styles.icon} />
+      <div class={styles.body}>
+        <h3 class={styles.title}><a class={styles.titleLink} href={href}>{term}</a></h3>
+        {definition && <p class={styles.desc}>{definition}</p>}
+      </div>
+    </>
+  )}
+</article>

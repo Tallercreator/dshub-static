@@ -1,21 +1,40 @@
 ---
-// S_Hero — суперорганизм. Герой Главной = фон-призрак (O_LogoWall Hero:
-// огромный condensed-текст + радиальный градиент к белому) + W_SectionHeader
-// (заголовок) + O_LogoWall (ряд логотипов + CTA).
-import W_SectionHeader from '../../wrappers/W_SectionHeader/W_SectionHeader.astro';
+// S_Hero — суперорганизм. Герой Главной (Figma 28:3259).
+// Слои (z снизу вверх): белый фон → ghost-band (гигантский condensed-текст) →
+// белая радиальная вуаль (гасит ghost к краям) → пухлое сердце (Q_Illustration)
+// → контент: H1 внизу слева + O_LogoWall (ряд логотипов + CTA).
+//
+// O_Header НЕ входит в герой — он глобальный sticky в BaseLayout (в отличие от
+// Figma, где шапка внутри фрейма). Поэтому вертикаль строим пропорциями, а не
+// пиксельными top из макета.
 import O_LogoWall from '../../organisms/O_LogoWall/O_LogoWall.astro';
 import styles from './S_Hero.module.css';
 ---
 
-<section class={styles.hero}>
-  <div class={styles.ghost} aria-hidden="true">
-    <span class={styles.ghostLine}>Дизайн-системы</span>
-    <span class={styles.ghostLine}>бест практис</span>
+<section class={styles.hero} aria-labelledby="hero-title">
+  <div class={styles.backdrop} aria-hidden="true">
+    <p class={styles.ghost}>
+      <span class={styles.ghostLine}>Дизайн-системы</span>
+      <span class={styles.ghostLine}>бест практис</span>
+    </p>
+    <div class={styles.veil}></div>
   </div>
-  <div class={styles.fade} aria-hidden="true"></div>
+
+  <img
+    class={styles.heart}
+    src="/illustrations/heart.png"
+    alt=""
+    aria-hidden="true"
+    width="226"
+    height="246"
+    decoding="async"
+    fetchpriority="high"
+  />
 
   <div class={styles.content}>
-    <W_SectionHeader size="display" class={styles.heading}>Что внутри<br />систем сегодня</W_SectionHeader>
+    <h1 id="hero-title" class={styles.title}>
+      Лучшие практики дизайн-систем в&nbsp;российских цифровых продуктах
+    </h1>
     <O_LogoWall />
   </div>
 </section>

@@ -1,0 +1,39 @@
+---
+// O_Footer — организм. Футер сайта (Figma O_Footer 31:7823). Глобальный (в
+// BaseLayout, на всех страницах). Белый фон + лаймовый градиент снизу + пухлые
+// 3D-буквы «ДС хаб» (картинка) + описание медиа (слева) + мета-строки
+// (Куратор/Автор, справа) через M_MetaRow.
+import M_MetaRow from '../../molecules/M_MetaRow/M_MetaRow.astro';
+import styles from './O_Footer.module.css';
+
+interface Props {
+  curator?: string;
+  author?: string;
+  class?: string;
+}
+const { curator = 'Харитонов Захар', author = 'Афанасьева Дарья', class: extra } = Astro.props;
+---
+
+<footer class:list={[styles.footer, extra]}>
+  <img
+    class={styles.art}
+    src="/illustrations/footer-dshub.png"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    decoding="async"
+    width="1536"
+    height="1024"
+  />
+
+  <div class={styles.inner}>
+    <p class={styles.desc}>
+      ДСХаб — онлайн-медиа о дизайн-системах российских цифровых продуктов
+    </p>
+
+    <div class={styles.meta}>
+      <M_MetaRow label="Куратор:">{curator}</M_MetaRow>
+      <M_MetaRow label="Автор проекта:">{author}</M_MetaRow>
+    </div>
+  </div>
+</footer>

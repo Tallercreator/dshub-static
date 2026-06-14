@@ -1,0 +1,12 @@
+---
+// W_TermsGrid — обёртка. Ряд из 4 равных карточек терминов (Figma W_TermsGrid
+// 30:4445). Desktop 4 кол / ≤1024 2 / ≤640 1, gap 24. Контент слотом.
+import styles from './W_TermsGrid.module.css';
+
+interface Props {
+  class?: string;
+}
+const { class: extra } = Astro.props;
+---
+
+<div class:list={[styles.grid, extra]}><slot /></div>

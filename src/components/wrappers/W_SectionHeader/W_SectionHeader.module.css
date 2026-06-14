@@ -9,6 +9,17 @@
 .h2 {
   align-items: center;
 }
+
+/* центрированный вариант: блок по центру контейнера, ТЕКСТ — по левому краю
+ * (напр. заголовок S_CasesSection) */
+.center {
+  justify-content: center;
+  text-align: left;
+}
+.center .left {
+  flex: 0 1 auto;
+  align-items: flex-start;
+}
 .h3 {
   flex-direction: column;
   align-items: flex-start;
@@ -45,6 +56,7 @@
   font-size: var(--font-size-md);
   line-height: 1.2;
   color: var(--text-secondary);
+  white-space: pre-line; /* перенос строки через \n в значении пропа */
 }
 .desc {
   margin: 0;

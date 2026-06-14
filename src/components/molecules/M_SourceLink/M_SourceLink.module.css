@@ -1,0 +1,16 @@
+/* M_SourceLink.module.css — тег типа + источник (Figma 30:4620). */
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--space-md);
+}
+
+/* источник = A_Link; поднят над растянутой ссылкой карточки, чтобы ловить
+ * hover (лайм) и клик */
+.source {
+  position: relative;
+  z-index: 1;
+}

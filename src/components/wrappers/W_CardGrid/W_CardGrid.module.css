@@ -1,0 +1,26 @@
+/* W_CardGrid.module.css — адаптивная сетка карточек (Figma 29:3840). */
+
+.grid {
+  display: grid;
+  gap: var(--space-3xl); /* 24 */
+  width: 100%;
+}
+.cols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cols2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 1024px) {
+  .cols3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .cols3,
+  .cols2 {
+    grid-template-columns: 1fr;
+  }
+}

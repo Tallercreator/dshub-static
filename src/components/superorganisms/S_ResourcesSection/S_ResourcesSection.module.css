@@ -1,0 +1,15 @@
+/* S_ResourcesSection.module.css — секция ресурсов Главной (Figma 30:4991). */
+
+.section {
+  width: 100%;
+  max-width: 1033px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-xs); /* 32 (Figma ~35) */
+}
+
+.cta {
+  flex: 0 0 auto;
+}

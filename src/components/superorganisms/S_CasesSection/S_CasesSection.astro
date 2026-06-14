@@ -1,0 +1,46 @@
+---
+// S_CasesSection — суперорганизм. Секция кейсов Главной (Figma S_CasesSection
+// 32:6734): центрированный W_SectionHeader + W_CardGrid из O_CaseCard.
+import W_SectionHeader from '../../wrappers/W_SectionHeader/W_SectionHeader.astro';
+import W_CardGrid from '../../wrappers/W_CardGrid/W_CardGrid.astro';
+import O_CaseCard from '../../organisms/O_CaseCard/O_CaseCard.astro';
+import styles from './S_CasesSection.module.css';
+
+interface CaseItem {
+  slug: string;
+  title: string;
+  companyType?: string;
+  focus?: string[];
+  accentColor?: string;
+  cover?: { image?: string; darkBadge?: boolean };
+}
+interface Props {
+  cases: CaseItem[];
+  limit?: number;
+  offsetFirst?: boolean; // пустая первая ячейка (лесенка, как в Figma 32:6734)
+  class?: string;
+}
+const { cases, limit = 6, offsetFirst = false, class: extra } = Astro.props;
+const items = cases.slice(0, limit);
+---
+
+<section class:list={[styles.section, extra]} aria-labelledby="cases-title">
+  <W_SectionHeader size="display" align="center">
+    <span id="cases-title">Что внутри<br />систем сегодня</span>
+  </W_SectionHeader>
+
+  <W_CardGrid>
+    {offsetFirst && <div class={styles.spacer} aria-hidden="true"></div>}
+    {items.map((c) => (
+      <O_CaseCard
+        href={`/cases/${c.slug}`}
+        title={c.title}
+        label={c.companyType}
+        badgeVariant={c.cover?.darkBadge ? 'white' : 'black'}
+        focus={c.focus}
+        accentColor={c.accentColor}
+        coverImage={c.cover?.image}
+      />
+    ))}
+  </W_CardGrid>
+</section>

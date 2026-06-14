@@ -7,6 +7,7 @@ import styles from './W_SectionHeader.module.css';
 
 interface Props {
   size?: 'display' | 'h2' | 'h3';
+  align?: 'left' | 'center';
   label?: string;
   labelRight?: string;
   linkText?: string;
@@ -14,12 +15,20 @@ interface Props {
   description?: string; // только для h3
   class?: string;
 }
-const { size = 'display', label, labelRight, linkText, linkHref, description, class: extra } =
-  Astro.props;
+const {
+  size = 'display',
+  align = 'left',
+  label,
+  labelRight,
+  linkText,
+  linkHref,
+  description,
+  class: extra,
+} = Astro.props;
 const Heading = size === 'h3' ? 'h3' : 'h2';
 ---
 
-<div class:list={[styles.header, styles[size], extra]}>
+<div class:list={[styles.header, styles[size], align === 'center' && styles.center, extra]}>
   <div class={styles.left}>
     <Heading class={styles.title}><slot /></Heading>
     {label && <span class={styles.label}>{label}</span>}

@@ -1,0 +1,10 @@
+/* S_TermsSection.module.css — секция глоссария Главной (Figma 30:4487). */
+
+.section {
+  width: 100%;
+  max-width: 1212px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-xs); /* 32 */
+}

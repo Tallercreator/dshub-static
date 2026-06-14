@@ -1,0 +1,50 @@
+---
+// O_ResourceCard — организм. Карточка ресурса (Figma O_ResourceCard 30:4664/4665).
+// size=large: широкая (span 2) — Label + заголовок слева, обложка-картинка справа.
+// size=medium: M_SourceLink (Label + источник) сверху, заголовок снизу, декоративная
+// иллюстрация фоном. Вся карточка — внешняя ссылка на ресурс (растянутая ссылка).
+// Обложки/иллюстрации заливаем картинками позже (проп coverImage).
+import A_Tag from '../../atoms/A_Tag/A_Tag.astro';
+import M_SourceLink from '../../molecules/M_SourceLink/M_SourceLink.astro';
+import styles from './O_ResourceCard.module.css';
+
+interface Props {
+  size?: 'large' | 'medium';
+  label?: string; // тип ресурса
+  title: string;
+  source?: string;
+  url: string;
+  coverImage?: string;
+  class?: string;
+}
+const { size = 'medium', label, title, source, url, coverImage, class: extra } = Astro.props;
+const isLarge = size === 'large';
+---
+
+<article class:list={[styles.card, styles[size], extra]}>
+  {isLarge ? (
+    <>
+      <div class={styles.content}>
+        {label && <A_Tag variant="white" size="md" class={styles.badge}>{label}</A_Tag>}
+        <h3 class={styles.title}>
+          <a class={styles.titleLink} href={url} target="_blank" rel="noopener noreferrer">{title}</a>
+        </h3>
+      </div>
+      <div class={styles.cover}>
+        {coverImage && <img class={styles.img} src={coverImage} alt="" loading="lazy" decoding="async" />}
+      </div>
+    </>
+  ) : (
+    <>
+      {coverImage && (
+        <img class={styles.illustration} src={coverImage} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+      )}
+      <div class={styles.content}>
+        <M_SourceLink label={label} source={source} url={url} />
+        <h3 class={styles.title}>
+          <a class={styles.titleLink} href={url} target="_blank" rel="noopener noreferrer">{title}</a>
+        </h3>
+      </div>
+    </>
+  )}
+</article>

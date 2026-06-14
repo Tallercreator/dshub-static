@@ -1,0 +1,49 @@
+---
+// S_ResourcesSection — суперорганизм. Секция ресурсов Главной (Figma
+// S_ResourcesSection 30:4991): W_SectionHeader («Ресурсы» + подпись справа) +
+// W_ResourcesGrid (бенто: 1 large + остальные medium) + кнопка «Перейти к разделу».
+import W_SectionHeader from '../../wrappers/W_SectionHeader/W_SectionHeader.astro';
+import W_ResourcesGrid from '../../wrappers/W_ResourcesGrid/W_ResourcesGrid.astro';
+import O_ResourceCard from '../../organisms/O_ResourceCard/O_ResourceCard.astro';
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './S_ResourcesSection.module.css';
+
+interface ResourceItem {
+  type?: string;
+  title: string;
+  source?: string;
+  url: string;
+  coverImage?: string;
+}
+interface Props {
+  items: ResourceItem[];
+  href?: string; // «Перейти к разделу»
+  class?: string;
+}
+const { items, href = '/resources', class: extra } = Astro.props;
+---
+
+<section class:list={[styles.section, extra]} aria-labelledby="resources-title">
+  <W_SectionHeader size="display" labelRight={"открытые ресурсы\nдля общего развития"}>
+    <span id="resources-title">Ресурсы</span>
+  </W_SectionHeader>
+
+  <W_ResourcesGrid>
+    {items.map((r, i) => (
+      <O_ResourceCard
+        size={i === 0 ? 'large' : 'medium'}
+        label={r.type}
+        title={r.title}
+        source={r.source}
+        url={r.url}
+        coverImage={r.coverImage}
+      />
+    ))}
+  </W_ResourcesGrid>
+
+  <A_Button href={href} contentType="text-righticon" size="md" class={styles.cta}>
+    Перейти к разделу
+    <Q_Icon slot="icon" name="chevron-right" size={16} />
+  </A_Button>
+</section>

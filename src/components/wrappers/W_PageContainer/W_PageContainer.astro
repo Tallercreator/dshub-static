@@ -1,0 +1,18 @@
+---
+// W_PageContainer — обёртка. Белый контейнер с панелью-слотом для секций Главной.
+// type=linear (Figma 31:5789): градиент neutral/10→white + скруглённый верх 48px —
+// панель «наезжает» на герой (первая секция). type=solid (Figma 31:5967): плоский
+// белый. type=solid-gray (Figma 31:7326): серая панель (surface/page) со скруглением
+// 48 по всем углам — отдельный блок (напр. ресурсы).
+import styles from './W_PageContainer.module.css';
+
+interface Props {
+  type?: 'linear' | 'solid' | 'solid-gray';
+  class?: string;
+}
+const { type = 'linear', class: extra } = Astro.props;
+---
+
+<div class={styles.container}>
+  <div class:list={[styles.panel, styles[type], extra]}><slot /></div>
+</div>

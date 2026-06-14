@@ -1,0 +1,145 @@
+/* S_Form.module.css — форма «Предложить кейс» (Figma 30:5338). */
+
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--surface-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-xs); /* 32 */
+  padding-block: var(--layout-lg); /* 56 (Figma py layout/lg) */
+  padding-inline: var(--layout-xs); /* 32 — поля не липнут к краям */
+}
+
+/* мягкие свечения за иллюстрациями (lime слева, pink справа) */
+.glowLeft,
+.glowRight {
+  position: absolute;
+  top: 50%;
+  width: clamp(280px, 34vw, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  z-index: -2;
+  pointer-events: none;
+}
+.glowLeft {
+  left: 0;
+  transform: translate(-32%, -50%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--lime-10) 38%, transparent) 0%,
+    transparent 62%
+  );
+}
+.glowRight {
+  right: 0;
+  transform: translate(32%, -50%);
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--surface-accent) 32%, transparent) 0%,
+    transparent 62%
+  );
+}
+
+/* декоративные иллюстрации по бокам — полностью в кадре у краёв */
+.illoLeft,
+.illoRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+.illoLeft {
+  left: 0;
+  width: clamp(150px, 19vw, 320px);
+}
+.illoRight {
+  right: 0;
+  width: clamp(190px, 24vw, 400px);
+}
+
+/* заголовок (Suisse Book 48, центр) */
+.title {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular); /* Book */
+  font-size: var(--font-size-4xl); /* 48 */
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* форма */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layout-xs); /* 32 между группой полей и кнопкой */
+  width: 100%;
+  max-width: 343px;
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg); /* 12 (Figma 13) */
+  width: 100%;
+}
+.consent {
+  margin-top: var(--space-xs); /* немного воздуха перед согласием */
+}
+.policy {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.submit {
+  width: 100%;
+}
+
+/* honeypot — визуально скрыт, недоступен табом, но в DOM (для ботов) */
+.hp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* статус отправки */
+.status {
+  margin: 0;
+  min-height: 1.4em;
+  max-width: 343px;
+  text-align: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm); /* 14 */
+  line-height: 1.4;
+}
+.status[data-kind='pending'] {
+  color: var(--text-secondary);
+}
+.status[data-kind='ok'] {
+  color: var(--lime-30);
+}
+.status[data-kind='error'] {
+  color: var(--surface-accent);
+}
+
+/* на узких экранах иллюстрации/свечения мешают форме — прячем */
+@media (max-width: 1024px) {
+  .illoLeft,
+  .illoRight,
+  .glowLeft,
+  .glowRight {
+    display: none;
+  }
+}

@@ -1,0 +1,75 @@
+/* O_CaseCard.module.css — карточка кейса (Figma 29:3736). */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg); /* 12 */
+  border-radius: var(--radius-2xl);
+  color: inherit;
+  transition-property: transform;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: ease-out;
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.cover {
+  position: relative;
+}
+
+/* заголовок-ссылка + растянутая на всю карточку зона клика */
+.titleLink {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.titleLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+}
+.titleLink:focus-visible::after {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+/* бейдж companyType — поверх обложки слева-сверху */
+.badge {
+  position: absolute;
+  top: var(--space-lg); /* 12 */
+  left: var(--space-lg);
+}
+
+/* категории focus[] — ссылки-фильтры; z-index, чтобы ловить клик поверх
+ * растянутой ссылки заголовка (ведут на /cases?focus=…) */
+.cats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl); /* ≈ Figma 19px */
+  flex-wrap: wrap;
+}
+
+/* заголовок — Suisse Book 20 (Heading/H4 в Figma) */
+.title {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular); /* Book */
+  font-size: var(--font-size-lg); /* 20 */
+  line-height: 1.2;
+  letter-spacing: -0.04em; /* Figma -0.8px@20 */
+  color: var(--text-primary);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
