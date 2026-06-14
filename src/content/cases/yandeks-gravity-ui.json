@@ -1,0 +1,238 @@
+{
+  "slug": "yandeks-gravity-ui",
+  "title": "Gravity UI",
+  "company": "Яндекс",
+  "dsName": "Gravity UI",
+  "companyType": "Бигтех",
+  "caseType": "Открытый кейс",
+  "caseFormat": "Обзор",
+  "focus": [
+    "Open-source",
+    "Themer",
+    "A11y",
+    "Токены"
+  ],
+  "accentColor": "#ffcc00",
+  "cover": {
+    "brandWordmark": "Яндекс",
+    "bg": "#ffcc00"
+  },
+  "sidebar": {
+    "focus": null,
+    "speakerRole": null,
+    "artifacts": null
+  },
+  "meta": {
+    "readingTime": 5
+  },
+  "published": true,
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Формат: кейс по публичным материалам (gravity-ui.com + GitHub + npm + Storybook + Figma Community). Дата обращения: апрель 2026."
+    },
+    {
+      "type": "summary",
+      "items": [
+        "Компания/продукт: Яндекс",
+        "Yandex Cloud & Infrastructure."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Главное"
+    },
+    {
+      "type": "summary",
+      "items": [
+        "Компания/продукт: Яндекс",
+        "Yandex Cloud & Infrastructure.",
+        "Уровень открытости: полный (сайт + токены + правила + установка + changelog + Figma Community + open-source GitHub + npm-пакеты).",
+        "Платформа: web-first (React + TypeScript); мобильный слой заявлен, но публично отсутствует.",
+        "Масштаб: система создавалась для 100+ сервисов инфраструктурного контура.",
+        "Фокус кейса: DS как экосистема библиотек (74+ репозиториев), токены и темизация (private→semantic, 4 темы), контроль качества (CI a11y, скриншоты), и уникальный Themer."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Контекст"
+    },
+    {
+      "type": "paragraph",
+      "text": "Контекст и позиционирование"
+    },
+    {
+      "type": "paragraph",
+      "text": "Gravity UI описывает себя как «collection of libraries and components for building functional user interfaces». Это честная рамка: вместо абстрактной «платформы дизайна» — конкретная экосистема библиотек, созданная внутри Яндекса для Yandex Cloud и смежных инфраструктурных продуктов."
+    },
+    {
+      "type": "quote",
+      "text": "«The UIKit library was originally developed as an in-house tool to improve work efficiency. As the number of services grew, we decided to create a consistent user experience across all products.»"
+    },
+    {
+      "type": "paragraph",
+      "text": "Открытие системы в 2023 году объясняется опытом других опенсорсных проектов Яндекса (Diplodoc и YDB), которые получили позитивный отклик. По аудитории Gravity UI в первую очередь ориентирована на фронтенд-разработчиков (документация «от кода», установка через npm), а дизайнеры получают вторичный слой через Figma Community, раздел Design и Themer."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Состав системы"
+    },
+    {
+      "type": "paragraph",
+      "text": "Foundations: токены, темы и правила"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.1 Двухслойная цветовая модель: private → semantic"
+    },
+    {
+      "type": "paragraph",
+      "text": "Цвет строится на двух слоях. Private colors (base) — сырая палитра оттенков и альфа-значений; она не используется напрямую в компонентах. Semantic colors — переменные по назначению (Text/Base/Line/Effects и т.д.), которые получают значения через private-переменные и настраиваются под каждую тему."
+    },
+    {
+      "type": "paragraph",
+      "text": "3.2 Четыре темы вместо двух: high-contrast как ответ на реальную боль"
+    },
+    {
+      "type": "paragraph",
+      "text": "В системе четыре темы: light/dark и high-contrast варианты каждой. High-contrast появился из реального запроса команд, которые смотрят дашборды на ТВ или на слабых мониторах: интерфейс был нечитаемым, поэтому контраст усилили."
+    },
+    {
+      "type": "quote",
+      "text": "«First, we had only two themes: light and light. However, teams that displayed charts or held stand-up meetings on TVs complained that it was hard to see. To address this, we increased the contrast for each theme.»"
+    },
+    {
+      "type": "paragraph",
+      "text": "3.3 Модуль и отступы: 4px как стандарт"
+    },
+    {
+      "type": "paragraph",
+      "text": "Базовый модуль — 4px, отступы токенизированы и намеренно ограничены. Логика проста: меньше вариантов → меньше хаоса → выше консистентность в 100+ сервисах."
+    },
+    {
+      "type": "paragraph",
+      "text": "3.4 Corner radius и Branding через переменные"
+    },
+    {
+      "type": "paragraph",
+      "text": "Скругления задаются через набор переменных; меняешь переменные — меняются все компоненты. Брендинг оформлен как слой переменных: бренд-цвета, шрифты и радиусы. Это позволяет суббрендам (например, YDB/DataLens) жить на одной кодовой базе с разным визуальным языком.\r<br>Компоненты как система: глубина документации"
+    },
+    {
+      "type": "paragraph",
+      "text": "В Gravity UI компоненты документируются не как «таблица пропсов», а как система правил: Appearance → Anatomy → States → Sizes → Form → Usage. Это делает библиотеку пригодной для анализа подхода."
+    },
+    {
+      "type": "paragraph",
+      "text": "Пример — Button: выделены типы (Accent/Primary/Semantic/Raised/Contrasting), состояния, размеры и формы, плюс ограничения (например, Accent рекомендуют использовать как ключевую кнопку и не более одной на страницу).\r<br>Управление изменениями: CHANGELOG на уровне пакетов + компонент для changelog в продукте"
+    },
+    {
+      "type": "paragraph",
+      "text": "Каждый пакет имеет свой CHANGELOG.md и семантическое версионирование. Отдельного Migration Guide нет — при переходах нужно читать changelog и breaking changes в PR. Уникальная деталь: в самой DS есть компонент Changelog Dialog — стандартный способ показывать пользователям, что изменилось."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Документация"
+    },
+    {
+      "type": "paragraph",
+      "text": "Карта материалов: 5 витрин на одном домене"
+    },
+    {
+      "type": "paragraph",
+      "text": "Gravity UI собрана так, чтобы пользователь быстро находил ответы под свою задачу:"
+    },
+    {
+      "type": "summary",
+      "items": [
+        "Libraries — каталог npm-пакетов с установкой и описанием (фактически «Getting started»).",
+        "Components — витрина UIKit со Storybook-плейграундом и примерами кода.",
+        "Design — foundations + документация компонентов (Appearance/Anatomy/States/Usage).",
+        "Icons — поиск и превью иконок.",
+        "Themer — онлайн-конструктор тем с импортом/экспортом."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Такое разнесение — маркер зрелости: система не смешивает инструкции для кода, дизайн-правила и утилиты в одном месте."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Синхронизация дизайна и кода"
+    },
+    {
+      "type": "paragraph",
+      "text": "Инженерный слой: быстрая установка, SSR и i18n"
+    },
+    {
+      "type": "paragraph",
+      "text": "Порог входа снижен до минимума: npm install, подключение стилей и ThemeProvider. Для Next.js есть готовый пример (create-next-app --example). Отдельно описана поддержка SSR (getRootClassName предотвращает FOUC — мигание темы) и i18n через configure({ lang: &#39;ru&#39; })."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Масштабирование и внедрение"
+    },
+    {
+      "type": "paragraph",
+      "text": "Themer: уникальный инструмент темизации без кода"
+    },
+    {
+      "type": "paragraph",
+      "text": "Themer на gravity-ui.com — это визуальный конструктор темы. Можно настроить бренд-цвета, типографику и радиусы, увидеть живой preview на компонентах (кнопки/табы/таблица) и экспортировать тему в CSS/JSON. Практический эффект: темизация и брендинг становятся доступными даже командам без сильного фронтенд-ресурса."
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Уникальные практики и «фишки» кейса"
+    },
+    {
+      "type": "paragraph",
+      "text": "Уникальные практики (в логике исследования)"
+    },
+    {
+      "type": "summary",
+      "items": [
+        "Themer: визуальный конструктор тем с импортом/экспортом и живым preview.",
+        "High-contrast темы как реакция на реальный продуктовый запрос (TV/слабые мониторы).",
+        "DS как экосистема из десятков пакетов (UIKit, Charts, Navigation, Icons, Page Constructor и др.), а не монолит.",
+        "Battle-tested подход: компонент обкатывается в нескольких сервисах до стабилизации API.",
+        "Changelog Dialog как часть DS — компонент для коммуникации изменений пользователям."
+      ]
+    },
+    {
+      "type": "heading",
+      "level": 2,
+      "text": "Выводы и принципы"
+    },
+    {
+      "type": "paragraph",
+      "text": "Ограничения кейса"
+    },
+    {
+      "type": "summary",
+      "items": [
+        "Mobile слой заявлен, но публично отсутствует: нет мобильных компонентов и mobile-документации.",
+        "Нет отдельного migration guide на сайте — переходы читаются через CHANGELOG и PR.",
+        "Визуальный язык ориентирован на B2B dashboards; для consumer-продуктов потребуются другие принципы и тон."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "Источники"
+    },
+    {
+      "type": "summary",
+      "items": [
+        "gravity-ui.com — официальный сайт и документация",
+        "github.com/gravity-ui — репозитории (uikit, charts, icons и др.)",
+        "npm: @gravity-ui/uikit, @gravity-ui/icons, @gravity-ui/charts и др.",
+        "Figma Community Gravity UI"
+      ]
+    }
+  ]
+}
