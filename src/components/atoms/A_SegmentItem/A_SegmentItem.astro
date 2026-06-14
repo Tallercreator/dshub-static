@@ -1,0 +1,29 @@
+---
+// A_SegmentItem — атом. = Figma A_SegmentItem (node 15:1484). Пункт навигации/
+// фильтр-табов. size (sm 32 / md 40 / lg 48). selected/disabled — пропсы,
+// hover — CSS. Рендерится как <button> или <a> (href).
+import styles from './A_SegmentItem.module.css';
+
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  selected?: boolean;
+  disabled?: boolean;
+  href?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+}
+const { size = 'md', selected = false, disabled = false, href, type = 'button', class: extra, ...rest } =
+  Astro.props;
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag
+  class:list={[styles.item, styles[size], selected && styles.selected, extra]}
+  href={href}
+  type={href ? undefined : type}
+  disabled={href ? undefined : disabled}
+  aria-current={selected ? 'page' : undefined}
+  {...rest}
+>
+  <slot />
+</Tag>

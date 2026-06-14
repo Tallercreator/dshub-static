@@ -1,0 +1,51 @@
+/* A_Checkbox.module.css — 24×24, состояния по Figma. Semantic/core-токены. */
+
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.input:disabled {
+  cursor: not-allowed;
+}
+
+.box {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--neutral-0);
+  box-shadow: inset 0 0 0 1.5px var(--stroke-subtle);
+  transition: background var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+.check {
+  color: var(--neutral-0);
+  opacity: 0;
+  transition: opacity var(--duration-fast) ease;
+}
+
+/* unchecked: hover / pressed — внутренняя подсветка */
+.input:not(:checked):hover:not(:disabled) + .box { background: var(--neutral-10); }
+.input:not(:checked):active:not(:disabled) + .box { background: var(--neutral-20); }
+
+/* checked */
+.input:checked + .box { background: var(--neutral-150); box-shadow: none; }
+.input:checked + .box .check { opacity: 1; }
+.input:checked:active:not(:disabled) + .box { background: var(--neutral-160); }
+
+/* disabled */
+.input:disabled + .box { background: var(--neutral-10); }
+.input:checked:disabled + .box { background: var(--neutral-20); box-shadow: none; }
+.input:checked:disabled + .box .check { color: var(--neutral-50); opacity: 1; }

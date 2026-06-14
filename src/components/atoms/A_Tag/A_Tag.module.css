@@ -1,0 +1,35 @@
+/* A_Tag.module.css — бейдж. variant × size + состояния (Figma A_Tag). */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+/* размеры */
+.sm { height: var(--size-control-md); padding-inline: var(--space-lg); font-size: var(--font-size-sm); }
+.md { height: var(--size-control-xl); padding-inline: var(--space-xl); font-size: var(--font-size-md); }
+
+.icon { display: inline-flex; width: var(--size-icon-sm); height: var(--size-icon-sm); flex: 0 0 auto; }
+
+/* black */
+.black { background: var(--neutral-150); color: var(--neutral-0); }
+.black:hover:not(.disabled) { background: var(--neutral-120); }
+.black:active:not(.disabled) { background: var(--neutral-110); color: var(--neutral-40); }
+
+/* white */
+.white { background: var(--surface-page); color: var(--text-primary); }
+.white:hover:not(.disabled) { background: var(--neutral-20); }
+.white:active:not(.disabled) { background: var(--neutral-30); color: var(--text-secondary); }
+
+/* disabled */
+.disabled { pointer-events: none; }
+.black.disabled { background: var(--opacity-black); color: var(--neutral-50); }
+.white.disabled { background: var(--neutral-50); color: var(--text-disabled); }

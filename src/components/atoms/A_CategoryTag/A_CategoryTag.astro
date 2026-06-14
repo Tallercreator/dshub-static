@@ -1,0 +1,19 @@
+---
+// A_CategoryTag — атом. = Figma A_CategoryTag (node 23:1774). «↗ Токены» —
+// категория над заголовком карточки кейса. Иконка upright-arrow + текст.
+// Приглушённый normal, темнее на hover. Может быть ссылкой (href).
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './A_CategoryTag.module.css';
+
+interface Props {
+  href?: string;
+  class?: string;
+}
+const { href, class: extra, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'span';
+---
+
+<Tag class:list={[styles.tag, extra]} href={href} {...rest}>
+  <Q_Icon name="upright-arrow" size={16} class={styles.icon} />
+  <span class={styles.label}><slot /></span>
+</Tag>

@@ -7,6 +7,11 @@ import A_Text from '../components/atoms/A_Text/A_Text.astro';
 import A_Button from '../components/atoms/A_Button/A_Button.astro';
 import Q_Icon from '../components/quarks/Q_Icon/Q_Icon.astro';
 import Q_Logo from '../components/quarks/Q_Logo/Q_Logo.astro';
+import A_Checkbox from '../components/atoms/A_Checkbox/A_Checkbox.astro';
+import A_Tag from '../components/atoms/A_Tag/A_Tag.astro';
+import A_CategoryTag from '../components/atoms/A_CategoryTag/A_CategoryTag.astro';
+import A_SegmentItem from '../components/atoms/A_SegmentItem/A_SegmentItem.astro';
+import A_Link from '../components/atoms/A_Link/A_Link.astro';
 import { ICONS } from '../components/quarks/Q_Icon/icons';
 
 const iconNames = Object.keys(ICONS);
@@ -82,6 +87,52 @@ const termsWithDef = terms.filter((t) => t.definition);
           Смотреть кейсы
           <Q_Icon slot="icon" name="arrow-right" size={24} />
         </A_Button>
+      </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Атомы — из Figma</A_Text>
+
+      <A_Text variant="caption" color="tertiary">A_Checkbox (наведи/нажми/отметь)</A_Text>
+      <div class="row">
+        <A_Checkbox />
+        <A_Checkbox checked />
+        <A_Checkbox disabled />
+        <A_Checkbox checked disabled />
+      </div>
+
+      <A_Text variant="caption" color="tertiary">A_Tag — black / white · sm / md · с иконкой</A_Text>
+      <div class="row">
+        <A_Tag variant="black" size="md">Бигтех</A_Tag>
+        <A_Tag variant="white" size="md">Fintech</A_Tag>
+        <A_Tag variant="black" size="sm">Статья</A_Tag>
+        <A_Tag variant="white" size="sm">
+          <Q_Icon slot="icon" name="cross-small" size={16} />
+          Убрать
+        </A_Tag>
+        <A_Tag variant="black" size="md" disabled>Disabled</A_Tag>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">A_CategoryTag («↗ Токены»)</A_Text>
+      <div class="row">
+        <A_CategoryTag>Токены</A_CategoryTag>
+        <A_CategoryTag>Документация</A_CategoryTag>
+        <A_CategoryTag>Компоненты</A_CategoryTag>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">A_SegmentItem — sm / md / lg · selected</A_Text>
+      <div class="row" style="background: var(--surface-page); padding: var(--space-md); border-radius: var(--radius-md);">
+        <A_SegmentItem size="md" selected>Кейсы</A_SegmentItem>
+        <A_SegmentItem size="md">Словарь</A_SegmentItem>
+        <A_SegmentItem size="md">Ресурсы</A_SegmentItem>
+        <A_SegmentItem size="sm">Small</A_SegmentItem>
+        <A_SegmentItem size="lg">Large</A_SegmentItem>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">A_Link (hover → лайм)</A_Text>
+      <div class="row">
+        <A_Link href="#">Перейти к разделу</A_Link>
+        <A_Link href="#" external>Внешняя ссылка</A_Link>
       </div>
     </section>
 

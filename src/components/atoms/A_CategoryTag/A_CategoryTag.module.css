@@ -1,0 +1,18 @@
+/* A_CategoryTag.module.css — «↗ Категория». Цвет-состояния по Figma. */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+  color: var(--neutral-70);
+  white-space: nowrap;
+  transition: color var(--duration-fast) ease;
+}
+.tag:hover { color: var(--neutral-130); }
+.tag:active { color: var(--neutral-100); }
+
+.icon { width: var(--size-icon-sm); height: var(--size-icon-sm); flex: 0 0 auto; }

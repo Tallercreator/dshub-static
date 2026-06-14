@@ -1,0 +1,24 @@
+---
+// A_Link — атом. = Figma A_Link (node 21:146). Подчёркнутый текст + upright-arrow.
+// Hover окрашивает в лайм. Используется в шапках секций («Перейти к разделу»).
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './A_Link.module.css';
+
+interface Props {
+  href?: string;
+  external?: boolean;
+  class?: string;
+}
+const { href = '#', external = false, class: extra, ...rest } = Astro.props;
+---
+
+<a
+  class:list={[styles.link, extra]}
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  {...rest}
+>
+  <span class={styles.label}><slot /></span>
+  <Q_Icon name="upright-arrow" size={16} class={styles.icon} />
+</a>

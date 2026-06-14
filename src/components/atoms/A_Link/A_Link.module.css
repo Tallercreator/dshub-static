@@ -1,0 +1,22 @@
+/* A_Link.module.css — подчёркнутая ссылка + ↗. Hover → лайм (Figma). */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-normal);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: color var(--duration-fast) ease;
+}
+.label {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.link:hover { color: var(--lime-30); }
+.link:active { color: var(--neutral-140); }
+
+.icon { width: var(--size-icon-sm); height: var(--size-icon-sm); flex: 0 0 auto; }

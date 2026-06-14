@@ -1,0 +1,33 @@
+---
+// A_Checkbox — атом. = Figma A_Checkbox (node 15:1923). Голый чекбокс (без лейбла —
+// лейбл добавляет молекула M_Consent/M_FilterOption). Настоящий <input> для форм/
+// доступности; состояния (hover/pressed/disabled) — CSS, статус — :checked.
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './A_Checkbox.module.css';
+
+interface Props {
+  checked?: boolean;
+  disabled?: boolean;
+  name?: string;
+  value?: string;
+  id?: string;
+  class?: string;
+}
+const { checked, disabled, name, value, id, class: extra, ...rest } = Astro.props;
+---
+
+<span class:list={[styles.checkbox, extra]}>
+  <input
+    type="checkbox"
+    class={styles.input}
+    checked={checked}
+    disabled={disabled}
+    name={name}
+    value={value}
+    id={id}
+    {...rest}
+  />
+  <span class={styles.box} aria-hidden="true">
+    <Q_Icon name="check" size={16} class={styles.check} />
+  </span>
+</span>

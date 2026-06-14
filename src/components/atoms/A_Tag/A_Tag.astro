@@ -1,0 +1,23 @@
+---
+// A_Tag — атом. = Figma A_Tag (node 19:416). Бейдж типа/источника.
+// variant (black/white) × size (sm/md), опц. левая иконка слотом "icon".
+// Состояния hover/pressed — CSS (работают, если тег интерактивный).
+import styles from './A_Tag.module.css';
+
+interface Props {
+  variant?: 'black' | 'white';
+  size?: 'sm' | 'md';
+  disabled?: boolean;
+  class?: string;
+}
+const { variant = 'black', size = 'md', disabled = false, class: extra, ...rest } = Astro.props;
+const hasIcon = Astro.slots.has('icon');
+---
+
+<span
+  class:list={[styles.tag, styles[variant], styles[size], disabled && styles.disabled, extra]}
+  {...rest}
+>
+  {hasIcon && <span class={styles.icon}><slot name="icon" /></span>}
+  <span class={styles.label}><slot /></span>
+</span>
