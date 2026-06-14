@@ -182,10 +182,14 @@ const termsWithDef = terms.filter((t) => t.definition);
       </M_FilterChips>
       <div class="row"><M_CollapseToggle>Дополнительно</M_CollapseToggle></div>
 
-      <A_Text variant="caption" color="tertiary">M_LogoItem (плитка лого-стены)</A_Text>
-      <div class="row">
-        <M_LogoItem><A_Text variant="title" color="primary">OZON</A_Text></M_LogoItem>
-        <M_LogoItem><A_Text variant="title" color="primary">Авито</A_Text></M_LogoItem>
+      <A_Text variant="caption" color="tertiary">M_LogoItem (← Q_BrandMark) — лого-стена</A_Text>
+      <div class="logo-wall">
+        <M_LogoItem brand="otp" />
+        <M_LogoItem brand="alfa" />
+        <M_LogoItem brand="dodo" />
+        <M_LogoItem brand="mts" />
+        <M_LogoItem brand="sber" />
+        <M_LogoItem brand="avito" />
       </div>
 
       <A_Text variant="caption" color="tertiary">M_AppliedFilters (← чипы + «Сбросить все»)</A_Text>
@@ -275,6 +279,11 @@ const termsWithDef = terms.filter((t) => t.definition);
     background: var(--surface-card);
     border: var(--border-hairline) solid var(--stroke-subtle);
     border-radius: var(--radius-lg);
+  }
+  .logo-wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: var(--space-md);
   }
   .icon-gallery {
     display: grid;

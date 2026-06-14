@@ -1,0 +1,24 @@
+---
+// Q_BrandMark — квАрк. Логотип компании (Figma Q_BrandMark). Рендерит img из
+// public/brands/ по имени из реестра. Используется в M_LogoItem (лого-стена) и
+// на обложках кейсов.
+import { BRANDS, type BrandName } from './brands';
+import styles from './Q_BrandMark.module.css';
+
+interface Props {
+  name: BrandName;
+  class?: string;
+}
+const { name, class: extra } = Astro.props;
+const b = BRANDS[name];
+if (!b) throw new Error(`Q_BrandMark: неизвестный бренд "${name}"`);
+---
+
+<img
+  class:list={[styles.mark, extra]}
+  src={b.src}
+  alt={b.alt}
+  width={b.w}
+  height={b.h}
+  loading="lazy"
+/>

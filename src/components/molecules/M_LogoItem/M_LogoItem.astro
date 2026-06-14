@@ -1,18 +1,30 @@
 ---
 // M_LogoItem — молекула. = Figma M_LogoItem (node 21:435). Карточка-плитка с
-// лого компании (Q_BrandMark) для лого-стены на Главной. Лого — слотом или src.
+// лого компании (Q_BrandMark) для лого-стены на Главной.
+// brand — имя из реестра Q_BrandMark; либо src (произвольный лого), либо слот.
+import Q_BrandMark from '../../quarks/Q_BrandMark/Q_BrandMark.astro';
+import type { BrandName } from '../../quarks/Q_BrandMark/brands';
 import styles from './M_LogoItem.module.css';
 
 interface Props {
+  brand?: BrandName;
   src?: string;
   alt?: string;
   href?: string;
   class?: string;
 }
-const { src, alt = '', href, class: extra, ...rest } = Astro.props;
+const { brand, src, alt = '', href, class: extra, ...rest } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
 
 <Tag class:list={[styles.item, extra]} href={href} {...rest}>
-  {src ? <img class={styles.logo} src={src} alt={alt} loading="lazy" /> : <slot />}
+  {
+    brand ? (
+      <Q_BrandMark name={brand} />
+    ) : src ? (
+      <img class={styles.logo} src={src} alt={alt} loading="lazy" />
+    ) : (
+      <slot />
+    )
+  }
 </Tag>
