@@ -10,4 +10,4 @@
   width: fit-content;
 }
 .md { border-radius: var(--radius-lg); }
-.sm { border-radius: var(--radius-md); gap: var(--space-sm); }
+.sm { border-radius: var(--radius-md); }

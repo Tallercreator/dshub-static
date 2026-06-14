@@ -1,0 +1,40 @@
+/* O_Header.module.css — шапка. Sticky, стеклянный фон (Figma O_Header). */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  padding-block: var(--space-lg);
+  background: color-mix(in srgb, var(--surface-page) 72%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  max-width: 1376px;
+  margin-inline: auto;
+  padding-inline: var(--layout-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+.logo {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.nav {
+  display: flex;
+}
+
+.cta {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .nav {
+    display: none; /* мобильное меню — следующая итерация */
+  }
+}

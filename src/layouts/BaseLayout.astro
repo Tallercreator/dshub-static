@@ -1,7 +1,8 @@
 ---
 // BaseLayout.astro — общий каркас страницы. Подключает глобальные стили
-// (токены + база) и шрифты. Контент страницы идёт в <slot />.
+// (токены + база) и шрифты + O_Header. Контент страницы идёт в <slot />.
 import '../styles/global.css';
+import O_Header from '../components/organisms/O_Header/O_Header.astro';
 
 interface Props {
   title?: string;
@@ -12,6 +13,8 @@ const {
   title = 'DSHub — онлайн-медиа о дизайн-системах',
   description = 'Кейсы, глоссарий и ресурсы о дизайн-системах в российских цифровых продуктах.',
 } = Astro.props;
+
+const current = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -31,6 +34,7 @@ const {
     />
   </head>
   <body>
+    <O_Header current={current} />
     <slot />
   </body>
 </html>
