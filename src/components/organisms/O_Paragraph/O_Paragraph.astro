@@ -1,0 +1,18 @@
+---
+// O_Paragraph — абзац статьи. Блок type:"paragraph". text может содержать
+// инлайн-разметку (наш контент → set:html безопасен).
+import A_Text from '../../atoms/A_Text/A_Text.astro';
+
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+<A_Text as="p" variant="body" color="secondary" class="block-paragraph" set:html={text} />
+
+<style>
+  .block-paragraph {
+    margin-block: var(--space-lg);
+    max-width: 70ch;
+  }
+</style>

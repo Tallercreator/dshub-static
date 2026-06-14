@@ -1,0 +1,38 @@
+---
+// A_Button.astro — атом. Презентационный → .astro (zero-JS).
+// hover/pressed — это CSS (в .module.css), не пропсы. Пропсы только смысловые.
+import styles from './A_Button.module.css';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost' | 'dark';
+  size?: 'md' | 'lg';
+  href?: string;          // если задан — рендерится как <a>
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  class: extra,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const cls = [styles.button, styles[variant], styles[size], extra].filter(Boolean).join(' ');
+---
+
+<Tag
+  class={cls}
+  href={href}
+  type={href ? undefined : type}
+  aria-disabled={href && disabled ? 'true' : undefined}
+  disabled={href ? undefined : disabled}
+  {...rest}
+>
+  <slot />
+</Tag>

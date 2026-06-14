@@ -1,0 +1,41 @@
+---
+// ContentRenderer.astro — проходит по массиву блоков кейса/статьи и по полю
+// `type` выбирает компонент-организм (паттерн из 04-content-model.md).
+// Статический рендер (zero-JS): блоки презентационные. Интерактив (quiz и т.п.)
+// подключим React-островом позже.
+import O_Heading from '../components/organisms/O_Heading/O_Heading.astro';
+import O_Paragraph from '../components/organisms/O_Paragraph/O_Paragraph.astro';
+import O_Quote from '../components/organisms/O_Quote/O_Quote.astro';
+import O_NumberedList from '../components/organisms/O_NumberedList/O_NumberedList.astro';
+import O_SummaryBox from '../components/organisms/O_SummaryBox/O_SummaryBox.astro';
+
+interface Block {
+  type: string;
+  [key: string]: any;
+}
+interface Props {
+  blocks: Block[];
+}
+
+const { blocks = [] } = Astro.props;
+---
+
+{
+  blocks.map((b) => {
+    switch (b.type) {
+      case 'heading':
+        return <O_Heading level={b.level} text={b.text} />;
+      case 'paragraph':
+        return <O_Paragraph text={b.text} />;
+      case 'quote':
+        return <O_Quote text={b.text} author={b.author} />;
+      case 'numbered-list':
+        return <O_NumberedList items={b.items} />;
+      case 'summary':
+        return <O_SummaryBox items={b.items} />;
+      default:
+        // Неизвестный тип блока — тихо пропускаем (как в эталоне).
+        return null;
+    }
+  })
+}

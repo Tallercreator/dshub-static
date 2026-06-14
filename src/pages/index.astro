@@ -1,0 +1,101 @@
+---
+// index.astro — временный styleguide/skeleton: доказывает, что токены и атомы
+// живут и связаны. Настоящая Главная (T_Home) собирается в следующей волне из
+// O_Header + S_Hero + … (см. 03-build-checklist.md).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import A_Text from '../components/atoms/A_Text/A_Text.astro';
+import A_Button from '../components/atoms/A_Button/A_Button.astro';
+
+const cases = Object.values(import.meta.glob('../content/cases/*.json', { eager: true })).map(
+  (m) => m.default,
+);
+const terms = Object.values(import.meta.glob('../content/terms/*.json', { eager: true })).map(
+  (m) => m.default,
+);
+---
+
+<BaseLayout title="DSHub — каркас (styleguide)">
+  <main class="wrap">
+    <header class="head">
+      <A_Text variant="caption" color="accent">DSHub · каркас v0</A_Text>
+      <A_Text as="h1" variant="display" color="primary">Дизайн-система в коде</A_Text>
+      <A_Text as="p" variant="body" color="secondary">
+        Токены → CSS-переменные, атомы по UDF, контент из JSON через ContentRenderer.
+      </A_Text>
+    </header>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Типографика (A_Text)</A_Text>
+      <div class="stack">
+        <A_Text variant="display">Display 64</A_Text>
+        <A_Text variant="h1">Heading 1 · 48</A_Text>
+        <A_Text variant="h2">Heading 2 · 40</A_Text>
+        <A_Text variant="title">Title · 20</A_Text>
+        <A_Text variant="body" color="secondary">Body · 16 — основной текст абзацев и описаний.</A_Text>
+        <A_Text variant="caption" color="tertiary">Caption · 14 — подписи и мета.</A_Text>
+      </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Кнопки (A_Button)</A_Text>
+      <div class="row">
+        <A_Button variant="primary">Primary</A_Button>
+        <A_Button variant="secondary">Secondary</A_Button>
+        <A_Button variant="ghost">Ghost</A_Button>
+        <A_Button variant="dark">Предложить кейс</A_Button>
+        <A_Button variant="primary" disabled>Disabled</A_Button>
+      </div>
+      <div class="row">
+        <A_Button variant="primary" size="md">Size md</A_Button>
+        <A_Button variant="primary" size="lg">Size lg</A_Button>
+      </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Контент из JSON</A_Text>
+      <div class="stack">
+        <A_Text variant="title" color="primary">Кейсы ({cases.length})</A_Text>
+        <ul class="links">
+          {cases.map((c) => (
+            <li>
+              <a href={`/cases/${c.slug}`}>
+                <A_Text variant="body" color="accent">→ {c.title}</A_Text>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <A_Text variant="title" color="primary">Термины ({terms.length})</A_Text>
+        {terms.map((t) => (
+          <div class="term">
+            <A_Text variant="title" color="primary">{t.term}</A_Text>
+            <A_Text variant="caption" color="tertiary">{t.category} · {t.visualType}</A_Text>
+            <A_Text variant="body" color="secondary">{t.definition}</A_Text>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap {
+    max-width: 880px;
+    margin-inline: auto;
+    padding: var(--layout-2xl) var(--layout-xs);
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-xl);
+  }
+  .head { display: flex; flex-direction: column; gap: var(--space-lg); }
+  .section { display: flex; flex-direction: column; gap: var(--space-3xl); }
+  .stack { display: flex; flex-direction: column; gap: var(--space-xl); align-items: flex-start; }
+  .row { display: flex; gap: var(--space-xl); align-items: center; flex-wrap: wrap; }
+  .links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--space-md); }
+  .term {
+    display: flex; flex-direction: column; gap: var(--space-md);
+    padding: var(--space-3xl);
+    background: var(--surface-card);
+    border: var(--border-hairline) solid var(--stroke-subtle);
+    border-radius: var(--radius-lg);
+  }
+</style>

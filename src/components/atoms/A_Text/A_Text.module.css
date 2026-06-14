@@ -1,0 +1,67 @@
+/* A_Text.module.css — текстовые роли (= typography-токены из 01-design-tokens.md).
+ * Ссылается только на core font-токены через семантику ролей. */
+
+.text {
+  margin: 0;
+}
+
+/* ───────── варианты (роли типографики) ───────── */
+.display {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-5xl);
+  line-height: var(--line-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.h1 {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-4xl);
+  line-height: var(--line-snug);
+  letter-spacing: var(--tracking-tight);
+}
+.h2 {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-snug);
+  letter-spacing: var(--tracking-tight);
+}
+.title {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-snug);
+  letter-spacing: var(--tracking-normal);
+}
+.body {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md);
+  line-height: var(--line-normal);
+  letter-spacing: var(--tracking-normal);
+}
+.caption {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-normal);
+  letter-spacing: var(--tracking-normal);
+}
+.button {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  line-height: var(--line-snug);
+  letter-spacing: var(--tracking-normal);
+}
+
+/* ───────── цвета (semantic text-роли) ───────── */
+.c-primary { color: var(--text-primary); }
+.c-secondary { color: var(--text-secondary); }
+.c-tertiary { color: var(--text-tertiary); }
+.c-disabled { color: var(--text-disabled); }
+.c-accent { color: var(--text-accent); }
+.c-inverse-primary { color: var(--text-inverse-primary); }
+.c-inverse-secondary { color: var(--text-inverse-secondary); }
+.c-on-accent { color: var(--text-on-accent); }

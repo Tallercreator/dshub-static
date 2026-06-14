@@ -1,0 +1,25 @@
+---
+// A_Text.astro — атом. Текстовые роли из дизайн-токенов (typography).
+// Презентационный → .astro (zero-JS). Цвет — опционально через semantic-токен.
+import styles from './A_Text.module.css';
+
+type Variant = 'display' | 'h1' | 'h2' | 'title' | 'body' | 'caption' | 'button';
+type Color =
+  | 'primary' | 'secondary' | 'tertiary' | 'disabled' | 'accent'
+  | 'inverse-primary' | 'inverse-secondary' | 'on-accent';
+
+interface Props {
+  variant?: Variant;
+  as?: string;          // HTML-тег: 'p' | 'span' | 'h1'… (семантику задаёт вызывающий)
+  color?: Color;        // если не задан — наследуется (по умолчанию text-primary из body)
+  class?: string;
+}
+
+const { variant = 'body', as = 'span', color, class: extra, ...rest } = Astro.props;
+const Tag = as as any;
+const cls = [styles.text, styles[variant], color && styles[`c-${color}`], extra]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={cls} {...rest}><slot /></Tag>

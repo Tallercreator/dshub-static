@@ -1,0 +1,51 @@
+---
+// /cases/[slug] — страница кейса. Доказывает контент-пайплайн:
+// JSON → getStaticPaths → ContentRenderer (блоки по type). Пока без O_Header/O_Footer
+// и хиро-обложки — это следующая волна (организмы/суперорганизмы).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentRenderer from '../../lib/ContentRenderer.astro';
+import A_Text from '../../components/atoms/A_Text/A_Text.astro';
+
+export function getStaticPaths() {
+  return Object.values(import.meta.glob('../../content/cases/*.json', { eager: true })).map(
+    (mod) => {
+      const data = mod.default;
+      return { params: { slug: data.slug }, props: { kase: data } };
+    },
+  );
+}
+
+const { kase } = Astro.props;
+---
+
+<BaseLayout title={`${kase.title} — DSHub`}>
+  <article class="case">
+    <header class="case-hero">
+      <A_Text variant="caption" color="accent">{kase.company} · {kase.companyType}</A_Text>
+      <A_Text as="h1" variant="h1" color="primary">{kase.title}</A_Text>
+      <A_Text variant="body" color="tertiary">
+        {kase.meta?.author} · {kase.meta?.role} · {kase.meta?.readingTime} мин
+      </A_Text>
+    </header>
+
+    <div class="case-body">
+      <ContentRenderer blocks={kase.blocks} />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .case {
+    max-width: 760px;
+    margin-inline: auto;
+    padding: var(--layout-2xl) var(--layout-xs);
+  }
+  .case-hero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding-bottom: var(--layout-md);
+    border-bottom: var(--border-hairline) solid var(--stroke-subtle);
+    margin-bottom: var(--layout-xs);
+  }
+</style>

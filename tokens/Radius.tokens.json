@@ -1,0 +1,104 @@
+{
+  "2xs": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "xs": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "sm": {
+    "$type": "number",
+    "$value": 8,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "md": {
+    "$type": "number",
+    "$value": 12,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "lg": {
+    "$type": "number",
+    "$value": 16,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "xl": {
+    "$type": "number",
+    "$value": 20,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "2xl": {
+    "$type": "number",
+    "$value": 24,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "3xl": {
+    "$type": "number",
+    "$value": 32,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "4xl": {
+    "$type": "number",
+    "$value": 40,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "5xl": {
+    "$type": "number",
+    "$value": 48,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "pill": {
+    "$type": "number",
+    "$value": 200,
+    "$extensions": {
+      "com.figma.scopes": [
+        "CORNER_RADIUS"
+      ]
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Default"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "2xs": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "xs": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "sm": {
+    "$type": "number",
+    "$value": 6,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "md": {
+    "$type": "number",
+    "$value": 8,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "lg": {
+    "$type": "number",
+    "$value": 12,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "xl": {
+    "$type": "number",
+    "$value": 16,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "2xl": {
+    "$type": "number",
+    "$value": 20,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "3xl": {
+    "$type": "number",
+    "$value": 24,
+    "$extensions": {
+      "com.figma.scopes": [
+        "GAP"
+      ]
+    }
+  },
+  "Layout": {
+    "xs": {
+      "$type": "number",
+      "$value": 32,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "sm": {
+      "$type": "number",
+      "$value": 40,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "md": {
+      "$type": "number",
+      "$value": 48,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "lg": {
+      "$type": "number",
+      "$value": 56,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "xl": {
+      "$type": "number",
+      "$value": 64,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "2xl": {
+      "$type": "number",
+      "$value": 80,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "3xl": {
+      "$type": "number",
+      "$value": 96,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "4xl": {
+      "$type": "number",
+      "$value": 120,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "5xl": {
+      "$type": "number",
+      "$value": 160,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    },
+    "6xl": {
+      "$type": "number",
+      "$value": 200,
+      "$extensions": {
+        "com.figma.scopes": [
+          "GAP"
+        ]
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Default"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "hairline": {
+    "$type": "number",
+    "$value": 1,
+    "$extensions": {
+      "com.figma.scopes": [
+        "STROKE_FLOAT"
+      ]
+    }
+  },
+  "thin": {
+    "$type": "number",
+    "$value": 2,
+    "$extensions": {
+      "com.figma.scopes": [
+        "STROKE_FLOAT"
+      ]
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Default"
+  }
+}

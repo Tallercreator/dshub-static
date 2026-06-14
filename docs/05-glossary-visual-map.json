@@ -1,0 +1,849 @@
+[
+  {
+    "slug": "дизайн-система",
+    "term": "Дизайн-система",
+    "category": "Термины DS",
+    "visualType": "diagram",
+    "visualNote": "Обзорная схема: токены→компоненты→паттерны→доки+процессы как живая инфраструктура"
+  },
+  {
+    "slug": "ui-кит",
+    "term": "UI-кит",
+    "category": "Термины DS",
+    "visualType": "text",
+    "visualNote": "Определение + чем отличается от полноценной DS"
+  },
+  {
+    "slug": "гайдлайны",
+    "term": "Гайдлайны",
+    "category": "Термины DS",
+    "visualType": "text",
+    "visualNote": "Только определение (когда применять / когда нет)"
+  },
+  {
+    "slug": "foundations",
+    "term": "Foundations",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "Базовый слой под компонентами: цвет/тип/отступы/иконки/сетка"
+  },
+  {
+    "slug": "компонент",
+    "term": "Компонент",
+    "category": "Архитектура",
+    "visualType": "anatomy",
+    "visualNote": "Модуль Анатомия: части + состояния компонента"
+  },
+  {
+    "slug": "дизайн-токен",
+    "term": "Дизайн-токен",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Песочница токенов: крутишь значение — меняется компонент"
+  },
+  {
+    "slug": "семантический-токен",
+    "term": "Семантический токен",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "3 слоя токенов: raw → semantic → component (общая схема)"
+  },
+  {
+    "slug": "базовая-палитра-raw-токены",
+    "term": "Базовая палитра (raw-токены)",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "Тот же диаграмм-шаблон слоёв токенов"
+  },
+  {
+    "slug": "компонентные-токены",
+    "term": "Компонентные токены",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "Тот же диаграмм-шаблон слоёв токенов"
+  },
+  {
+    "slug": "variables-figma",
+    "term": "Variables (Figma)",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованная панель Variables в Figma"
+  },
+  {
+    "slug": "компонентные-variables",
+    "term": "Компонентные Variables",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованная коллекция Variables под компонент"
+  },
+  {
+    "slug": "маппинг-токенов",
+    "term": "Маппинг токенов",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Таблица соответствия старых→новых токенов при миграции"
+  },
+  {
+    "slug": "мод-токенов-mode",
+    "term": "Мод токенов (Mode)",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Переключатель режимов: light/dark, iOS/Android на компоненте"
+  },
+  {
+    "slug": "тема",
+    "term": "Тема",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Свитч темы — компонент перекрашивается"
+  },
+  {
+    "slug": "тёмная-тема",
+    "term": "Тёмная тема",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Тоггл light/dark"
+  },
+  {
+    "slug": "темизация",
+    "term": "Темизация",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Замена набора токенов → рестайл компонента (Песочница/пресеты)"
+  },
+  {
+    "slug": "мультибренд",
+    "term": "Мультибренд",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Пресеты брендов на одном компоненте"
+  },
+  {
+    "slug": "пресет",
+    "term": "Пресет",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Тоггл «голый компонент ↔ пресет с брендом»"
+  },
+  {
+    "slug": "атом-atomic-design",
+    "term": "Атом (atomic design)",
+    "category": "Архитектура",
+    "visualType": "anatomy",
+    "visualNote": "Атомарные слои: кв*арк→атом→молекула"
+  },
+  {
+    "slug": "состояния-компонента",
+    "term": "Состояния компонента",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Перебор состояний: default/hover/active/disabled/loading/error"
+  },
+  {
+    "slug": "анатомия-компонента",
+    "term": "Анатомия компонента",
+    "category": "Архитектура",
+    "visualType": "anatomy",
+    "visualNote": "Сам модуль Анатомия (части компонента)"
+  },
+  {
+    "slug": "детач-detach",
+    "term": "Детач (detach)",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Связь мастер→инстанс с разрывом"
+  },
+  {
+    "slug": "инстанс-instance",
+    "term": "Инстанс (instance)",
+    "category": "Инструменты",
+    "visualType": "diagram",
+    "visualNote": "Мастер → много инстансов (общая схема)"
+  },
+  {
+    "slug": "мастер-компонент",
+    "term": "Мастер-компонент",
+    "category": "Инструменты",
+    "visualType": "diagram",
+    "visualNote": "Мастер → инстансы (общая схема)"
+  },
+  {
+    "slug": "слот-slot",
+    "term": "Слот (slot)",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "Контейнер-слот, принимающий любой компонент"
+  },
+  {
+    "slug": "паттерн",
+    "term": "Паттерн",
+    "category": "Архитектура",
+    "visualType": "example",
+    "visualNote": "Пример паттерна: фильтр / пустое состояние / поиск"
+  },
+  {
+    "slug": "bdui-backend-driven-ui",
+    "term": "BDUI (Backend-Driven UI)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Сервер отдаёт JSON-описание → клиент рендерит"
+  },
+  {
+    "slug": "sdui-server-driven-ui",
+    "term": "SDUI (Server-Driven UI)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Та же схема, что BDUI (синоним)"
+  },
+  {
+    "slug": "контракт-схема-данных",
+    "term": "Контракт (схема данных)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Компонент + схема данных от бэка"
+  },
+  {
+    "slug": "bff-backend-for-frontend",
+    "term": "BFF (Backend for Frontend)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Слой BFF между API и клиентами iOS/Android/Web"
+  },
+  {
+    "slug": "figma-библиотека",
+    "term": "Figma-библиотека",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованный файл-библиотека Figma (разделение по платформам)"
+  },
+  {
+    "slug": "library-analytics-figma",
+    "term": "Library Analytics (Figma)",
+    "category": "Метрики",
+    "visualType": "example",
+    "visualNote": "Стилизованный дашборд аналитики использования"
+  },
+  {
+    "slug": "storybook",
+    "term": "Storybook",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованный интерфейс Storybook (playground параметров)"
+  },
+  {
+    "slug": "token-studio",
+    "term": "Token Studio",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованная панель плагина + workflow Token Studio→JSON→CSS"
+  },
+  {
+    "slug": "mcp-сервер-в-ds",
+    "term": "MCP-сервер (в DS)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "DS ↔ AI-агент через MCP"
+  },
+  {
+    "slug": "синхронизация-дизайн–код",
+    "term": "Синхронизация дизайн–код",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Figma ↔ код: двусторонняя синхронизация"
+  },
+  {
+    "slug": "пайплайн-автоматизации",
+    "term": "Пайплайн автоматизации",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Figma → репозиторий → JSON → CSS → прод"
+  },
+  {
+    "slug": "changelog",
+    "term": "Changelog",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Определение + пример строки релиза (текст)"
+  },
+  {
+    "slug": "версионирование",
+    "term": "Версионирование",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Семвер major.minor.patch на шкале релизов"
+  },
+  {
+    "slug": "миграция",
+    "term": "Миграция",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Переход v1 → v2 (этапы)"
+  },
+  {
+    "slug": "definition-of-done-dod",
+    "term": "Definition of Done (DoD)",
+    "category": "Процесс",
+    "visualType": "example",
+    "visualNote": "Стилизованный чеклист готовности компонента"
+  },
+  {
+    "slug": "ревью-дизайн-ревью",
+    "term": "Ревью (дизайн-ревью)",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Определение (двухуровневое ревью описать текстом)"
+  },
+  {
+    "slug": "шаблон-документации-компонента",
+    "term": "Шаблон документации компонента",
+    "category": "Процесс",
+    "visualType": "example",
+    "visualNote": "Макет стандартной страницы компонента в доках"
+  },
+  {
+    "slug": "метрика-здоровья-ds",
+    "term": "Метрика здоровья DS",
+    "category": "Метрики",
+    "visualType": "text",
+    "visualNote": "Определение + перечисление метрик"
+  },
+  {
+    "slug": "проникновение-ds",
+    "term": "Проникновение DS",
+    "category": "Метрики",
+    "visualType": "diagram",
+    "visualNote": "Простой стат/чарт: доля команд/экранов на DS"
+  },
+  {
+    "slug": "ds-снизу-bottom-up",
+    "term": "DS снизу (bottom-up)",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Определение (bottom-up vs top-down — словами)"
+  },
+  {
+    "slug": "governance-управление-ds",
+    "term": "Governance (управление DS)",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "стандарты-буфер",
+    "term": "Стандарты (буфер)",
+    "category": "Команда",
+    "visualType": "text",
+    "visualNote": "Только определение (роль-буфер)"
+  },
+  {
+    "slug": "контрибьютор",
+    "term": "Контрибьютор",
+    "category": "Команда",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "тех-поддержка-ds",
+    "term": "Тех-поддержка DS",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение (метафора «участковый терапевт»)"
+  },
+  {
+    "slug": "онбординг-в-ds",
+    "term": "Онбординг в DS",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "доступность-accessibility-a11y",
+    "term": "Доступность (accessibility, a11y)",
+    "category": "Термины DS",
+    "visualType": "interactive",
+    "visualNote": "Контраст-чекер (модуль №4): два цвета → коэффициент"
+  },
+  {
+    "slug": "wcag",
+    "term": "WCAG",
+    "category": "Термины DS",
+    "visualType": "interactive",
+    "visualNote": "Уровни A/AA/AAA на контраст-чекере"
+  },
+  {
+    "slug": "npm-пакет",
+    "term": "npm-пакет",
+    "category": "Инфраструктура",
+    "visualType": "example",
+    "visualNote": "Стилизованный терминал: npm install @package/name"
+  },
+  {
+    "slug": "монорепозиторий",
+    "term": "Монорепозиторий",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Структура монорепо: один git, много пакетов"
+  },
+  {
+    "slug": "css-переменные-css-custom-properties",
+    "term": "CSS-переменные (CSS custom properties)",
+    "category": "Инфраструктура",
+    "visualType": "example",
+    "visualNote": "Код-сниппет: --color-primary: #3B3B8A → применение"
+  },
+  {
+    "slug": "themeprovider",
+    "term": "ThemeProvider",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "React-дерево, обёрнутое провайдером темы"
+  },
+  {
+    "slug": "ssr-server-side-rendering",
+    "term": "SSR (Server-Side Rendering)",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "Серверный рендер: поток, избегание FOUC"
+  },
+  {
+    "slug": "open-source-ds",
+    "term": "Open-source DS",
+    "category": "Инфраструктура",
+    "visualType": "text",
+    "visualNote": "Определение + признаки (публичный GitHub/npm/лицензия)"
+  },
+  {
+    "slug": "themer-конструктор-тем",
+    "term": "Themer (конструктор тем)",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованный Themer Gravity UI (настройка темы)"
+  },
+  {
+    "slug": "адаптивность-adaptivityprovider",
+    "term": "Адаптивность (AdaptivityProvider)",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Ресайз вьюпорта → компонент адаптируется"
+  },
+  {
+    "slug": "гранулярный-импорт-токенов",
+    "term": "Гранулярный импорт токенов",
+    "category": "Инфраструктура",
+    "visualType": "example",
+    "visualNote": "Код-сниппет импорта токенов одного компонента"
+  },
+  {
+    "slug": "витрина-ds-showcase",
+    "term": "Витрина DS (showcase)",
+    "category": "Процесс",
+    "visualType": "example",
+    "visualNote": "Стилизованная витрина (живые демо, смена тем) — пример Nova"
+  },
+  {
+    "slug": "json-как-источник-правды",
+    "term": "JSON как источник правды",
+    "category": "Инфраструктура",
+    "visualType": "diagram",
+    "visualNote": "JSON → Figma + код (единый источник)"
+  },
+  {
+    "slug": "sandbox-playground",
+    "term": "Sandbox / playground",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованная песочница компонента в браузере"
+  },
+  {
+    "slug": "алиасы-в-description",
+    "term": "Алиасы в Description",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Поле Description в Figma + поиск по синонимам"
+  },
+  {
+    "slug": "time-to-market-ttm",
+    "term": "Time-to-market (TTM)",
+    "category": "Метрики",
+    "visualType": "text",
+    "visualNote": "Определение (бизнес-метрика)"
+  },
+  {
+    "slug": "аудит-ds",
+    "term": "Аудит DS",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Определение (пример: 4/32 команды)"
+  },
+  {
+    "slug": "суббренд",
+    "term": "Суббренд",
+    "category": "Архитектура",
+    "visualType": "example",
+    "visualNote": "Один база-компонент в разных суббрендах"
+  },
+  {
+    "slug": "cell-паттерн",
+    "term": "Cell-паттерн",
+    "category": "Архитектура",
+    "visualType": "anatomy",
+    "visualNote": "Вариации одного Cell: SimpleCell/RichCell/CellButton"
+  },
+  {
+    "slug": "платформенная-идентичность",
+    "term": "Платформенная идентичность",
+    "category": "Архитектура",
+    "visualType": "interactive",
+    "visualNote": "Тоггл iOS/Android — компонент меняет стиль"
+  },
+  {
+    "slug": "rollback-откат",
+    "term": "Rollback / откат",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "поколение-ds-gen1-gen2",
+    "term": "Поколение DS (gen1 / gen2)",
+    "category": "Термины DS",
+    "visualType": "text",
+    "visualNote": "Определение (пример Ростелеком gen2)"
+  },
+  {
+    "slug": "uxcorom",
+    "term": "UXcorom",
+    "category": "Метрики",
+    "visualType": "example",
+    "visualNote": "Стилизованный дашборд здоровья Сбер BTO"
+  },
+  {
+    "slug": "конструктор-интерфейсов",
+    "term": "Конструктор интерфейсов",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованный drag-and-drop конструктор → PDF/вёрстка"
+  },
+  {
+    "slug": "банк-реализованных-решений",
+    "term": "Банк реализованных решений",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "workflow-типовые-связки-экранов",
+    "term": "Workflow (типовые связки экранов)",
+    "category": "Процесс",
+    "visualType": "diagram",
+    "visualNote": "Последовательность экранов типового сценария"
+  },
+  {
+    "slug": "бета-версия-компонента",
+    "term": "Бета-версия компонента",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение (метка Б, 3 недели тестов)"
+  },
+  {
+    "slug": "ai-ревьюер",
+    "term": "AI-ревьюер",
+    "category": "Инструменты",
+    "visualType": "example",
+    "visualNote": "Стилизованно: AI получает макет → проверяет на соответствие DS"
+  },
+  {
+    "slug": "white-label-в-ds",
+    "term": "White Label (в DS)",
+    "category": "Архитектура",
+    "visualType": "example",
+    "visualNote": "Один продукт под разными брендами на единой базе"
+  },
+  {
+    "slug": "принцип-чем-проще-тем-лучше",
+    "term": "Принцип «чем проще, тем лучше»",
+    "category": "Процесс",
+    "visualType": "example",
+    "visualNote": "До/после: компонент-«монстр» с 20 вариантами vs базис"
+  },
+  {
+    "slug": "бэклог-ds",
+    "term": "Бэклог DS",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "вложенность-компонентов",
+    "term": "Вложенность компонентов",
+    "category": "Архитектура",
+    "visualType": "diagram",
+    "visualNote": "1 уровень — ок, 2 — допустимо, 3 — критично (схема)"
+  },
+  {
+    "slug": "pet-project-для-изучения-ds",
+    "term": "Pet project (для изучения DS)",
+    "category": "Процесс",
+    "visualType": "text",
+    "visualNote": "Только определение"
+  },
+  {
+    "slug": "кнопка-button",
+    "term": "Кнопка (Button)",
+    "category": "Компонент · контролы",
+    "visualType": "anatomy",
+    "visualNote": "Варианты primary/secondary/ghost + состояния — герой модуля Анатомия"
+  },
+  {
+    "slug": "поле-ввода-input",
+    "term": "Поле ввода (Input)",
+    "category": "Компонент · контролы",
+    "visualType": "anatomy",
+    "visualNote": "Состояния default/focus/error/disabled, части поля"
+  },
+  {
+    "slug": "текстовая-область-textarea",
+    "term": "Текстовая область (Textarea)",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Многострочный ввод с авто-ростом"
+  },
+  {
+    "slug": "чекбокс-checkbox",
+    "term": "Чекбокс (Checkbox)",
+    "category": "Компонент · контролы",
+    "visualType": "interactive",
+    "visualNote": "Состояния off/on/indeterminate/disabled"
+  },
+  {
+    "slug": "радиокнопка-radio",
+    "term": "Радиокнопка (Radio)",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Выбор одного варианта из группы"
+  },
+  {
+    "slug": "переключатель-switch",
+    "term": "Переключатель (Switch)",
+    "category": "Компонент · контролы",
+    "visualType": "interactive",
+    "visualNote": "Живой тоггл вкл/выкл"
+  },
+  {
+    "slug": "селект-select",
+    "term": "Селект (Select)",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Выпадающий выбор значения"
+  },
+  {
+    "slug": "слайдер-slider",
+    "term": "Слайдер (Slider)",
+    "category": "Компонент · контролы",
+    "visualType": "interactive",
+    "visualNote": "Перетаскивание значения по шкале"
+  },
+  {
+    "slug": "степпер-stepper",
+    "term": "Степпер (Stepper)",
+    "category": "Компонент · контролы",
+    "visualType": "interactive",
+    "visualNote": "Инкремент/декремент числа"
+  },
+  {
+    "slug": "дата-пикер-date-picker",
+    "term": "Дата-пикер (Date picker)",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Выбор даты из календаря"
+  },
+  {
+    "slug": "color-picker",
+    "term": "Color picker",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Выбор цвета: HEX/RGB/палитра"
+  },
+  {
+    "slug": "поиск-search",
+    "term": "Поиск (Search)",
+    "category": "Компонент · контролы",
+    "visualType": "component",
+    "visualNote": "Поле поиска с подсказками"
+  },
+  {
+    "slug": "табы-tabs",
+    "term": "Табы (Tabs)",
+    "category": "Компонент · навигация",
+    "visualType": "interactive",
+    "visualNote": "Переключение вкладок контента"
+  },
+  {
+    "slug": "хлебные-крошки-breadcrumbs",
+    "term": "Хлебные крошки (Breadcrumbs)",
+    "category": "Компонент · навигация",
+    "visualType": "component",
+    "visualNote": "Путь по иерархии страниц"
+  },
+  {
+    "slug": "пагинация-pagination",
+    "term": "Пагинация (Pagination)",
+    "category": "Компонент · навигация",
+    "visualType": "interactive",
+    "visualNote": "Постраничная навигация"
+  },
+  {
+    "slug": "меню-menu",
+    "term": "Меню (Menu)",
+    "category": "Компонент · навигация",
+    "visualType": "component",
+    "visualNote": "Список действий/ссылок"
+  },
+  {
+    "slug": "сегмент-контрол-segmented-control",
+    "term": "Сегмент-контрол (Segmented control)",
+    "category": "Компонент · навигация",
+    "visualType": "interactive",
+    "visualNote": "Выбор из 2–4 сегментов"
+  },
+  {
+    "slug": "шаги-wizard-steps",
+    "term": "Шаги (Wizard / Steps)",
+    "category": "Компонент · навигация",
+    "visualType": "component",
+    "visualNote": "Прогресс по этапам сценария"
+  },
+  {
+    "slug": "тултип-tooltip",
+    "term": "Тултип (Tooltip)",
+    "category": "Компонент · обратная связь",
+    "visualType": "interactive",
+    "visualNote": "Подсказка при наведении"
+  },
+  {
+    "slug": "тост-уведомление-toast",
+    "term": "Тост / Уведомление (Toast)",
+    "category": "Компонент · обратная связь",
+    "visualType": "component",
+    "visualNote": "Всплывающее короткое сообщение"
+  },
+  {
+    "slug": "алерт-баннер-alert",
+    "term": "Алерт / Баннер (Alert)",
+    "category": "Компонент · обратная связь",
+    "visualType": "component",
+    "visualNote": "Статусное сообщение info/success/warning/error"
+  },
+  {
+    "slug": "прогресс-бар-progress",
+    "term": "Прогресс-бар (Progress)",
+    "category": "Компонент · обратная связь",
+    "visualType": "interactive",
+    "visualNote": "Индикатор выполнения"
+  },
+  {
+    "slug": "лоадер-спиннер-spinner",
+    "term": "Лоадер / Спиннер (Spinner)",
+    "category": "Компонент · обратная связь",
+    "visualType": "component",
+    "visualNote": "Индикатор загрузки"
+  },
+  {
+    "slug": "скелетон-skeleton",
+    "term": "Скелетон (Skeleton)",
+    "category": "Компонент · обратная связь",
+    "visualType": "component",
+    "visualNote": "Заглушка-каркас на время загрузки"
+  },
+  {
+    "slug": "пустое-состояние-empty-state",
+    "term": "Пустое состояние (Empty state)",
+    "category": "Компонент · обратная связь",
+    "visualType": "example",
+    "visualNote": "Экран без данных: иллюстрация + текст + действие"
+  },
+  {
+    "slug": "бейдж-badge",
+    "term": "Бейдж (Badge)",
+    "category": "Компонент · обратная связь",
+    "visualType": "component",
+    "visualNote": "Счётчик/метка на элементе"
+  },
+  {
+    "slug": "карточка-card",
+    "term": "Карточка (Card)",
+    "category": "Компонент · контейнеры",
+    "visualType": "anatomy",
+    "visualNote": "Контейнер контента — части и токены"
+  },
+  {
+    "slug": "модальное-окно-modal",
+    "term": "Модальное окно (Modal)",
+    "category": "Компонент · контейнеры",
+    "visualType": "component",
+    "visualNote": "Диалог поверх контента + оверлей"
+  },
+  {
+    "slug": "поповер-popover",
+    "term": "Поповер (Popover)",
+    "category": "Компонент · контейнеры",
+    "visualType": "component",
+    "visualNote": "Плавающий контейнер у триггера"
+  },
+  {
+    "slug": "шторка-drawer",
+    "term": "Шторка (Drawer)",
+    "category": "Компонент · контейнеры",
+    "visualType": "component",
+    "visualNote": "Боковая/нижняя выезжающая панель"
+  },
+  {
+    "slug": "аккордеон-accordion",
+    "term": "Аккордеон (Accordion)",
+    "category": "Компонент · контейнеры",
+    "visualType": "interactive",
+    "visualNote": "Сворачиваемые секции"
+  },
+  {
+    "slug": "таблица-table",
+    "term": "Таблица (Table)",
+    "category": "Компонент · данные",
+    "visualType": "component",
+    "visualNote": "Строки/колонки, сортировка"
+  },
+  {
+    "slug": "ячейка-списка-cell",
+    "term": "Ячейка списка (Cell)",
+    "category": "Компонент · данные",
+    "visualType": "anatomy",
+    "visualNote": "Базовая строка: SimpleCell/RichCell/CellButton"
+  },
+  {
+    "slug": "аватар-avatar",
+    "term": "Аватар (Avatar)",
+    "category": "Компонент · данные",
+    "visualType": "component",
+    "visualNote": "Изображение или инициалы пользователя"
+  },
+  {
+    "slug": "тег-чип-tagchip",
+    "term": "Тег / Чип (Tag/Chip)",
+    "category": "Компонент · данные",
+    "visualType": "component",
+    "visualNote": "Метка/фильтр, removable"
+  },
+  {
+    "slug": "рейтинг-rating",
+    "term": "Рейтинг (Rating)",
+    "category": "Компонент · данные",
+    "visualType": "interactive",
+    "visualNote": "Оценка звёздами"
+  },
+  {
+    "slug": "разделитель-divider",
+    "term": "Разделитель (Divider)",
+    "category": "Компонент · данные",
+    "visualType": "component",
+    "visualNote": "Линия-разделитель блоков"
+  }
+]

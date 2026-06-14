@@ -1,0 +1,36 @@
+---
+// BaseLayout.astro — общий каркас страницы. Подключает глобальные стили
+// (токены + база) и шрифты. Контент страницы идёт в <slot />.
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'DSHub — онлайн-медиа о дизайн-системах',
+  description = 'Кейсы, глоссарий и ресурсы о дизайн-системах в российских цифровых продуктах.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter (base + display сейчас = Inter; display заменим на Onest при финализации лого) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,31 @@
+---
+// O_Quote — пулл-цитата. Блок type:"quote". (Декоративные «мазки» добавим
+// позже как Q_Illustration; сейчас — акцентная левая граница.)
+import A_Text from '../../atoms/A_Text/A_Text.astro';
+
+interface Props {
+  text: string;
+  author?: string;
+}
+const { text, author } = Astro.props;
+---
+<figure class="block-quote">
+  <A_Text as="blockquote" variant="title" color="primary" class="quote-text">{text}</A_Text>
+  {author && <A_Text as="figcaption" variant="caption" color="tertiary">{author}</A_Text>}
+</figure>
+
+<style>
+  .block-quote {
+    margin-block: var(--layout-xs);
+    padding: var(--space-2xl) var(--space-3xl);
+    border-left: var(--border-thin) solid var(--stroke-accent);
+    background: var(--surface-accent-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .quote-text {
+    font-style: normal;
+  }
+</style>

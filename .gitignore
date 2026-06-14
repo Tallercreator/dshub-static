@@ -1,0 +1,23 @@
+# build output
+dist/
+.output/
+
+# deps
+node_modules/
+
+# astro
+.astro/
+
+# generated tokens (built from tokens/dshub-tokens.json via `npm run tokens`)
+src/styles/tokens.css
+
+# env / local
+.env
+.env.production
+.DS_Store
+*.log
+npm-debug.log*
+
+# editor
+.vscode/
+.idea/

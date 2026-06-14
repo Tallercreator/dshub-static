@@ -1,0 +1,18 @@
+---
+// O_Heading — заголовок внутри статьи кейса. Блок type:"heading".
+import A_Text from '../../atoms/A_Text/A_Text.astro';
+
+interface Props {
+  level?: number; // 2 | 3
+  text: string;
+}
+const { level = 2, text } = Astro.props;
+const variant = level >= 3 ? 'title' : 'h2';
+---
+<A_Text as={`h${level}`} variant={variant} color="primary" class="block-heading">{text}</A_Text>
+
+<style>
+  .block-heading {
+    margin-block: var(--layout-xs) var(--space-2xl);
+  }
+</style>
