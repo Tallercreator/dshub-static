@@ -1,38 +1,61 @@
 ---
-// A_Button.astro — атом. Презентационный → .astro (zero-JS).
-// hover/pressed — это CSS (в .module.css), не пропсы. Пропсы только смысловые.
+// A_Button.astro — атом. Сквозной нейминг = Figma-компонент A_Button (node 18:3660).
+// Оси Figma: contentType × size × state. Состояния (hover/pressed/disabled) — это CSS,
+// не пропсы (правило UDF). Loading — пропс (показывает спиннер вместо контента).
+// Презентационный → .astro (zero-JS). Иконку передавать слотом name="icon" (Q_Icon).
 import styles from './A_Button.module.css';
 
 interface Props {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'dark';
-  size?: 'md' | 'lg';
-  href?: string;          // если задан — рендерится как <a>
-  type?: 'button' | 'submit';
+  // = Figma Content_type: Icon · Text · Text+Lefticon · Primary · Neutral
+  contentType?: 'icon' | 'text' | 'text-lefticon' | 'primary' | 'neutral';
+  // = Figma Size: Small_32 · Medium_40 · Large_48 (Neutral всегда XLarge_110)
+  size?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
   disabled?: boolean;
+  href?: string;
+  type?: 'button' | 'submit';
   class?: string;
 }
 
 const {
-  variant = 'primary',
-  size = 'md',
+  contentType = 'text',
+  size = 'lg',
+  loading = false,
+  disabled = false,
   href,
   type = 'button',
-  disabled = false,
   class: extra,
   ...rest
 } = Astro.props;
 
 const Tag = href ? 'a' : 'button';
-const cls = [styles.button, styles[variant], styles[size], extra].filter(Boolean).join(' ');
+const isInactive = disabled || loading;
+const hasLabel = contentType === 'text' || contentType === 'text-lefticon' || contentType === 'neutral';
+const hasIcon = contentType !== 'text';
+const iconLeft = contentType === 'text-lefticon';
+
+const cls = [
+  styles.button,
+  styles[`ct-${contentType}`],
+  contentType === 'neutral' ? null : styles[`size-${size}`],
+  loading && styles.loading,
+  extra,
+]
+  .filter(Boolean)
+  .join(' ');
 ---
 
 <Tag
   class={cls}
   href={href}
   type={href ? undefined : type}
-  aria-disabled={href && disabled ? 'true' : undefined}
-  disabled={href ? undefined : disabled}
+  disabled={href ? undefined : isInactive}
+  aria-busy={loading ? 'true' : undefined}
+  aria-disabled={href && isInactive ? 'true' : undefined}
   {...rest}
 >
-  <slot />
+  <span class={styles.spinner} aria-hidden="true"></span>
+  {hasIcon && iconLeft && <span class={styles.icon}><slot name="icon" /></span>}
+  {hasLabel && <span class={styles.label}><slot /></span>}
+  {hasIcon && !iconLeft && <span class={styles.icon}><slot name="icon" /></span>}
 </Tag>

@@ -522,6 +522,34 @@
       "accent2-subtle": {
         "value": "{lime.0}",
         "type": "color"
+      },
+      "button": {
+        "value": "{neutral.160}",
+        "type": "color"
+      },
+      "button-hover": {
+        "value": "{neutral.110}",
+        "type": "color"
+      },
+      "button-pressed": {
+        "value": "{neutral.160}",
+        "type": "color"
+      },
+      "button-disabled": {
+        "value": "{opacity.black}",
+        "type": "color"
+      },
+      "cta": {
+        "value": "{neutral.130}",
+        "type": "color"
+      },
+      "cta-hover": {
+        "value": "{neutral.110}",
+        "type": "color"
+      },
+      "cta-pressed": {
+        "value": "{neutral.150}",
+        "type": "color"
       }
     },
     "text": {
@@ -563,6 +591,18 @@
       },
       "on-accent2": {
         "value": "{neutral.160}",
+        "type": "color"
+      },
+      "on-button": {
+        "value": "{neutral.0}",
+        "type": "color"
+      },
+      "on-button-pressed": {
+        "value": "{neutral.70}",
+        "type": "color"
+      },
+      "on-button-disabled": {
+        "value": "{neutral.90}",
         "type": "color"
       }
     },

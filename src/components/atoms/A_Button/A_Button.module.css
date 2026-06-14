@@ -1,43 +1,93 @@
-/* A_Button.module.css — стиль атома. Ссылается ТОЛЬКО на semantic-токены. */
+/* A_Button.module.css — стиль атома = Figma A_Button (node 18:3660).
+ * Ссылается только на semantic-токены (surface-button*, text-on-button*, cta*). */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
+  position: relative;
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  color: var(--text-on-button);
+  background: var(--surface-button);
   border: none;
   cursor: pointer;
   border-radius: var(--radius-md);
+  padding-inline: var(--space-lg);
   white-space: nowrap;
-  transition: background var(--duration-fast) ease, color var(--duration-fast) ease,
-              box-shadow var(--duration-fast) ease;
+  transition: background var(--duration-fast) ease, color var(--duration-fast) ease;
 }
 
-.button:disabled { cursor: not-allowed; opacity: .5; }
-
-/* ---- размеры (высота из control-токенов) ---- */
-.md { height: var(--size-control-xl);  padding-inline: var(--space-2xl); font-size: var(--font-size-md); }
-.lg { height: var(--size-control-2xl); padding-inline: var(--space-3xl); font-size: var(--font-size-md); }
-
-/* ---- варианты ---- */
-/* primary — основной акцент */
-.primary { background: var(--surface-accent); color: var(--text-on-accent); }
-.primary:hover:not(:disabled)  { background: var(--surface-accent-hover); }
-.primary:active:not(:disabled) { background: var(--surface-accent-pressed); }
-
-/* dark — тёмная (CTA «Предложить кейс», «Смотреть все кейсы») */
-.dark { background: var(--surface-inverse); color: var(--text-inverse-primary); }
-.dark:hover:not(:disabled)  { background: var(--surface-inverse-active); }
-
-/* secondary — на карточках/светлых поверхностях */
-.secondary {
-  background: var(--surface-card); color: var(--text-primary);
-  box-shadow: inset 0 0 0 var(--border-hairline) var(--stroke-default);
+/* ───────── состояния (CSS, не пропсы) ───────── */
+.button:hover:not(:disabled) { background: var(--surface-button-hover); }
+.button:active:not(:disabled) {
+  background: var(--surface-button-pressed);
+  color: var(--text-on-button-pressed);
 }
-.secondary:hover:not(:disabled) { background: var(--surface-page); }
+.button:disabled {
+  background: var(--surface-button-disabled);
+  color: var(--text-on-button-disabled);
+  cursor: not-allowed;
+}
 
-/* ghost — третичная, без фона */
-.ghost { background: transparent; color: var(--text-secondary); }
-.ghost:hover:not(:disabled) { color: var(--text-primary); background: var(--surface-page); }
+/* ───────── размеры (высота = control-токены, шрифт по Figma) ───────── */
+.size-sm { height: var(--size-control-md); font-size: var(--font-size-xs); }  /* 32 · 12 */
+.size-md { height: var(--size-control-xl); font-size: var(--font-size-sm); }  /* 40 · 14 */
+.size-lg { height: var(--size-control-2xl); font-size: var(--font-size-md); } /* 48 · 16 */
+
+/* ───────── content-типы ───────── */
+/* Icon / Primary — квадратные иконочные кнопки (Primary компактнее по иконке) */
+.ct-icon.size-sm,  .ct-primary.size-sm  { width: var(--size-control-md); padding-inline: 0; }
+.ct-icon.size-md,  .ct-primary.size-md  { width: var(--size-control-xl); padding-inline: 0; }
+.ct-icon.size-lg,  .ct-primary.size-lg  { width: var(--size-control-2xl); padding-inline: 0; }
+
+/* Neutral — большой XL-CTA-пилл (190×110, своя поверхность cta) */
+.ct-neutral {
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 190px;
+  height: 110px;
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-2xl);
+  font-size: var(--font-size-lg); /* 20 */
+  background: var(--surface-cta);
+}
+.ct-neutral:hover:not(:disabled)  { background: var(--surface-cta-hover); }
+.ct-neutral:active:not(:disabled) { background: var(--surface-cta-pressed); color: var(--text-on-button-pressed); }
+
+/* ───────── иконка (размер из icon-токенов по размеру кнопки) ───────── */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+.size-sm .icon, .size-md .icon { width: var(--size-icon-sm); height: var(--size-icon-sm); } /* 16 */
+.size-lg .icon, .ct-neutral .icon { width: var(--size-icon-lg); height: var(--size-icon-lg); } /* 24 */
+/* Primary использует более компактную иконку, чем Icon */
+.ct-primary .icon { width: var(--size-icon-sm); height: var(--size-icon-sm); }
+
+/* ───────── loading: спиннер вместо контента ───────── */
+.spinner {
+  display: none;
+  position: absolute;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+  border: var(--border-thin) solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-pill);
+  animation: a-button-spin var(--duration-slow) linear infinite;
+}
+.loading { cursor: progress; }
+.loading .label,
+.loading .icon { visibility: hidden; }
+.loading .spinner { display: inline-block; }
+
+@keyframes a-button-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation-duration: 1.5s; }
+}
