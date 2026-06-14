@@ -6,6 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import A_Text from '../components/atoms/A_Text/A_Text.astro';
 import A_Button from '../components/atoms/A_Button/A_Button.astro';
 import Q_Icon from '../components/quarks/Q_Icon/Q_Icon.astro';
+import Q_Logo from '../components/quarks/Q_Logo/Q_Logo.astro';
 import { ICONS } from '../components/quarks/Q_Icon/icons';
 
 const iconNames = Object.keys(ICONS);
@@ -81,6 +82,14 @@ const termsWithDef = terms.filter((t) => t.definition);
           Смотреть кейсы
           <Q_Icon slot="icon" name="arrow-right" size={24} />
         </A_Button>
+      </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Логотип (Q_Logo) — из Figma</A_Text>
+      <div class="row" style="align-items: center; gap: var(--layout-sm);">
+        <Q_Logo type="lockup" />
+        <Q_Logo type="icon" />
       </div>
     </section>
 

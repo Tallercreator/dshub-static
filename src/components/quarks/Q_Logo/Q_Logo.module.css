@@ -1,0 +1,25 @@
+/* Q_Logo.module.css — логотип. Размер регулируется font-size на .logo. */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 24px; /* базовый кегль слова; знак масштабируется относительно него */
+  line-height: 1;
+}
+
+.mark {
+  height: 1.16em; /* ~28px при font-size 24 */
+  width: auto;
+  flex: 0 0 auto;
+  display: block;
+}
+
+.word {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  font-size: 1em;
+  letter-spacing: -0.05em;
+  color: var(--text-primary);
+  white-space: nowrap;
+}

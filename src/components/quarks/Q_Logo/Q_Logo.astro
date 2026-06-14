@@ -1,0 +1,41 @@
+---
+// Q_Logo — квАрк. Логотип ДС Хаб = Figma Q_logo (node 28:2672).
+// Знак реконструирован инлайн-SVG из примитивов (скруглённый фон + сетка 2×2 из
+// 3 тёмных + 1 розового квадрата + белая точка + лаймовый росчерк, повёрнутый
+// на 18.34°). Цвета — на токенах. Варианты: 'lockup' (знак + «дс хаб») и 'icon'.
+import styles from './Q_Logo.module.css';
+
+interface Props {
+  type?: 'lockup' | 'icon';
+  class?: string;
+}
+const { type = 'lockup', class: extra } = Astro.props;
+---
+
+<span class:list={[styles.logo, extra]} role="img" aria-label="ДС Хаб">
+  <svg
+    class={styles.mark}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <rect x="0" y="0" width="32" height="32" rx="7.857" fill="var(--neutral-20)" />
+    <rect x="3" y="3" width="12" height="12" rx="4" fill="var(--neutral-130)" />
+    <rect x="3" y="17" width="12" height="12" rx="4" fill="var(--neutral-130)" />
+    <rect x="17" y="3" width="12" height="12" rx="4" fill="var(--neutral-130)" />
+    <rect x="17" y="17" width="12" height="12" rx="4" fill="var(--pink-50)" />
+    <rect x="21" y="21" width="4" height="4" rx="2.619" fill="var(--neutral-0)" />
+    <g
+      transform="translate(16.89 15.69) rotate(18.34) scale(0.9405 0.9017) translate(-16.8 -10.18)"
+    >
+      <path
+        d="M2.94824 19.1764C-3.22151 21.2211 5.97156 5.9736 20.3543 11.3008C35.3655 16.8608 33.4969 0.0975624 30.6495 1.04122"
+        stroke="var(--lime-10)"
+        stroke-width="2"
+      />
+    </g>
+  </svg>
+
+  {type === 'lockup' && <span class={styles.word} aria-hidden="true">дс хаб</span>}
+</span>
