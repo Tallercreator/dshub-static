@@ -1,0 +1,33 @@
+/* fonts.css — самохостинг шрифтов. Имена семейств = значения font-family-токенов.
+ * Suisse Int'l (display) и Stapel Condensed (decorate) — лицензионные, в public/fonts/.
+ * base (Inter Display) пока берётся из Google Fonts (Inter) — см. BaseLayout. */
+
+@font-face {
+  font-family: "Suisse Int'l";
+  src: url("/fonts/SuisseIntl-Book.woff2") format("woff2");
+  font-weight: 400 450;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Int'l";
+  src: url("/fonts/SuisseIntl-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Suisse Int'l";
+  src: url("/fonts/SuisseIntl-Bold.woff2") format("woff2");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Stapel Condensed";
+  src: url("/fonts/StapelCondensed-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

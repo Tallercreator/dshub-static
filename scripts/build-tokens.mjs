@@ -97,7 +97,7 @@ lines.push('');
 lines.push('  /* core · font */');
 // Семейства оборачиваем в кавычки (пробелы/апострофы: "Suisse Int'l") и добавляем
 // системный fallback-стек, чтобы текст был читаем до загрузки веб-шрифта.
-const FONT_FALLBACK = 'system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+const FONT_FALLBACK = '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
 for (const [k, t] of Object.entries(core.font.family))
   lines.push(`  --font-family-${k}: "${t.value}", ${FONT_FALLBACK};`);
 for (const [k, t] of Object.entries(core.font.weight)) lines.push(`  --font-weight-${k}: ${t.value};`);
