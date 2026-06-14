@@ -12,7 +12,7 @@
   transition: color var(--duration-fast) ease;
 }
 .toggle:hover { color: var(--text-secondary); }
-.open { color: var(--text-secondary); }
+.toggle[aria-expanded='true'] { color: var(--text-secondary); }
 
 .label {
   font-family: var(--font-family-base);
@@ -26,4 +26,4 @@
   display: inline-flex;
   transition: transform var(--duration-fast) ease;
 }
-.open .chev { transform: rotate(180deg); }
+.toggle[aria-expanded='true'] .chev { transform: rotate(180deg); }

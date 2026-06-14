@@ -1,23 +1,44 @@
 ---
 // M_CollapseToggle — молекула. = Figma M_CollapseToggle (node 29:4189). Тоггл
-// «Дополнительно» (текст + шеврон). open поворачивает шеврон. Сам сворачивающийся
-// блок — на организме. Шеврон обёрнут в span (у Q_Icon свой inline-transform).
+// «Дополнительно»: клик переключает open/close, шеврон крутится. Состояние держим
+// в aria-expanded (на него же завязан CSS). Опц. controls=id — сворачивает целевой
+// блок (toggle его hidden). Лёгкий vanilla-JS, без React.
 import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
 import styles from './M_CollapseToggle.module.css';
 
 interface Props {
   open?: boolean;
+  controls?: string;
   class?: string;
 }
-const { open = false, class: extra, ...rest } = Astro.props;
+const { open = false, controls, class: extra, ...rest } = Astro.props;
 ---
 
 <button
   type="button"
-  class:list={[styles.toggle, open && styles.open, extra]}
-  aria-expanded={open}
+  class:list={[styles.toggle, extra]}
+  data-collapse-toggle
+  aria-expanded={open ? 'true' : 'false'}
+  aria-controls={controls}
   {...rest}
 >
   <span class={styles.label}><slot /></span>
   <span class={styles.chev}><Q_Icon name="chevron-down" size={16} /></span>
 </button>
+
+<script>
+  document.querySelectorAll('[data-collapse-toggle]').forEach((btn) => {
+    const el = btn as HTMLElement;
+    if (el.dataset.collapseBound) return;
+    el.dataset.collapseBound = '1';
+    el.addEventListener('click', () => {
+      const open = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', String(!open));
+      const id = el.getAttribute('aria-controls');
+      if (id) {
+        const target = document.getElementById(id);
+        if (target) (target as HTMLElement).hidden = open; // было открыто → закрываем
+      }
+    });
+  });
+</script>
