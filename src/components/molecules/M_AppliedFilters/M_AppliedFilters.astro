@@ -1,0 +1,23 @@
+---
+// M_AppliedFilters — молекула. = Figma M_AppliedFilters (node 23:2236). Бар над
+// гридом Кейсов: «Выбрано:» + применённые чипы (слот) + кнопка «Сбросить все».
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './M_AppliedFilters.module.css';
+
+interface Props {
+  class?: string;
+}
+const { class: extra } = Astro.props;
+---
+
+<div class:list={[styles.applied, extra]}>
+  <div class={styles.group}>
+    <span class={styles.label}>Выбрано:</span>
+    <div class={styles.chips}><slot /></div>
+  </div>
+  <A_Button contentType="text-lefticon" size="md" class={styles.reset}>
+    <Q_Icon slot="icon" name="cross-small" size={16} />
+    Сбросить все
+  </A_Button>
+</div>

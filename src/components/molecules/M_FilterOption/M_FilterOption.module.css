@@ -1,0 +1,16 @@
+/* M_FilterOption.module.css — пункт фильтра: чекбокс + текст 16px. */
+
+.option {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  cursor: pointer;
+}
+.text {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md);
+  line-height: var(--line-normal);
+  color: var(--text-primary);
+  padding-top: 1px;
+}

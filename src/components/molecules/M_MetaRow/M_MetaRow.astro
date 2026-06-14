@@ -1,0 +1,16 @@
+---
+// M_MetaRow — молекула. = Figma M_MetaRow (node 23:1853). Подпись + значение.
+// Используется в футере (Куратор / Автор).
+import styles from './M_MetaRow.module.css';
+
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: extra } = Astro.props;
+---
+
+<div class:list={[styles.row, extra]}>
+  <span class={styles.label}>{label}</span>
+  <span class={styles.value}><slot /></span>
+</div>

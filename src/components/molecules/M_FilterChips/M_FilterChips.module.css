@@ -1,0 +1,7 @@
+/* M_FilterChips.module.css — сетка чипов-фильтров (Figma M_FilterChips). */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}

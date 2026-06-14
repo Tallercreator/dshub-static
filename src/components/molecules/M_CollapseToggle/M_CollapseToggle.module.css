@@ -1,0 +1,29 @@
+/* M_CollapseToggle.module.css — «Дополнительно» + шеврон. */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast) ease;
+}
+.toggle:hover { color: var(--text-secondary); }
+.open { color: var(--text-secondary); }
+
+.label {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-md);
+  line-height: var(--line-normal);
+}
+
+/* span вращаем, а не svg (у Q_Icon свой inline transform для ориентации) */
+.chev {
+  display: inline-flex;
+  transition: transform var(--duration-fast) ease;
+}
+.open .chev { transform: rotate(180deg); }

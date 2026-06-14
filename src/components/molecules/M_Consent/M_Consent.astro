@@ -1,0 +1,21 @@
+---
+// M_Consent — молекула. = Figma M_Consent (node 21:790). Чекбокс согласия + текст.
+// <label> оборачивает оба, поэтому клик по тексту переключает чекбокс.
+import A_Checkbox from '../../atoms/A_Checkbox/A_Checkbox.astro';
+import styles from './M_Consent.module.css';
+
+interface Props {
+  name?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  id?: string;
+  class?: string;
+}
+const { name, checked, disabled, required, id, class: extra } = Astro.props;
+---
+
+<label class:list={[styles.consent, extra]}>
+  <A_Checkbox checked={checked} disabled={disabled} name={name} required={required} id={id} />
+  <span class={styles.text}><slot /></span>
+</label>

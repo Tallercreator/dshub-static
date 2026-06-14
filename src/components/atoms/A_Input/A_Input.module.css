@@ -1,0 +1,66 @@
+/* A_Input.module.css — поле ввода. Состояния по Figma (A_input). */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding-inline: var(--space-lg) var(--space-md);
+  border: var(--border-hairline) solid var(--stroke-subtle);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+  cursor: text;
+  transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+.md { min-height: 40px; }
+.lg { min-height: 48px; }
+
+/* hover / focus → серый фон + сильная граница (Figma Hover/Active) */
+.box:hover { border-color: var(--stroke-strong); background: var(--neutral-10); }
+.box:focus-within { border-color: var(--stroke-strong); background: var(--neutral-10); }
+
+.caption {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
+  line-height: 1.2;
+  color: var(--neutral-90);
+}
+
+.input {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  line-height: 1.2;
+  color: var(--text-primary);
+  outline: none;
+  width: 100%;
+}
+.input::placeholder { color: var(--text-tertiary); }
+
+/* disabled */
+.box:has(.input:disabled) {
+  background: var(--neutral-0);
+  border-color: var(--stroke-strong);
+  cursor: not-allowed;
+}
+.input:disabled { color: var(--text-disabled); cursor: not-allowed; }
+.input:disabled::placeholder { color: var(--text-disabled); }
+
+.desc {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+  color: var(--text-tertiary);
+}

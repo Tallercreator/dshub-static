@@ -1,0 +1,23 @@
+---
+// M_CollapseToggle — молекула. = Figma M_CollapseToggle (node 29:4189). Тоггл
+// «Дополнительно» (текст + шеврон). open поворачивает шеврон. Сам сворачивающийся
+// блок — на организме. Шеврон обёрнут в span (у Q_Icon свой inline-transform).
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './M_CollapseToggle.module.css';
+
+interface Props {
+  open?: boolean;
+  class?: string;
+}
+const { open = false, class: extra, ...rest } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={[styles.toggle, open && styles.open, extra]}
+  aria-expanded={open}
+  {...rest}
+>
+  <span class={styles.label}><slot /></span>
+  <span class={styles.chev}><Q_Icon name="chevron-down" size={16} /></span>
+</button>

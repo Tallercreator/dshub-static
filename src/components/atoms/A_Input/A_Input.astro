@@ -1,0 +1,51 @@
+---
+// A_Input — атом. = Figma A_input (node 19:1123). Текстовое поле с подписью внутри
+// (caption сверху) и опц. описанием снизу. Состояния — CSS (:hover/:focus-within).
+import styles from './A_Input.module.css';
+
+interface Props {
+  label?: string;
+  placeholder?: string;
+  description?: string;
+  size?: 'md' | 'lg';
+  type?: string;
+  name?: string;
+  value?: string;
+  id?: string;
+  required?: boolean;
+  disabled?: boolean;
+  class?: string;
+}
+const {
+  label,
+  placeholder = '',
+  description,
+  size = 'lg',
+  type = 'text',
+  name,
+  value,
+  id,
+  required,
+  disabled,
+  class: extra,
+  ...rest
+} = Astro.props;
+---
+
+<div class:list={[styles.field, extra]}>
+  <label class:list={[styles.box, styles[size]]}>
+    {label && <span class={styles.caption}>{label}</span>}
+    <input
+      class={styles.input}
+      type={type}
+      name={name}
+      id={id}
+      value={value}
+      placeholder={placeholder}
+      required={required}
+      disabled={disabled}
+      {...rest}
+    />
+  </label>
+  {description && <span class={styles.desc}>{description}</span>}
+</div>

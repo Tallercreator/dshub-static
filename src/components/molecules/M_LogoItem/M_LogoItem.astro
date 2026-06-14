@@ -1,0 +1,18 @@
+---
+// M_LogoItem — молекула. = Figma M_LogoItem (node 21:435). Карточка-плитка с
+// лого компании (Q_BrandMark) для лого-стены на Главной. Лого — слотом или src.
+import styles from './M_LogoItem.module.css';
+
+interface Props {
+  src?: string;
+  alt?: string;
+  href?: string;
+  class?: string;
+}
+const { src, alt = '', href, class: extra, ...rest } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag class:list={[styles.item, extra]} href={href} {...rest}>
+  {src ? <img class={styles.logo} src={src} alt={alt} loading="lazy" /> : <slot />}
+</Tag>

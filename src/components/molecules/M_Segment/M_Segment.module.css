@@ -1,0 +1,13 @@
+/* M_Segment.module.css — контейнер сегмент-контрола (Figma M_Segment). */
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-xs);
+  background: var(--surface-page);
+  backdrop-filter: blur(12px);
+  width: fit-content;
+}
+.md { border-radius: var(--radius-lg); }
+.sm { border-radius: var(--radius-md); gap: var(--space-sm); }

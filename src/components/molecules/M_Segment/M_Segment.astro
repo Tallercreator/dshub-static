@@ -1,0 +1,15 @@
+---
+// M_Segment — молекула. = Figma M_Segment (node 15:1533). Контейнер-сегмент
+// для A_SegmentItem (навигация в шапке, фильтр-табы Ресурсов). Айтемы — слотом.
+import styles from './M_Segment.module.css';
+
+interface Props {
+  size?: 'sm' | 'md';
+  class?: string;
+}
+const { size = 'md', class: extra, ...rest } = Astro.props;
+---
+
+<div class:list={[styles.segment, styles[size], extra]} role="tablist" {...rest}>
+  <slot />
+</div>

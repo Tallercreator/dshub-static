@@ -1,0 +1,20 @@
+/* M_MetaRow.module.css — подпись + значение (Figma M_MetaRow). */
+
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-family: var(--font-family-base);
+}
+.label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-xs);
+  line-height: 1.2;
+  color: var(--text-tertiary);
+}
+.value {
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-normal);
+  color: var(--text-primary);
+}

@@ -1,0 +1,22 @@
+/* M_LogoItem.module.css — плитка лого-стены (Figma M_LogoItem). */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  padding: 10px;
+  border-radius: var(--radius-2xl);
+  background: var(--neutral-10);
+  transition: background var(--duration-fast) ease;
+}
+.item:hover { background: var(--neutral-20); }
+.item:active { background: var(--neutral-30); }
+
+.logo {
+  max-width: 150px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}

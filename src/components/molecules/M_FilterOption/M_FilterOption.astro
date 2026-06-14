@@ -1,0 +1,21 @@
+---
+// M_FilterOption — молекула. = Figma M_FilterOption (node 23:1864). Пункт фильтра:
+// чекбокс + текст 16px. Используется в группах фильтра (сайдбар Кейсов).
+import A_Checkbox from '../../atoms/A_Checkbox/A_Checkbox.astro';
+import styles from './M_FilterOption.module.css';
+
+interface Props {
+  name?: string;
+  value?: string;
+  checked?: boolean;
+  disabled?: boolean;
+  id?: string;
+  class?: string;
+}
+const { name, value, checked, disabled, id, class: extra } = Astro.props;
+---
+
+<label class:list={[styles.option, extra]}>
+  <A_Checkbox checked={checked} disabled={disabled} name={name} value={value} id={id} />
+  <span class={styles.text}><slot /></span>
+</label>

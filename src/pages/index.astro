@@ -12,6 +12,15 @@ import A_Tag from '../components/atoms/A_Tag/A_Tag.astro';
 import A_CategoryTag from '../components/atoms/A_CategoryTag/A_CategoryTag.astro';
 import A_SegmentItem from '../components/atoms/A_SegmentItem/A_SegmentItem.astro';
 import A_Link from '../components/atoms/A_Link/A_Link.astro';
+import A_Input from '../components/atoms/A_Input/A_Input.astro';
+import M_Segment from '../components/molecules/M_Segment/M_Segment.astro';
+import M_LogoItem from '../components/molecules/M_LogoItem/M_LogoItem.astro';
+import M_Consent from '../components/molecules/M_Consent/M_Consent.astro';
+import M_FilterOption from '../components/molecules/M_FilterOption/M_FilterOption.astro';
+import M_MetaRow from '../components/molecules/M_MetaRow/M_MetaRow.astro';
+import M_FilterChips from '../components/molecules/M_FilterChips/M_FilterChips.astro';
+import M_CollapseToggle from '../components/molecules/M_CollapseToggle/M_CollapseToggle.astro';
+import M_AppliedFilters from '../components/molecules/M_AppliedFilters/M_AppliedFilters.astro';
 import { ICONS } from '../components/quarks/Q_Icon/icons';
 
 const iconNames = Object.keys(ICONS);
@@ -134,6 +143,56 @@ const termsWithDef = terms.filter((t) => t.definition);
         <A_Link href="#">Перейти к разделу</A_Link>
         <A_Link href="#" external>Внешняя ссылка</A_Link>
       </div>
+    </section>
+
+    <section class="section">
+      <A_Text as="h2" variant="h2" color="primary">Молекулы + A_Input — из Figma</A_Text>
+
+      <A_Text variant="caption" color="tertiary">A_Input (наведи/сфокусируй)</A_Text>
+      <div class="row" style="max-width: 360px; flex-direction: column; align-items: stretch;">
+        <A_Input label="Имя" placeholder="Введите имя" />
+        <A_Input label="Telegram" placeholder="@username" description="Куда напишем по кейсу" />
+      </div>
+
+      <A_Text variant="caption" color="tertiary">M_Segment (← A_SegmentItem)</A_Text>
+      <M_Segment size="md">
+        <A_SegmentItem size="md" selected>Кейсы</A_SegmentItem>
+        <A_SegmentItem size="md">Словарь</A_SegmentItem>
+        <A_SegmentItem size="md">Ресурсы</A_SegmentItem>
+      </M_Segment>
+
+      <A_Text variant="caption" color="tertiary">M_Consent · M_FilterOption (чекбокс + текст)</A_Text>
+      <div class="row" style="flex-direction: column; align-items: flex-start;">
+        <M_Consent>Даю согласие на обработку персональных данных</M_Consent>
+        <M_FilterOption>Бигтех</M_FilterOption>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">M_MetaRow (футер)</A_Text>
+      <div class="row">
+        <M_MetaRow label="Куратор:">Дарья</M_MetaRow>
+        <M_MetaRow label="Автор:">Команда DSHub</M_MetaRow>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">M_FilterChips (← A_Tag) · M_CollapseToggle</A_Text>
+      <M_FilterChips>
+        <A_Tag variant="white" size="md">Архитектура</A_Tag>
+        <A_Tag variant="white" size="md">Токены</A_Tag>
+        <A_Tag variant="white" size="md">Документация</A_Tag>
+        <A_Tag variant="white" size="md">Компоненты</A_Tag>
+      </M_FilterChips>
+      <div class="row"><M_CollapseToggle>Дополнительно</M_CollapseToggle></div>
+
+      <A_Text variant="caption" color="tertiary">M_LogoItem (плитка лого-стены)</A_Text>
+      <div class="row">
+        <M_LogoItem><A_Text variant="title" color="primary">OZON</A_Text></M_LogoItem>
+        <M_LogoItem><A_Text variant="title" color="primary">Авито</A_Text></M_LogoItem>
+      </div>
+
+      <A_Text variant="caption" color="tertiary">M_AppliedFilters (← чипы + «Сбросить все»)</A_Text>
+      <M_AppliedFilters>
+        <A_Tag variant="white" size="md"><Q_Icon slot="icon" name="cross-small" size={16} />Бигтех</A_Tag>
+        <A_Tag variant="white" size="md"><Q_Icon slot="icon" name="cross-small" size={16} />Токены</A_Tag>
+      </M_AppliedFilters>
     </section>
 
     <section class="section">

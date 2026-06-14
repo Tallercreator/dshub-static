@@ -1,0 +1,31 @@
+/* M_AppliedFilters.module.css — бар применённых фильтров (Figma M_AppliedFilters). */
+
+.applied {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--layout-xs);
+  width: 100%;
+}
+.group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3xl);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.label {
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  line-height: 1.2;
+  color: var(--text-primary);
+  white-space: nowrap;
+  padding-top: 8px;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+.reset { flex: 0 0 auto; }
