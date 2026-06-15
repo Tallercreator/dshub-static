@@ -13,3 +13,7 @@
 .cta {
   flex: 0 0 auto;
 }
+
+@media (max-width: 640px) {
+  .cta { display: none; }
+}

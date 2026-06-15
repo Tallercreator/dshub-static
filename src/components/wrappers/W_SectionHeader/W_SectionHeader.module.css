@@ -67,3 +67,17 @@
   color: var(--text-primary);
 }
 .link { flex: 0 0 auto; }
+
+/* ── мобильные правки: стекаем заголовок и подпись, прячем «Перейти к разделу» ── */
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+  .header.center { text-align: left; }
+  .display .title { font-size: var(--font-size-2xl); /* 32 */ }
+  .h2 .title { font-size: var(--font-size-xl); /* 24 */ }
+  .label, .desc { font-size: var(--font-size-sm); /* 14 */ }
+  .link { display: none; }
+}

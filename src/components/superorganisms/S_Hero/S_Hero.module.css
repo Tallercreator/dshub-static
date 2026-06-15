@@ -97,3 +97,18 @@
     font-size: var(--font-size-xl, 28px);
   }
 }
+
+@media (max-width: 640px) {
+  .content {
+    padding-inline: var(--space-xl); /* 16 */
+    padding-top: clamp(220px, 60vw, 300px);
+    padding-bottom: var(--layout-md);
+  }
+  .title {
+    font-size: var(--font-size-lg); /* 20 */
+  }
+  .heart {
+    top: clamp(80px, 16vw, 120px);
+    width: clamp(120px, 32vw, 180px);
+  }
+}

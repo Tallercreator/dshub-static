@@ -169,3 +169,17 @@
     display: none;
   }
 }
+
+/* мобилка: меньше шрифты и компактнее */
+@media (max-width: 640px) {
+  .section {
+    padding-block: var(--layout-md); /* 48 */
+    padding-inline: var(--space-xl); /* 16 */
+  }
+  .title {
+    font-size: var(--font-size-2xl); /* 32 */
+  }
+  .thanksText {
+    font-size: var(--font-size-xl); /* 24 */
+  }
+}

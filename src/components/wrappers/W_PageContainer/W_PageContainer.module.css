@@ -31,3 +31,14 @@
   border-radius: var(--radius-5xl); /* 48 */
   padding-block: var(--layout-2xl); /* 80 */
 }
+
+/* ── мобильные правки: 16px от края экрана, меньше вертикали ── */
+@media (max-width: 640px) {
+  .container { padding-inline: var(--space-xl); /* 16 */ }
+  .panel { padding-inline: var(--space-xl); }
+  .linear,
+  .solid-gray { padding-block: var(--layout-md); /* 48 */ }
+  .solid { padding-bottom: var(--layout-md); }
+  .linear { border-radius: var(--radius-3xl) var(--radius-3xl) 0 0; /* 32 верх */ }
+  .solid-gray { border-radius: var(--radius-3xl); }
+}
