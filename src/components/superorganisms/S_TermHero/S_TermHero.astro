@@ -58,43 +58,50 @@ const facts = [
 </section>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('[data-share-term]').forEach((btn) => {
-    const label = btn.querySelector<HTMLElement>('[data-share-label]');
-    btn.addEventListener('click', async () => {
-      const term = btn.dataset.term || '';
-      const definition = btn.dataset.definition || '';
-      const purpose = btn.dataset.purpose || '';
-      const usage = btn.dataset.usage || '';
-      const parts = [term];
-      if (definition) parts.push('', 'Определение:', definition);
-      if (purpose) parts.push('', 'Для чего нужен:', purpose);
-      if (usage) parts.push('', 'Где используется:', usage);
-      // декодируем кириллицу в URL, чтобы ссылка читалась в чатах
-      let url = window.location.href;
-      try { url = decodeURI(url); } catch {}
-      parts.push('', url);
-      const text = parts.join('\n');
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch {}
-        ta.remove();
-      }
-      if (label) {
-        const prev = label.textContent;
-        label.textContent = 'Скопировано';
-        btn.classList.add('is-copied');
-        setTimeout(() => {
-          label.textContent = prev;
-          btn.classList.remove('is-copied');
-        }, 2000);
-      }
+  // Перепривязываем кнопку «Поделиться термином» на каждый SPA-переход
+  // ViewTransitions — иначе после навигации listener теряется.
+  function setupTermShare() {
+    document.querySelectorAll<HTMLButtonElement>('[data-share-term]').forEach((btn) => {
+      if (btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      const label = btn.querySelector<HTMLElement>('[data-share-label]');
+      btn.addEventListener('click', async () => {
+        const term = btn.dataset.term || '';
+        const definition = btn.dataset.definition || '';
+        const purpose = btn.dataset.purpose || '';
+        const usage = btn.dataset.usage || '';
+        const parts = [term];
+        if (definition) parts.push('', 'Определение:', definition);
+        if (purpose) parts.push('', 'Для чего нужен:', purpose);
+        if (usage) parts.push('', 'Где используется:', usage);
+        let url = window.location.href;
+        try { url = decodeURI(url); } catch {}
+        parts.push('', url);
+        const text = parts.join('\n');
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch {}
+          ta.remove();
+        }
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = 'Скопировано';
+          btn.classList.add('is-copied');
+          setTimeout(() => {
+            label.textContent = prev;
+            btn.classList.remove('is-copied');
+          }, 2000);
+        }
+      });
     });
-  });
+  }
+  setupTermShare();
+  document.addEventListener('astro:page-load', setupTermShare);
 </script>
