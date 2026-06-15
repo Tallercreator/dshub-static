@@ -56,23 +56,26 @@
   color: var(--text-primary);
 }
 
-/* ghost-имя термина за H1 — по центру экрана */
+/* ghost-имя термина за H1 — по центру экрана; для длинных терминов
+   допускаем перенос на 2 строки и не вылезаем за края контейнера. */
 .ghost {
   position: absolute;
   z-index: 0;
   left: 0;
   right: 0;
+  padding-inline: var(--layout-xs);
   text-align: center;
   top: clamp(120px, 16vw, 210px);
   font-family: var(--font-family-decorate);
   font-weight: var(--font-weight-medium);
-  font-size: clamp(110px, 17vw, 240px);
-  line-height: 0.8;
+  font-size: clamp(64px, 13vw, 180px);
+  line-height: 0.85;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: var(--neutral-140);
   opacity: 0.07;
-  white-space: nowrap;
+  text-wrap: balance;
+  overflow-wrap: break-word;
   pointer-events: none;
   user-select: none;
 }
@@ -116,6 +119,30 @@
   line-height: 1.4;
   color: var(--text-primary);
 }
+
+/* кнопка «Поделиться термином» — pill, светло-серый фон */
+.share {
+  align-self: flex-start;
+  margin-top: var(--layout-md); /* 48 */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-md);
+  height: 40px;
+  padding-inline: var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--neutral-20);
+  color: var(--text-primary);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.share:hover { background: var(--neutral-30); }
+.share.is-copied { background: var(--surface-accent2, var(--lime-10)); }
+.shareLabel { line-height: 1.2; }
 
 @media (max-width: 760px) {
   .facts {

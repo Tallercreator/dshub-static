@@ -67,7 +67,7 @@ const terms = pickedTerms.map((t, i) => ({
   term: t.term,
   definition: t.definition,
   variant: (i % 2 === 0 ? 'pink' : 'lime') as 'pink' | 'lime',
-  href: `/glossary#${t.slug}`,
+  href: `/glossary/${t.slug}`,
 }));
 ---
 

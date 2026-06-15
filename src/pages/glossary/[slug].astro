@@ -11,6 +11,7 @@ import W_TermsGrid from '../../components/wrappers/W_TermsGrid/W_TermsGrid.astro
 import O_CaseCard from '../../components/organisms/O_CaseCard/O_CaseCard.astro';
 import O_TermCard from '../../components/organisms/O_TermCard/O_TermCard.astro';
 import O_Quiz from '../../components/organisms/O_Quiz/O_Quiz.tsx';
+import W_PageContainer from '../../components/wrappers/W_PageContainer/W_PageContainer.astro';
 import { termVariant } from '../../lib/termVariant';
 
 export function getStaticPaths() {
@@ -85,44 +86,50 @@ const quizOptions = quiz
   />
 
   {relatedCases.length > 0 && (
-    <section class="section">
-      <h2 class="heading">Взято из кейса</h2>
-      <W_CardGrid cols={3}>
-        {relatedCases.map((c: any) => (
-          <O_CaseCard
-            href={`/cases/${c.slug}`}
-            title={c.title}
-            label={c.companyType}
-            badgeVariant={c.cover?.darkBadge ? 'white' : 'black'}
-            focus={c.focus}
-            accentColor={c.accentColor}
-            coverImage={c.cover?.image}
-          />
-        ))}
-      </W_CardGrid>
-    </section>
+    <W_PageContainer type="solid" class="term-panel">
+      <section class="section">
+        <h2 class="heading">Взято из кейса</h2>
+        <W_CardGrid cols={3}>
+          {relatedCases.map((c: any) => (
+            <O_CaseCard
+              href={`/cases/${c.slug}`}
+              title={c.title}
+              label={c.companyType}
+              badgeVariant={c.cover?.darkBadge ? 'white' : 'black'}
+              focus={c.focus}
+              accentColor={c.accentColor}
+              coverImage={c.cover?.image}
+            />
+          ))}
+        </W_CardGrid>
+      </section>
+    </W_PageContainer>
   )}
 
   {quiz && (
-    <section class="section">
-      <O_Quiz client:visible mode={quizMode} question={quiz.question} options={quizOptions} number={1} explain={quiz.explainWrong} />
-    </section>
+    <W_PageContainer type="solid-gray" class="term-panel">
+      <section class="section">
+        <O_Quiz client:visible mode={quizMode} question={quiz.question} options={quizOptions} number={1} explain={quiz.explainWrong} />
+      </section>
+    </W_PageContainer>
   )}
 
   {moreTerms.length > 0 && (
-    <section class="section">
-      <h2 class="heading">Изучать ещё</h2>
-      <W_TermsGrid>
-        {moreTerms.map((x: any) => (
-          <O_TermCard
-            variant={termVariant(x.category)}
-            term={x.term}
-            definition={x.definition}
-            href={`/glossary/${x.slug}`}
-          />
-        ))}
-      </W_TermsGrid>
-    </section>
+    <W_PageContainer type="solid" class="term-panel">
+      <section class="section">
+        <h2 class="heading">Изучать ещё</h2>
+        <W_TermsGrid>
+          {moreTerms.map((x: any) => (
+            <O_TermCard
+              variant={termVariant(x.category)}
+              term={x.term}
+              definition={x.definition}
+              href={`/glossary/${x.slug}`}
+            />
+          ))}
+        </W_TermsGrid>
+      </section>
+    </W_PageContainer>
   )}
 
   <S_Form />
@@ -132,8 +139,6 @@ const quizOptions = quiz
   .section {
     max-width: 1440px;
     margin-inline: auto;
-    padding-inline: var(--layout-xs);
-    margin-block: var(--layout-xl); /* 64 */
     display: flex;
     flex-direction: column;
     gap: var(--layout-sm);
@@ -148,4 +153,7 @@ const quizOptions = quiz
     letter-spacing: -0.03em;
     color: var(--text-primary);
   }
+  /* white-секции внутри обёрток W_PageContainer на странице термина — задаём
+     собственную вертикаль (64px), вместо дефолта обёртки (80px). */
+  :global(.term-panel) { padding-block: var(--layout-xl); }
 </style>

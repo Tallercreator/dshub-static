@@ -2,6 +2,7 @@
 // BaseLayout.astro — общий каркас страницы. Подключает глобальные стили
 // (токены + база) и шрифты + O_Header. Контент страницы идёт в <slot />.
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 import O_Header from '../components/organisms/O_Header/O_Header.astro';
 import O_Footer from '../components/organisms/O_Footer/O_Footer.astro';
 
@@ -33,10 +34,30 @@ const current = Astro.url.pathname;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <ViewTransitions />
   </head>
   <body>
     <O_Header current={current} />
     <slot />
     <O_Footer />
+
+    <script>
+      // Тегаем крупные блоки страницы [data-reveal] + назначаем лёгкий каскад
+      // через --reveal-delay (по индексу). CSS-анимация делает всё остальное —
+      // запускается на первой загрузке и при каждом view-transition (DOM
+      // пересобирается, элементы снова получают data-reveal).
+      function tagReveals() {
+        const candidates = document.querySelectorAll<HTMLElement>(
+          'body > section, body > div:not(:has(> header)):not(:has(> footer))',
+        );
+        candidates.forEach((el, i) => {
+          el.setAttribute('data-reveal', '');
+          el.style.setProperty('--reveal-delay', `${Math.min(i, 4) * 80}ms`);
+        });
+      }
+      tagReveals();
+      document.addEventListener('astro:page-load', tagReveals);
+    </script>
   </body>
 </html>

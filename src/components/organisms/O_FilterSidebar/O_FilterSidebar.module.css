@@ -7,6 +7,12 @@
   flex-direction: column;
   gap: var(--layout-md); /* ~42 (Figma) → 48 */
   align-self: start;
+  position: sticky;
+  top: 88px; /* высота O_Header (sticky) + дыхание */
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  /* лёгкая компенсация скроллбара, чтобы не дёргалось */
+  scrollbar-gutter: stable;
 }
 
 .reset {
@@ -17,5 +23,8 @@
   .sidebar {
     flex-basis: auto;
     width: 100%;
+    position: static;
+    max-height: none;
+    overflow: visible;
   }
 }
