@@ -56,16 +56,17 @@
   color: var(--text-primary);
 }
 
-/* ghost-имя термина за H1 — по центру экрана; для длинных терминов
-   допускаем перенос на 2 строки и не вылезаем за края контейнера. */
+/* ghost-имя термина за H1 — точно по центру героя (и по ширине, и по высоте).
+   Для длинных терминов допускаем перенос на 2 строки и не вылезаем за края. */
 .ghost {
   position: absolute;
   z-index: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-inline: var(--layout-xs);
   text-align: center;
-  top: clamp(120px, 16vw, 210px);
   font-family: var(--font-family-decorate);
   font-weight: var(--font-weight-medium);
   font-size: clamp(64px, 13vw, 180px);

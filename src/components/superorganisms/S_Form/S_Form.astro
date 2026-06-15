@@ -18,7 +18,7 @@ interface Props {
 const { action = '/.netlify/functions/submit-case', class: extra } = Astro.props;
 ---
 
-<section class:list={[styles.section, extra]} aria-labelledby="form-title" data-form-section>
+<section id="share-case" class:list={[styles.section, extra]} aria-labelledby="form-title" data-form-section>
   <div class={styles.glowLeft} aria-hidden="true"></div>
   <div class={styles.glowRight} aria-hidden="true"></div>
   <img class={styles.illoLeft} src="/illustrations/form-lime.png" alt="" aria-hidden="true" width="335" height="616" />
@@ -53,52 +53,61 @@ const { action = '/.netlify/functions/submit-case', class: extra } = Astro.props
 </section>
 
 <script>
-  const form = document.querySelector<HTMLFormElement>('[data-case-form]');
-  if (form) {
-    const status = form.querySelector<HTMLElement>('[data-form-status]');
-    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+  // setup() запускаем на первой загрузке И на каждом SPA-переходе ViewTransitions,
+  // иначе на навигированных страницах форма теряет JS-обработчик и сабмит уходит
+  // нативно (браузер показывает JSON-ответ функции вместо плавного UI).
+  function setupCaseForm() {
+    document.querySelectorAll<HTMLFormElement>('[data-case-form]').forEach((form) => {
+      if (form.dataset.bound === '1') return;
+      form.dataset.bound = '1';
 
-    const setStatus = (msg: string, kind: 'ok' | 'error' | 'pending' | '') => {
-      if (!status) return;
-      status.textContent = msg;
-      status.dataset.kind = kind;
-    };
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const setStatus = (msg: string, kind: 'ok' | 'error' | 'pending' | '') => {
+        if (!status) return;
+        status.textContent = msg;
+        status.dataset.kind = kind;
+      };
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      const data = Object.fromEntries(new FormData(form));
-      if (button) button.disabled = true;
-      setStatus('Отправляем…', 'pending');
-
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        if (!res.ok) throw new Error(String(res.status));
-        form.reset();
-        setStatus('', '');
-        const section = form.closest<HTMLElement>('[data-form-section]');
-        const thanks = section?.querySelector<HTMLElement>('[data-thanks]');
-        if (section && thanks) {
-          section.dataset.state = 'sent';
-          thanks.setAttribute('aria-hidden', 'false');
-          setTimeout(() => {
-            section.dataset.state = '';
-            thanks.setAttribute('aria-hidden', 'true');
-          }, 3700);
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
         }
-      } catch {
-        setStatus('Не удалось отправить. Попробуйте позже или напишите нам в Telegram.', 'error');
-      } finally {
-        if (button) button.disabled = false;
-      }
+
+        const data = Object.fromEntries(new FormData(form));
+        if (button) button.disabled = true;
+        setStatus('Отправляем…', 'pending');
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!res.ok) throw new Error(String(res.status));
+          form.reset();
+          setStatus('', '');
+          const section = form.closest<HTMLElement>('[data-form-section]');
+          const thanks = section?.querySelector<HTMLElement>('[data-thanks]');
+          if (section && thanks) {
+            section.dataset.state = 'sent';
+            thanks.setAttribute('aria-hidden', 'false');
+            setTimeout(() => {
+              section.dataset.state = '';
+              thanks.setAttribute('aria-hidden', 'true');
+            }, 3700);
+          }
+        } catch {
+          setStatus('Не удалось отправить. Попробуйте позже или напишите нам в Telegram.', 'error');
+        } finally {
+          if (button) button.disabled = false;
+        }
+      });
     });
   }
+
+  setupCaseForm();
+  document.addEventListener('astro:page-load', setupCaseForm);
 </script>
