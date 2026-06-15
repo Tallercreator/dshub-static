@@ -114,6 +114,7 @@ const quizOptions = quiz
     </W_PageContainer>
   )}
 
+  {moreTerms.length > 0 && <div class="term-gap" aria-hidden="true"></div>}
   {moreTerms.length > 0 && (
     <W_PageContainer type="solid" class="term-panel">
       <section class="section">
@@ -154,6 +155,15 @@ const quizOptions = quiz
     color: var(--text-primary);
   }
   /* white-секции внутри обёрток W_PageContainer на странице термина — задаём
-     собственную вертикаль (64px), вместо дефолта обёртки (80px). */
-  :global(.term-panel) { padding-block: var(--layout-xl); }
+     собственную вертикаль (64px) и убираем «двойной» padding-inline панели,
+     чтобы заголовки/карточки выровнялись с контентом героя. */
+  :global(.term-panel) {
+    padding-block: var(--layout-xl);
+    padding-inline: 0;
+  }
+  /* серый разделитель 80px между серым quiz-блоком и «Изучать ещё» */
+  .term-gap {
+    height: var(--layout-2xl); /* 80 */
+    background: var(--surface-page);
+  }
 </style>
