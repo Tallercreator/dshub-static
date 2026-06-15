@@ -8,7 +8,7 @@ import styles from './S_PageHero.module.css';
 
 interface Props {
   ghostLines: string[]; // строки ghost-текста (повтор слова раздела)
-  illustration: string; // src иллюстрации
+  illustration?: string; // src иллюстрации (опционально — на странице кейса её нет)
   illustrationAlt?: string;
   class?: string;
 }
@@ -20,13 +20,15 @@ const { ghostLines, illustration, illustrationAlt = '', class: extra } = Astro.p
     {ghostLines.map((line) => <span class={styles.ghostLine}>{line}</span>)}
   </div>
   <div class={styles.veil}></div>
-  <img
-    class={styles.illo}
-    src={illustration}
-    alt={illustrationAlt}
-    width="234"
-    height="246"
-    decoding="async"
-    fetchpriority="high"
-  />
+  {illustration && (
+    <img
+      class={styles.illo}
+      src={illustration}
+      alt={illustrationAlt}
+      width="234"
+      height="246"
+      decoding="async"
+      fetchpriority="high"
+    />
+  )}
 </section>

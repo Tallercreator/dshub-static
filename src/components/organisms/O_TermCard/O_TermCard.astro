@@ -15,12 +15,12 @@ interface Props {
   image?: string;
   class?: string;
 }
-const { variant = 'pink', term, definition, href = '/glossary', image, class: extra } =
+const { variant = 'pink', term, definition, href = '/glossary', image, class: extra, ...rest } =
   Astro.props;
 const isImage = variant === 'image';
 ---
 
-<article class:list={[styles.card, styles[variant], extra]}>
+<article class:list={[styles.card, styles[variant], extra]} {...rest}>
   {isImage ? (
     <>
       <div class={styles.imageSlot}>

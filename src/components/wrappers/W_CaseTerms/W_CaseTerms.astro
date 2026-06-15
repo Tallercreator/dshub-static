@@ -1,0 +1,61 @@
+---
+// W_CaseTerms — «Термины из кейса» (Figma 36:12486). Заголовок (Suisse 32) +
+// ряд карточек терминов O_TermCard. Адаптивная сетка (auto-fill, minmax) — в
+// контент-колонке (796px) укладывается в 3 карточки.
+import O_TermCard from '../../organisms/O_TermCard/O_TermCard.astro';
+
+interface TermItem {
+  term: string;
+  definition?: string;
+  variant?: 'pink' | 'lime' | 'image';
+  href?: string;
+  image?: string;
+}
+interface Props {
+  terms: TermItem[];
+}
+const { terms = [] } = Astro.props;
+---
+{terms.length > 0 && (
+  <section class="case-terms">
+    <h2 class="heading">Термины из кейса:</h2>
+    <div class="grid">
+      {terms.map((t) => (
+        <O_TermCard
+          variant={t.variant ?? 'pink'}
+          term={t.term}
+          definition={t.definition}
+          href={t.href}
+          image={t.image}
+        />
+      ))}
+    </div>
+  </section>
+)}
+
+<style>
+  .case-terms {
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-xs);
+  }
+  .heading {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-2xl); /* 32px */
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+    gap: var(--space-3xl);
+  }
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

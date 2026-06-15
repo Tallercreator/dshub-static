@@ -11,13 +11,14 @@ interface Props {
   label?: string; // тип ресурса
   source?: string; // источник (Habr, Avito…)
   url?: string; // ссылка на ресурс
+  tagVariant?: 'white' | 'card'; // white на белом фоне, card (белый) на сером
   class?: string;
 }
-const { label, source, url = '#', class: extra } = Astro.props;
+const { label, source, url = '#', tagVariant = 'white', class: extra } = Astro.props;
 ---
 
 <div class:list={[styles.row, extra]}>
-  {label && <A_Tag variant="white" size="md">{label}</A_Tag>}
+  {label && <A_Tag variant={tagVariant} size="md">{label}</A_Tag>}
   {source && (
     <A_Link href={url} external class={styles.source}>{source}</A_Link>
   )}

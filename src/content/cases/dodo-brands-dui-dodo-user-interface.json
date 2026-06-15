@@ -17,9 +17,9 @@
     "image": "/covers/dodo-brands-dui-dodo-user-interface.png"
   },
   "sidebar": {
-    "focus": null,
-    "speakerRole": null,
-    "artifacts": null
+    "focus": "организация дизайн-системы в мобильном продукте, ускорение delivery и снижение ошибок",
+    "speakerRole": "Никита — дизайнер дизайн-системы (в команде есть лиды по iOS и Android)",
+    "artifacts": "Figma-файлы (showcase + master), документация в Figma, dev sandbox, модули DS в коде, автоматизация токенов/ассетов"
   },
   "meta": {
     "readingTime": 9
@@ -277,11 +277,6 @@
     {
       "type": "paragraph",
       "text": "Кому подходит:\r<br>Продуктовые команды с небольшой командой DS; международные продукты с несколькими рынками; компании, где культура важнее регламентов; стартапы и mid-size с активными AB-тестами."
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "text": "Избранные цитаты"
     },
     {
       "type": "quote",

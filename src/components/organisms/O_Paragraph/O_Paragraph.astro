@@ -1,18 +1,21 @@
 ---
-// O_Paragraph — абзац статьи. Блок type:"paragraph". text может содержать
-// инлайн-разметку (наш контент → set:html безопасен).
-import A_Text from '../../atoms/A_Text/A_Text.astro';
-
+// O_Paragraph — абзац статьи (Figma 34:3075). Inter Display Regular 16px,
+// text/secondary, line-height 1.4. text может содержать инлайн-разметку
+// (наш контент → set:html безопасен).
 interface Props {
   text: string;
 }
 const { text } = Astro.props;
 ---
-<A_Text as="p" variant="body" color="secondary" class="block-paragraph" set:html={text} />
+<p class="block-paragraph" set:html={text} />
 
 <style>
   .block-paragraph {
-    margin-block: var(--space-lg);
-    max-width: 70ch;
+    margin-block: var(--space-3xl); /* 24 — между текстовыми блоками */
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    color: var(--text-secondary);
   }
 </style>

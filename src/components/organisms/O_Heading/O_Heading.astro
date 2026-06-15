@@ -1,18 +1,36 @@
 ---
-// O_Heading — заголовок внутри статьи кейса. Блок type:"heading".
-import A_Text from '../../atoms/A_Text/A_Text.astro';
-
+// O_Heading — заголовок внутри статьи кейса (Figma, сверено со стилями).
+// H2 («заголовок поменьше») = Suisse Int'l 32px Book; H3 («подзаголовок») =
+// Inter Display 20px Medium. text — блок type:"heading", level 2|3.
 interface Props {
   level?: number; // 2 | 3
   text: string;
 }
 const { level = 2, text } = Astro.props;
-const variant = level >= 3 ? 'title' : 'h2';
+const Tag = `h${level}` as 'h2' | 'h3';
 ---
-<A_Text as={`h${level}`} variant={variant} color="primary" class="block-heading">{text}</A_Text>
+<Tag class:list={['block-heading', `lvl-${level}`]} set:html={text} />
 
 <style>
   .block-heading {
-    margin-block: var(--layout-xs) var(--space-2xl);
+    /* 64px перед заголовком (граница секции), 32px после (к своему тексту);
+       схлопывается с margin соседних блоков */
+    margin: var(--layout-xl) 0 var(--layout-xs); /* 64 / 32 */
+    color: var(--text-primary);
+  }
+  /* H2 — Suisse Int'l 32px Book */
+  .lvl-2 {
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-regular); /* Book (400–450) */
+    font-size: var(--font-size-2xl); /* 32px */
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  /* H3 (подзаголовок) — Inter Display 20px Medium */
+  .lvl-3 {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium); /* 500 */
+    font-size: var(--font-size-lg); /* 20px */
+    line-height: 1.2;
   }
 </style>

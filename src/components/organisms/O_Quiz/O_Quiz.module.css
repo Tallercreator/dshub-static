@@ -1,43 +1,77 @@
-/* O_Quiz.module.css — контейнер квиза + кнопка проверки (button-токены). */
+/* O_Quiz.module.css — тест (Figma W_Test 36:11783): серая панель, пилюля
+   «Проверь себя» + крупный центрированный вопрос (Suisse 48 Book), белые варианты,
+   центрированная чёрная кнопка «Проверить». */
 
 .quiz {
+  max-width: 760px;
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
-  padding: var(--space-3xl);
-  background: var(--surface-card);
-  border: var(--border-hairline) solid var(--stroke-subtle);
-  border-radius: var(--radius-lg);
-  margin-block: var(--layout-xs);
+  align-items: center;
+  gap: var(--layout-xs); /* 32 */
+  padding: var(--layout-sm) var(--layout-xs); /* 40 / 32 */
+  background: var(--surface-card); /* белый фон */
+  border-radius: var(--radius-2xl); /* 24 */
 }
 
-.question {
+/* пилюля + вопрос */
+.header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  align-items: center;
+  gap: var(--space-xl); /* 16 */
+  max-width: 560px;
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding-inline: var(--space-lg); /* 12 */
+  border-radius: var(--radius-md); /* 12 */
+  background: var(--surface-page); /* серая пилюля на белом фоне */
   font-family: var(--font-family-base);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-snug);
-  color: var(--text-primary);
-  margin: 0;
-}
-.num {
-  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--text-accent);
+  font-size: var(--font-size-sm); /* 14 */
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+.question {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular); /* Book */
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
 }
 
+/* варианты */
 .options {
+  width: 100%;
+  max-width: 664px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-lg); /* 12 */
 }
 
+/* пояснение после проверки */
+.explain {
+  width: 100%;
+  max-width: 664px;
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+/* кнопка «Проверить» — чёрная, по центру */
 .submit {
-  align-self: flex-start;
-  height: var(--size-control-2xl);
-  padding-inline: var(--space-2xl);
+  align-self: center;
+  height: var(--size-control-xl); /* 40 */
+  padding-inline: var(--space-xl); /* 16 */
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-md);
@@ -49,5 +83,11 @@
   cursor: pointer;
   transition: background var(--duration-fast) ease;
 }
-.submit:hover:not(:disabled) { background: var(--surface-button-hover); }
-.submit:disabled { background: var(--surface-button-disabled); color: var(--text-on-button-disabled); cursor: not-allowed; }
+.submit:hover:not(:disabled) {
+  background: var(--surface-button-hover);
+}
+.submit:disabled {
+  background: var(--surface-button-disabled);
+  color: var(--text-on-button-disabled);
+  cursor: not-allowed;
+}

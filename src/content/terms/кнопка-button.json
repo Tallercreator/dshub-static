@@ -1,0 +1,14 @@
+{
+  "slug": "кнопка-button",
+  "term": "Кнопка (Button)",
+  "category": "Компонент · контролы",
+  "visualType": "anatomy",
+  "definition": "Элемент, запускающий действие по клику или тапу.",
+  "purpose": "Даёт явную точку действия с предсказуемым поведением и иерархией (primary/secondary/ghost).",
+  "usage": "Формы, CTA, диалоги, тулбары — везде, где нужно действие.",
+  "relatedCases": [
+    "Dodo",
+    "Skillaz"
+  ],
+  "quiz": null
+}

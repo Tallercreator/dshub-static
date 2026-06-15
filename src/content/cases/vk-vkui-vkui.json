@@ -3,7 +3,7 @@
   "title": "VKUI",
   "company": "VK (VKUI)",
   "dsName": "VKUI",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -20,9 +20,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "библиотека адаптивных React-компонентов, токенная архитектура как контракт дизайн↔код, управление изменениями и контроль качества, AI-слой для автогенерации",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "публичная документация (vkui.io) с playground, open-source GitHub и npm (@vkontakte/vkui, vkui-tokens), типизированные токены (CSS/SCSS/LESS + JS/JSON), Figma Community и плагин переключения тем, MCP-сервер для AI-агентов, юнит- и скриншот-тесты"
   },
   "meta": {
     "readingTime": 5

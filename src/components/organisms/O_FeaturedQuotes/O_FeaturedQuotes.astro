@@ -1,0 +1,81 @@
+---
+// O_FeaturedQuotes — блок «Избранные цитаты» на странице кейса. ОДИН заголовок-
+// тоггл «Избранные цитаты» + шеврон; по клику показываются/скрываются ВСЕ цитаты
+// кейса разом (плашки O_Quote). Свёрнуто по умолчанию. Vanilla <script>.
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import O_Quote from '../O_Quote/O_Quote.astro';
+
+interface QuoteItem {
+  text: string;
+  author?: string;
+  title?: string;
+}
+interface Props {
+  quotes: QuoteItem[];
+}
+const { quotes = [] } = Astro.props;
+---
+<section class="featured-quotes">
+  <button type="button" class="fq-head" data-fq-toggle aria-expanded="false">
+    <span class="fq-title">Избранные цитаты</span>
+    <span class="fq-chev" aria-hidden="true"><Q_Icon name="chevron-down" size={24} /></span>
+  </button>
+
+  <div class="fq-body" data-fq-body hidden>
+    {quotes.map((q) => <O_Quote text={q.text} author={q.author} title={q.title} />)}
+  </div>
+</section>
+
+<style>
+  .featured-quotes {
+    margin-block: var(--space-3xl); /* 24 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+  /* единый заголовок-тоггл «Избранные цитаты» */
+  .fq-head {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-regular); /* Suisse Book, как H2 */
+    font-size: var(--font-size-2xl); /* 32px */
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  .fq-chev {
+    display: inline-flex;
+    color: var(--text-secondary);
+    transition: transform var(--duration-fast, 0.15s) ease;
+  }
+  .fq-head[aria-expanded='true'] .fq-chev {
+    transform: rotate(180deg);
+  }
+  /* все цитаты разом — скрыты по умолчанию */
+  .fq-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-fq-toggle]').forEach((btn) => {
+    const el = btn as HTMLElement;
+    if (el.dataset.fqBound) return;
+    el.dataset.fqBound = '1';
+    const body = el.parentElement?.querySelector<HTMLElement>('[data-fq-body]');
+    el.addEventListener('click', () => {
+      const open = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', String(!open));
+      if (body) body.hidden = open;
+    });
+  });
+</script>

@@ -1,10 +1,22 @@
 ---
-// /cases/[slug] — страница кейса. Доказывает контент-пайплайн:
-// JSON → getStaticPaths → ContentRenderer (блоки по type). Пока без O_Header/O_Footer
-// и хиро-обложки — это следующая волна (организмы/суперорганизмы).
+// /cases/[slug] — страница кейса (Figma T_CasePage 34:4960). Сборка:
+// S_PageHero (ghost-имя бренда + крупная иллюстрация бренда) → S_CaseArticle
+// (мета-сайдбар + H1 + контент-блоки + подвал: W_NextCase / W_ResourceExpert /
+// W_CaseTerms) → S_Form. Шапка/футер — глобальные из BaseLayout.
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContentRenderer from '../../lib/ContentRenderer.astro';
-import A_Text from '../../components/atoms/A_Text/A_Text.astro';
+import S_PageHero from '../../components/superorganisms/S_PageHero/S_PageHero.astro';
+import S_CaseArticle from '../../components/superorganisms/S_CaseArticle/S_CaseArticle.astro';
+import S_Form from '../../components/superorganisms/S_Form/S_Form.astro';
+
+const allCases = Object.values(import.meta.glob('../../content/cases/*.json', { eager: true }))
+  .map((m) => m.default)
+  .filter((c) => c.published !== false);
+const allResources = Object.values(
+  import.meta.glob('../../content/resources/*.json', { eager: true }),
+).map((m) => m.default);
+const allTerms = Object.values(import.meta.glob('../../content/terms/*.json', { eager: true })).map(
+  (m) => m.default,
+);
 
 export function getStaticPaths() {
   return Object.values(import.meta.glob('../../content/cases/*.json', { eager: true })).map(
@@ -16,36 +28,53 @@ export function getStaticPaths() {
 }
 
 const { kase } = Astro.props;
+
+// ── hero: без иллюстрации; ghost-фон = название дизайн-системы ──
+const ghostWord = (kase.dsName ?? kase.company ?? '').trim();
+// повторяем имя ДС, чтобы строка заполнила ширину (длинные имена — 1 раз)
+const repeats = Math.max(1, Math.ceil(22 / Math.max(ghostWord.length, 1)));
+const ghostLine = Array(repeats).fill(ghostWord).join(' ');
+const ghostLines = [ghostLine, ghostLine];
+
+// ── следующий кейс (по порядку, с зацикливанием) ──
+const idx = allCases.findIndex((c) => c.slug === kase.slug);
+const next = allCases[(idx + 1) % allCases.length] ?? null;
+const nextCase = next
+  ? { href: `/cases/${next.slug}`, title: next.title, tags: next.focus ?? [], variant: 'pink' as const }
+  : null;
+
+// ── рекомендованный ресурс: совпадение тегов с фокусом кейса, иначе первый ──
+const focusSet = new Set((kase.focus ?? []).map((f: string) => f.toLowerCase()));
+const matchedResource =
+  allResources.find((r) =>
+    (r.tags ?? []).some((t: string) => focusSet.has(t.toLowerCase())),
+  ) ?? allResources[0];
+const resource = matchedResource
+  ? {
+      type: matchedResource.type,
+      title: matchedResource.title,
+      source: matchedResource.source,
+      url: matchedResource.url,
+      coverImage: matchedResource.coverImage,
+    }
+  : null;
+
+// ── термины из кейса: relatedCases или термины с определением; до 3, чередуем цвет ──
+const linked = allTerms.filter((t) => (t.relatedCases ?? []).includes(kase.slug));
+const withDef = allTerms.filter((t) => t.definition && t.definition.trim().length > 0);
+const pickedTerms = (linked.length ? linked : withDef).slice(0, 3);
+const terms = pickedTerms.map((t, i) => ({
+  term: t.term,
+  definition: t.definition,
+  variant: (i % 2 === 0 ? 'pink' : 'lime') as 'pink' | 'lime',
+  href: `/glossary#${t.slug}`,
+}));
 ---
 
 <BaseLayout title={`${kase.title} — DSHub`}>
-  <article class="case">
-    <header class="case-hero">
-      <A_Text variant="caption" color="accent">{kase.company} · {kase.companyType}</A_Text>
-      <A_Text as="h1" variant="h1" color="primary">{kase.title}</A_Text>
-      <A_Text variant="body" color="tertiary">
-        {kase.meta?.author} · {kase.meta?.role} · {kase.meta?.readingTime} мин
-      </A_Text>
-    </header>
+  <S_PageHero ghostLines={ghostLines} />
 
-    <div class="case-body">
-      <ContentRenderer blocks={kase.blocks} />
-    </div>
-  </article>
+  <S_CaseArticle kase={kase} nextCase={nextCase} resource={resource} terms={terms} />
+
+  <S_Form />
 </BaseLayout>
-
-<style>
-  .case {
-    max-width: 760px;
-    margin-inline: auto;
-    padding: var(--layout-2xl) var(--layout-xs);
-  }
-  .case-hero {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-    padding-bottom: var(--layout-md);
-    border-bottom: var(--border-hairline) solid var(--stroke-subtle);
-    margin-bottom: var(--layout-xs);
-  }
-</style>

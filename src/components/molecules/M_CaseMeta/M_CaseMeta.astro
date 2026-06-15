@@ -1,0 +1,167 @@
+---
+// M_CaseMeta — мета-сайдбар кейса (Figma 34:2964). Верх: кнопка «назад» (только
+// стрелка, серая) + тег темы кейса (чёрный A_Tag). Поля: Фокус кейса / Артефакты
+// в кейсе / Роль эксперта (M_MetaText: label disabled 14 + value primary 14).
+// Низ: кнопка «Поделиться кейсом» (Web Share API → копирование ссылки).
+import A_Tag from '../../atoms/A_Tag/A_Tag.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+
+interface Props {
+  backHref?: string;
+  themeTag?: string | null; // чёрный тег темы (companyType)
+  focus?: string | null;
+  artifacts?: string | null;
+  speakerRole?: string | null;
+  shareTitle?: string;
+}
+const {
+  backHref = '/cases',
+  themeTag,
+  focus,
+  artifacts,
+  speakerRole,
+  shareTitle = '',
+} = Astro.props;
+
+const fields = [
+  { label: 'Фокус кейса', value: focus },
+  { label: 'Артефакты в кейсе', value: artifacts },
+  { label: 'Роль эксперта', value: speakerRole },
+].filter((f) => f.value);
+---
+<div class="meta">
+  <div class="top">
+    <a class="back" href={backHref} aria-label="Назад к кейсам">
+      <span class="back-icon"><Q_Icon name="chevron-right" size={16} /></span>
+    </a>
+    {themeTag && <A_Tag variant="black" size="md">{themeTag}</A_Tag>}
+  </div>
+
+  {fields.map((f) => (
+    <div class="field">
+      <span class="field-label">{f.label}:</span>
+      <span class="field-value">{f.value}</span>
+    </div>
+  ))}
+
+  <button class="share" type="button" data-share-title={shareTitle}>
+    <span class="share-label">Поделиться кейсом</span>
+    <Q_Icon name="link" size={16} />
+  </button>
+</div>
+
+<style>
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xl);
+    align-items: flex-start;
+  }
+
+  /* ── верх: назад + тег темы ── */
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding-inline: var(--space-lg);
+    border-radius: var(--radius-md);
+    background: var(--neutral-20);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: background 0.15s ease;
+  }
+  .back:hover {
+    background: var(--neutral-30);
+  }
+  /* chevron-right → разворот в «‹» */
+  .back-icon {
+    display: inline-flex;
+    transform: rotate(180deg);
+  }
+
+  /* ── мета-поля ── */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .field-label {
+    font-family: var(--font-family-base);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    color: var(--text-disabled);
+  }
+  .field-value {
+    font-family: var(--font-family-base);
+    font-size: 14px;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+    color: var(--text-primary);
+  }
+
+  /* ── поделиться ── */
+  .share {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    height: 40px;
+    padding-inline: var(--space-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    background: var(--neutral-20);
+    color: var(--text-primary);
+    font-family: var(--font-family-base);
+    font-size: 14px;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .share:hover {
+    background: var(--neutral-30);
+  }
+  .share.copied {
+    background: var(--surface-accent2, var(--lime-10));
+  }
+</style>
+
+<script>
+  // Поделиться: Web Share API (мобайл) → иначе копируем ссылку в буфер + фидбэк.
+  document.querySelectorAll('.share').forEach((btn) => {
+    const el = btn as HTMLButtonElement;
+    const label = el.querySelector('.share-label');
+    el.addEventListener('click', async () => {
+      const url = window.location.href;
+      const title = el.dataset.shareTitle || document.title;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, url });
+        } catch {
+          /* пользователь отменил — ничего не делаем */
+        }
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        if (label) {
+          const prev = label.textContent;
+          label.textContent = 'Ссылка скопирована';
+          el.classList.add('copied');
+          setTimeout(() => {
+            label.textContent = prev;
+            el.classList.remove('copied');
+          }, 2000);
+        }
+      } catch {
+        /* буфер недоступен */
+      }
+    });
+  });
+</script>

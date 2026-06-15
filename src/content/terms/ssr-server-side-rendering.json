@@ -3,13 +3,22 @@
   "term": "SSR (Server-Side Rendering)",
   "category": "Инфраструктура",
   "visualType": "diagram",
-  "visualNote": "Серверный рендер: поток, избегание FOUC",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Серверный рендеринг страниц.",
+  "purpose": "Правильная тема сразу и без мигания (FOUC); хорошо для SEO.",
+  "usage": "Веб-продукты, контентные сайты.",
+  "relatedCases": [
+    "VKUI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Почему SSR важен для темизации?",
+    "options": [
+      "Помогает отдать правильную тему сразу и избежать мигания (FOUC)",
+      "Ускоряет анимации",
+      "Уменьшает число токенов",
+      "Заменяет дизайн-ревью"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "При SSR тема применяется на сервере — нет вспышки нестилизованного контента."
+  }
 }

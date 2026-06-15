@@ -3,13 +3,23 @@
   "term": "Token Studio",
   "category": "Инструменты",
   "visualType": "example",
-  "visualNote": "Стилизованная панель плагина + workflow Token Studio→JSON→CSS",
-  "definition": "Figma-плагин для работы с дизайн-токенами: хранение в JSON, синхронизация с репозиторием. Рабочий workflow Ростелекома: Token Studio → JSON → CSS → прод.",
-  "meta": {
-    "usedIn": "Figma: плагин Token Studio. Экспорт в JSON, интеграция с Style Dictionary.",
-    "relatedTo": []
-  },
-  "sources": "Ростелеком DS (основной инструмент синхронизации)",
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Плагин Figma для управления токенами и экспорта (JSON/CSS).",
+  "purpose": "Мост между токенами в Figma и кодом.",
+  "usage": "Пайплайн токенов дизайн↔код.",
+  "relatedCases": [
+    "ОТП",
+    "Gravity UI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что делает плагин Token Studio?",
+    "options": [
+      "Управляет дизайн-токенами в Figma и экспортирует их (JSON/CSS)",
+      "Рисует иллюстрации",
+      "Считает конверсию",
+      "Деплоит сайт"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Token Studio — мост между токенами в Figma и кодом."
+  }
 }

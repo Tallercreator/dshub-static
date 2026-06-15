@@ -1,0 +1,15 @@
+{
+  "slug": "governance-управление-ds",
+  "term": "Governance (управление DS)",
+  "category": "Процесс",
+  "visualType": "text",
+  "definition": "Правила управления DS: кто решает, как вносят изменения.",
+  "purpose": "Удерживает систему от хаоса при росте.",
+  "usage": "Зрелые DS с многими контрибьюторами.",
+  "relatedCases": [
+    "Сбер",
+    "Альфа",
+    "Hexa UI"
+  ],
+  "quiz": null
+}

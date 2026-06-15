@@ -1,0 +1,151 @@
+---
+// /glossary/[slug] — страница термина (Figma T_Term 36:15116). Из JSON термина:
+// S_TermHero (Определение/Для чего нужен/Где используется) → «Взято из кейса»
+// (O_CaseCard по relatedCases) → квиз O_Quiz → «Изучать ещё» (термины той же
+// категории) → S_Form. Шапка/футер — глобальные из BaseLayout.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import S_TermHero from '../../components/superorganisms/S_TermHero/S_TermHero.astro';
+import S_Form from '../../components/superorganisms/S_Form/S_Form.astro';
+import W_CardGrid from '../../components/wrappers/W_CardGrid/W_CardGrid.astro';
+import W_TermsGrid from '../../components/wrappers/W_TermsGrid/W_TermsGrid.astro';
+import O_CaseCard from '../../components/organisms/O_CaseCard/O_CaseCard.astro';
+import O_TermCard from '../../components/organisms/O_TermCard/O_TermCard.astro';
+import O_Quiz from '../../components/organisms/O_Quiz/O_Quiz.tsx';
+import { termVariant } from '../../lib/termVariant';
+
+export function getStaticPaths() {
+  const terms = Object.values(import.meta.glob('../../content/terms/*.json', { eager: true })).map(
+    (m: any) => m.default,
+  );
+  const cases = Object.values(import.meta.glob('../../content/cases/*.json', { eager: true })).map(
+    (m: any) => m.default,
+  );
+  const byName: Record<string, string> = {
+    Альфа: 'alfa-dizayn-sistema-alfy',
+    Авито: 'avito-avito-design-system',
+    Dodo: 'dodo-brands-dui-dodo-user-interface',
+    IVI: 'ivi-ivi-ds',
+    'Hexa UI': 'kaspersky-hexa-ui',
+    'Контур.Гайды': 'kontur-kontur-gaydy',
+    МТС: 'mts-finteh-astra',
+    ОТП: 'otp-bank-dizayn-sistema-otp',
+    Ozon: 'ozon-ozon-design-system',
+    Ростелеком: 'rostelekom-rostelekom-ds-gen2-atomaro',
+    Сбер: 'sber-dizayn-sistema-kanala-b2e',
+    Nova: 'sber-nova-nova',
+    Skillaz: 'skillaz-skillaz-ds-na-baze-magritte',
+    Студия: 'studiya-sergey-obzor-praktiki',
+    Paradigm: 'vk-mail-paradigm-paradigm',
+    VKUI: 'vk-vkui-vkui',
+    'Gravity UI': 'yandeks-gravity-ui',
+  };
+
+  return terms.map((t: any) => {
+    const relatedCases = (t.relatedCases || [])
+      .map((name: string) => cases.find((c: any) => c.slug === byName[name]))
+      .filter(Boolean)
+      .map((c: any) => ({
+        slug: c.slug,
+        title: c.title,
+        companyType: c.companyType,
+        focus: c.focus,
+        accentColor: c.accentColor,
+        cover: c.cover,
+      }));
+
+    const moreTerms = terms
+      .filter((x: any) => x.category === t.category && x.slug !== t.slug)
+      .slice(0, 4)
+      .map((x: any) => ({ slug: x.slug, term: x.term, definition: x.definition, category: x.category }));
+
+    return { params: { slug: t.slug }, props: { term: t, relatedCases, moreTerms } };
+  });
+}
+
+const { term, relatedCases, moreTerms } = Astro.props;
+
+// квиз → формат O_Quiz
+const quiz = term.quiz;
+const quizMode = quiz?.type === 'multi' ? 'multiple' : 'single';
+const quizOptions = quiz
+  ? quiz.options.map((text: string, i: number) => ({
+      id: i,
+      text,
+      correct: quiz.type === 'multi' ? (quiz.answerIndexes || []).includes(i) : i === quiz.answerIndex,
+    }))
+  : [];
+---
+
+<BaseLayout title={`${term.term} — Глоссарий DSHub`}>
+  <S_TermHero
+    term={term.term}
+    definition={term.definition}
+    purpose={term.purpose}
+    usage={term.usage}
+  />
+
+  {relatedCases.length > 0 && (
+    <section class="section">
+      <h2 class="heading">Взято из кейса</h2>
+      <W_CardGrid cols={3}>
+        {relatedCases.map((c: any) => (
+          <O_CaseCard
+            href={`/cases/${c.slug}`}
+            title={c.title}
+            label={c.companyType}
+            badgeVariant={c.cover?.darkBadge ? 'white' : 'black'}
+            focus={c.focus}
+            accentColor={c.accentColor}
+            coverImage={c.cover?.image}
+          />
+        ))}
+      </W_CardGrid>
+    </section>
+  )}
+
+  {quiz && (
+    <section class="section">
+      <O_Quiz client:visible mode={quizMode} question={quiz.question} options={quizOptions} number={1} explain={quiz.explainWrong} />
+    </section>
+  )}
+
+  {moreTerms.length > 0 && (
+    <section class="section">
+      <h2 class="heading">Изучать ещё</h2>
+      <W_TermsGrid>
+        {moreTerms.map((x: any) => (
+          <O_TermCard
+            variant={termVariant(x.category)}
+            term={x.term}
+            definition={x.definition}
+            href={`/glossary/${x.slug}`}
+          />
+        ))}
+      </W_TermsGrid>
+    </section>
+  )}
+
+  <S_Form />
+</BaseLayout>
+
+<style>
+  .section {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: var(--layout-xs);
+    margin-block: var(--layout-xl); /* 64 */
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-sm);
+  }
+  /* заголовки секций — Suisse Int'l Book 32px */
+  .heading {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-regular); /* Book */
+    font-size: var(--font-size-2xl); /* 32 */
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+</style>

@@ -3,13 +3,23 @@
   "term": "ThemeProvider",
   "category": "Инфраструктура",
   "visualType": "diagram",
-  "visualNote": "React-дерево, обёрнутое провайдером темы",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Компонент, прокидывающий тему/токены в дерево.",
+  "purpose": "Раздаёт активную тему всем вложенным компонентам.",
+  "usage": "React-приложения с темизацией.",
+  "relatedCases": [
+    "Gravity UI",
+    "VKUI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что делает ThemeProvider?",
+    "options": [
+      "Прокидывает тему/токены в дерево компонентов",
+      "Рендерит на сервере",
+      "Хранит иконки",
+      "Считает adoption"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "ThemeProvider раздаёт активную тему всем вложенным компонентам."
+  }
 }

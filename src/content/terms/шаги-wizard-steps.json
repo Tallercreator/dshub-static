@@ -1,0 +1,14 @@
+{
+  "slug": "шаги-wizard-steps",
+  "term": "Шаги (Wizard / Steps)",
+  "category": "Компонент · навигация",
+  "visualType": "component",
+  "definition": "Индикатор и навигация по многошаговому процессу.",
+  "purpose": "Разбивает сложную задачу на понятные шаги с прогрессом.",
+  "usage": "Онбординг, оформление, многоэтапные формы.",
+  "relatedCases": [
+    "Skillaz",
+    "Dodo"
+  ],
+  "quiz": null
+}

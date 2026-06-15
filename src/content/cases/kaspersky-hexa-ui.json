@@ -3,7 +3,7 @@
   "title": "Hexa UI",
   "company": "Kaspersky",
   "dsName": "Hexa UI",
-  "companyType": "Бигтех",
+  "companyType": "Security",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -19,9 +19,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "инженерная зрелость open-source DS, гранулярные токены как отдельный продуктовый слой, типобезопасный API, governance и Definition of Done, тестируемость как часть контракта",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "Storybook (docs + stories, версии, all props), GitHub (issues, PR, релизы, Apache-2.0), npm-пакеты @kaspersky/hexa-ui и hexa-ui-core, токены (static/product/componentColors), автосинхронизация Figma → JSON → CSS → npm, Definition of Done, тестовые атрибуты testid/klid"
   },
   "meta": {
     "readingTime": 4

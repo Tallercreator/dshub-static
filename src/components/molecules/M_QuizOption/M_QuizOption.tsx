@@ -21,6 +21,8 @@ interface Props {
 export default function M_QuizOption({ text, state, type = 'radio', disabled, onClick }: Props) {
   const cls = [styles.option, styles[`s-${state}`]].filter(Boolean).join(' ');
   const selected = state === 'selected' || state === 'right-selected' || state === 'error';
+  const verdict =
+    state === 'right' || state === 'right-selected' ? 'Верно!' : state === 'error' ? 'Неверно' : null;
   return (
     <button type="button" className={cls} onClick={onClick} disabled={disabled} aria-pressed={selected}>
       <span
@@ -28,6 +30,7 @@ export default function M_QuizOption({ text, state, type = 'radio', disabled, on
         aria-hidden="true"
       />
       <span className={styles.text}>{text}</span>
+      {verdict && <span className={styles.verdict}>{verdict}</span>}
     </button>
   );
 }

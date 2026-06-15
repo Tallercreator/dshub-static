@@ -1,7 +1,7 @@
 ---
 // O_Header — организм. = Figma O_Header (node 28:2764). Шапка на всех страницах:
 // Q_Logo (локап) + M_Segment (навигация) + A_Button «Предложить кейс».
-// current — текущий путь (подсветка активного пункта).
+// На ≤1024 навигация и CTA сворачиваются в бургер-меню (vanilla <script>).
 import Q_Logo from '../../quarks/Q_Logo/Q_Logo.astro';
 import M_Segment from '../../molecules/M_Segment/M_Segment.astro';
 import A_SegmentItem from '../../atoms/A_SegmentItem/A_SegmentItem.astro';
@@ -38,5 +38,50 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
     <A_Button href="#share-case" contentType="text" size="md" class={styles.cta}>
       Предложить кейс
     </A_Button>
+
+    <button
+      type="button"
+      class={styles.burger}
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Меню"
+    >
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <nav class={styles.mobileNav} id="mobile-nav" aria-label="Мобильная навигация" hidden>
+    {nav.map((n) => (
+      <a
+        href={n.href}
+        class:list={[styles.mobileLink, isActive(n.href) && styles.mobileActive]}
+        aria-current={isActive(n.href) ? 'page' : undefined}
+      >{n.label}</a>
+    ))}
+    <A_Button href="#share-case" contentType="text" size="md" class={styles.mobileCta}>
+      Предложить кейс
+    </A_Button>
+  </nav>
 </header>
+
+<script>
+  document.querySelectorAll('[data-menu-toggle]').forEach((btn) => {
+    const el = btn as HTMLElement;
+    if (el.dataset.menuBound) return;
+    el.dataset.menuBound = '1';
+    const panel = document.getElementById(el.getAttribute('aria-controls') || '');
+    el.addEventListener('click', () => {
+      const open = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', String(!open));
+      if (panel) panel.hidden = open;
+    });
+    // закрывать по клику на ссылку
+    panel?.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => {
+        el.setAttribute('aria-expanded', 'false');
+        if (panel) panel.hidden = true;
+      }),
+    );
+  });
+</script>

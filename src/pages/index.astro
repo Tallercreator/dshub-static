@@ -9,6 +9,7 @@ import S_TermsSection from '../components/superorganisms/S_TermsSection/S_TermsS
 import S_ResourcesSection from '../components/superorganisms/S_ResourcesSection/S_ResourcesSection.astro';
 import S_Form from '../components/superorganisms/S_Form/S_Form.astro';
 import W_PageContainer from '../components/wrappers/W_PageContainer/W_PageContainer.astro';
+import { termVariant } from '../lib/termVariant';
 
 const cases = Object.values(import.meta.glob('../content/cases/*.json', { eager: true })).map(
   (m) => m.default,
@@ -21,22 +22,26 @@ const resources = Object.values(import.meta.glob('../content/resources/*.json', 
 );
 const termsWithDef = terms.filter((t) => t.definition);
 
-// Превью глоссария (4 карточки). Вариант (lime/pink/image) пока задаём явно для
-// демонстрации — в данных нет поля сложности; маппинг term→variant решим позже.
-const glossaryPreviewVariants = ['pink', 'image', 'lime', 'pink'];
-const glossaryItems = termsWithDef.slice(0, 4).map((t, i) => ({
+// Превью глоссария (4 карточки). Вариант по категории (lime/pink) — без image-
+// варианта, чтобы не было пустых карточек без картинки.
+const glossaryItems = termsWithDef.slice(0, 4).map((t) => ({
   term: t.term,
   definition: t.definition,
-  variant: glossaryPreviewVariants[i],
+  variant: termVariant(t.category),
+  href: `/glossary/${t.slug}`,
 }));
 
-// Превью ресурсов (5 карточек, первая — широкая). Обложки/иллюстрации позже.
-const resourceItems = resources.slice(0, 5).map((r) => ({
-  type: r.type,
-  title: r.title,
-  source: r.source,
-  url: r.url,
-}));
+// Превью ресурсов на главной — только карточки с обложками (5 шт, первая широкая).
+const resourceItems = resources
+  .filter((r) => r.coverImage)
+  .slice(0, 5)
+  .map((r) => ({
+    type: r.type,
+    title: r.title,
+    source: r.source,
+    url: r.url,
+    coverImage: r.coverImage,
+  }));
 ---
 
 <BaseLayout title="DSHub — онлайн-медиа о дизайн-системах">

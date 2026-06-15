@@ -3,7 +3,7 @@
   "title": "Gravity UI",
   "company": "Яндекс",
   "dsName": "Gravity UI",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -20,9 +20,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "open-source DS как экосистема библиотек (74+ репозиториев), двухслойная токенная модель (private → semantic) и темизация (4 темы), контроль качества (CI a11y, скриншоты), онлайн-конструктор тем",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "сайт gravity-ui.com с 5 витринами, open-source GitHub и npm-пакеты, Storybook-плейграунд, Figma Community, Themer (конструктор тем, импорт/экспорт CSS/JSON), CHANGELOG по пакетам, поддержка SSR и i18n"
   },
   "meta": {
     "readingTime": 5

@@ -1,0 +1,126 @@
+/* S_TermHero.module.css — шапка страницы термина (Figma T_Term 36:15116):
+   кнопка «назад» + ghost-имя термина + H1 + ряд из 3 фактов
+   (Определение / Для чего нужен / Где используется). */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--neutral-0);
+}
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: var(--layout-md) var(--layout-xs) var(--layout-lg); /* 48 / 32 / 64 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* назад (только стрелка, серая) */
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding-inline: var(--space-lg);
+  border-radius: var(--radius-md);
+  background: var(--neutral-20);
+  color: var(--text-primary);
+  text-decoration: none;
+  flex: 0 0 auto;
+  transition: background 0.15s ease;
+}
+.back:hover {
+  background: var(--neutral-30);
+}
+.backIcon {
+  display: inline-flex;
+  transform: rotate(180deg);
+}
+
+/* кнопка «назад» + имя термина в одной строке */
+.topRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg); /* 12 */
+}
+/* имя термина — Inter Display Medium 20px */
+.name {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg); /* 20 */
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+/* ghost-имя термина за H1 — по центру экрана */
+.ghost {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: clamp(120px, 16vw, 210px);
+  font-family: var(--font-family-decorate);
+  font-weight: var(--font-weight-medium);
+  font-size: clamp(110px, 17vw, 240px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: var(--neutral-140);
+  opacity: 0.07;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+/* вуаль, гасящая ghost снизу к фактам */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 40%, var(--neutral-0) 88%);
+  pointer-events: none;
+}
+
+/* ряд фактов */
+.facts {
+  margin-top: clamp(160px, 22vw, 320px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--layout-xs);
+}
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 36ch;
+}
+.factIcon {
+  color: var(--icons-accent, var(--text-primary));
+}
+.factLabel {
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  color: var(--text-disabled);
+}
+.factValue {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+@media (max-width: 760px) {
+  .facts {
+    grid-template-columns: 1fr;
+    gap: var(--layout-sm);
+    margin-top: clamp(120px, 40vw, 220px);
+  }
+}

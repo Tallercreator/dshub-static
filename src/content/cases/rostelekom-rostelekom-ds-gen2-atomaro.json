@@ -3,7 +3,7 @@
   "title": "Ростелеком",
   "company": "Ростелеком",
   "dsName": "Ростелеком DS (gen2 / Atomaro)",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -20,9 +20,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "открытая DS как продукт для внешнего наблюдателя, Storybook как центральный артефакт, токены на уровне системы и компонента, управление изменениями, переход на 2-е поколение (Atomaro)",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "Storybook (introduction, installation, design tokens, компоненты с пропсами и состояниями, changelog), сайт design.rt.ru, компонентные токены (просмотр и редактирование), публичная история релизов, Storybook gen2 для React и Vue"
   },
   "meta": {
     "readingTime": 4

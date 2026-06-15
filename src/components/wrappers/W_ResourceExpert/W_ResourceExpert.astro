@@ -1,0 +1,50 @@
+---
+// W_ResourceExpert — «По совету эксперта» (Figma 36:16755). Заголовок (Suisse 32)
+// + одна карточка ресурса O_ResourceCard (size=medium). Рекомендация ресурса,
+// связанного с кейсом.
+import O_ResourceCard from '../../organisms/O_ResourceCard/O_ResourceCard.astro';
+
+interface Props {
+  resource: {
+    type?: string;
+    title: string;
+    source?: string;
+    url: string;
+    coverImage?: string;
+  };
+}
+const { resource } = Astro.props;
+---
+<section class="resource-expert">
+  <h2 class="heading">По совету эксперта:</h2>
+  <div class="card-wrap">
+    <O_ResourceCard
+      size="medium"
+      label={resource.type}
+      title={resource.title}
+      source={resource.source}
+      url={resource.url}
+      coverImage={resource.coverImage}
+    />
+  </div>
+</section>
+
+<style>
+  .resource-expert {
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-xs);
+  }
+  .heading {
+    margin: 0;
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-2xl); /* 32px */
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+  .card-wrap {
+    max-width: 332px;
+  }
+</style>

@@ -24,10 +24,14 @@
 .black:hover:not(.disabled) { background: var(--neutral-120); }
 .black:active:not(.disabled) { background: var(--neutral-110); color: var(--neutral-40); }
 
-/* white */
+/* white — серый бейдж (surface/page) для белых поверхностей (фильтр-чипы) */
 .white { background: var(--surface-page); color: var(--text-primary); }
 .white:hover:not(.disabled) { background: var(--neutral-20); }
 .white:active:not(.disabled) { background: var(--neutral-30); color: var(--text-secondary); }
+
+/* card — белый бейдж (surface/card) для серых поверхностей (карточка ресурса) */
+.card { background: var(--surface-card); color: var(--text-primary); }
+.card:hover:not(.disabled) { background: var(--neutral-10); }
 
 /* выбранный чип-фильтр (toggle через aria-pressed) */
 .tag[aria-pressed='true'] { background: var(--neutral-150); color: var(--neutral-0); cursor: pointer; }

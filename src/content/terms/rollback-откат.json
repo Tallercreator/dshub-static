@@ -1,0 +1,14 @@
+{
+  "slug": "rollback-откат",
+  "term": "Rollback / откат",
+  "category": "Процесс",
+  "visualType": "text",
+  "definition": "Возврат к предыдущей версии при проблемах с обновлением.",
+  "purpose": "Страховка: быстро откатить ломающее изменение.",
+  "usage": "Релизы библиотеки.",
+  "relatedCases": [
+    "Gravity UI",
+    "Hexa UI"
+  ],
+  "quiz": null
+}

@@ -17,9 +17,10 @@ interface Props {
   options: Option[];
   mode?: 'single' | 'multiple';
   number?: number;
+  explain?: string;
 }
 
-export default function O_Quiz({ question, options, mode = 'single', number = 1 }: Props) {
+export default function O_Quiz({ question, options, mode = 'single', number = 1, explain }: Props) {
   const [selected, setSelected] = useState<number[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
@@ -45,10 +46,10 @@ export default function O_Quiz({ question, options, mode = 'single', number = 1 
 
   return (
     <div className={styles.quiz}>
-      <p className={styles.question}>
-        <span className={styles.num}>Вопрос {number}</span>
-        {question}
-      </p>
+      <div className={styles.header}>
+        <span className={styles.pill}>Проверь себя</span>
+        <p className={styles.question}>{question}</p>
+      </div>
 
       <div className={styles.options}>
         {opts.map((o) => (
@@ -62,6 +63,8 @@ export default function O_Quiz({ question, options, mode = 'single', number = 1 
           />
         ))}
       </div>
+
+      {submitted && explain && <p className={styles.explain}>{explain}</p>}
 
       {!submitted ? (
         <button

@@ -1,0 +1,14 @@
+{
+  "slug": "версионирование",
+  "term": "Версионирование",
+  "category": "Процесс",
+  "visualType": "diagram",
+  "definition": "Управление версиями DS (например, semver).",
+  "purpose": "Контролируемые обновления без ломки продуктов.",
+  "usage": "npm-пакет, релизы библиотеки.",
+  "relatedCases": [
+    "Gravity UI",
+    "Hexa UI"
+  ],
+  "quiz": null
+}

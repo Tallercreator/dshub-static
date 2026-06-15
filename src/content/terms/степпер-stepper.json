@@ -1,0 +1,14 @@
+{
+  "slug": "степпер-stepper",
+  "term": "Степпер (Stepper)",
+  "category": "Компонент · контролы",
+  "visualType": "interactive",
+  "definition": "Контрол пошагового увеличения/уменьшения числа.",
+  "purpose": "Точный ввод небольших количеств кнопками +/−.",
+  "usage": "Корзина (количество), настройки.",
+  "relatedCases": [
+    "Dodo",
+    "Ozon"
+  ],
+  "quiz": null
+}

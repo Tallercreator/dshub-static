@@ -1,0 +1,232 @@
+---
+// S_GlossaryGrid — суперорганизм. Основная зона Глоссария (Figma T_Glossary
+// 36:14854): сайдбар категорий слева + результаты справа (бар «Выбрано:» +
+// счётчик «Найдено N терминов» + сетка карточек O_TermCard в 3 колонки).
+// Структура зеркалит S_CasesGrid; фасет один — категория (мультивыбор, OR).
+//
+// Интерактив (vanilla <script>): чекбоксы категорий фильтруют карточки
+// (data-category), счётчик и бар «Выбрано» обновляются, «Сбросить все» очищает,
+// URL ?category= читается на загрузке и синхронизируется.
+import W_FilterGroup from '../../wrappers/W_FilterGroup/W_FilterGroup.astro';
+import M_FilterOption from '../../molecules/M_FilterOption/M_FilterOption.astro';
+import M_AppliedFilters from '../../molecules/M_AppliedFilters/M_AppliedFilters.astro';
+import W_CardGrid from '../../wrappers/W_CardGrid/W_CardGrid.astro';
+import O_TermCard from '../../organisms/O_TermCard/O_TermCard.astro';
+import A_Button from '../../atoms/A_Button/A_Button.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import { termVariant } from '../../../lib/termVariant';
+import styles from './S_GlossaryGrid.module.css';
+
+interface Term {
+  slug: string;
+  term: string;
+  definition?: string;
+  category?: string;
+}
+interface Facet {
+  value: string;
+  count: number;
+}
+interface Props {
+  terms: Term[];
+  categories: Facet[];
+  class?: string;
+}
+const { terms, categories, class: extra } = Astro.props;
+
+function plural(n: number, forms: [string, string, string]) {
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return forms[0];
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return forms[1];
+  return forms[2];
+}
+const word = plural(terms.length, ['термин', 'термина', 'терминов']);
+---
+
+<div class:list={[styles.wrap, extra]} data-glossary-root>
+  <section class={styles.section} aria-labelledby="glossary-page-title">
+    <h1 class={styles.srTitle} id="glossary-page-title">Глоссарий</h1>
+
+    <aside class={styles.sidebar} aria-label="Фильтр терминов по категории">
+      <W_FilterGroup title="Категория">
+        {categories.map((c) => (
+          <M_FilterOption name="category" value={c.value}>
+            {c.value}<span class={styles.optCount}>{c.count}</span>
+          </M_FilterOption>
+        ))}
+      </W_FilterGroup>
+
+      <A_Button contentType="text-righticon" size="md" class={styles.reset} data-reset-filters>
+        Сбросить все
+        <Q_Icon slot="icon" name="cross-small" size={16} />
+      </A_Button>
+    </aside>
+
+    <div class={styles.results}>
+      <div data-applied hidden>
+        <M_AppliedFilters>
+          <div data-applied-chips></div>
+        </M_AppliedFilters>
+      </div>
+
+      <p class={styles.count} data-glossary-count>Найдено {terms.length} {word}</p>
+
+      <W_CardGrid cols={3}>
+        {terms.map((t) => (
+          <O_TermCard
+            variant={termVariant(t.category)}
+            term={t.term}
+            definition={t.definition}
+            href={`/glossary/${t.slug}`}
+            data-term
+            data-category={t.category}
+          />
+        ))}
+      </W_CardGrid>
+
+      <p class={styles.empty} data-glossary-empty hidden>По выбранным категориям терминов не нашлось.</p>
+    </div>
+  </section>
+</div>
+
+<style is:global>
+  /* чип применённого фильтра (инжектится скриптом — нужен глобальный стиль).
+     Дублирует стиль из S_CasesGrid: на /glossary той секции нет. */
+  .js-applied-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    height: var(--size-control-xl);
+    padding-inline: var(--space-xl);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background var(--duration-fast) ease;
+  }
+  .js-applied-chip:hover {
+    background: var(--neutral-20);
+  }
+  .js-applied-chip > span[aria-hidden] {
+    font-size: 0.85em;
+    opacity: 0.6;
+  }
+  .js-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.querySelector<HTMLElement>('[data-glossary-root]');
+    if (!root || root.dataset.filterBound) return;
+    root.dataset.filterBound = '1';
+
+    const cards = [...root.querySelectorAll<HTMLElement>('[data-term]')];
+    const countEl = root.querySelector<HTMLElement>('[data-glossary-count]');
+    const emptyEl = root.querySelector<HTMLElement>('[data-glossary-empty]');
+    const appliedBar = root.querySelector<HTMLElement>('[data-applied]');
+    const appliedChips = root.querySelector<HTMLElement>('[data-applied-chips]');
+    const checks = [...root.querySelectorAll<HTMLInputElement>('input[name="category"]')];
+
+    const plural = (n: number) => {
+      const a = n % 10;
+      const b = n % 100;
+      if (a === 1 && b !== 11) return 'термин';
+      if (a >= 2 && a <= 4 && (b < 10 || b >= 20)) return 'термина';
+      return 'терминов';
+    };
+    const esc = (s: string) =>
+      s.replace(/[&<>"]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m] || m));
+
+    const getSel = () => checks.filter((c) => c.checked).map((c) => c.value);
+
+    const renderApplied = (sel: string[]) => {
+      if (!appliedBar || !appliedChips) return;
+      if (!sel.length) {
+        appliedBar.hidden = true;
+        appliedChips.innerHTML = '';
+        return;
+      }
+      appliedBar.hidden = false;
+      appliedChips.innerHTML = sel
+        .map(
+          (v) =>
+            `<button type="button" class="js-applied-chip" data-remove data-value="${esc(
+              v,
+            )}">${esc(v)}<span aria-hidden="true">✕</span><span class="js-sr-only">убрать фильтр</span></button>`,
+        )
+        .join('');
+    };
+
+    const syncURL = (sel: string[]) => {
+      const p = new URLSearchParams();
+      if (sel.length) p.set('category', sel.join(','));
+      const qs = p.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+    };
+
+    const apply = () => {
+      const sel = getSel();
+      let n = 0;
+      for (const card of cards) {
+        const cat = card.dataset.category || '';
+        const ok = !sel.length || sel.includes(cat);
+        card.hidden = !ok;
+        if (ok) n++;
+      }
+      if (countEl) countEl.textContent = `Найдено ${n} ${plural(n)}`;
+      if (emptyEl) emptyEl.hidden = n !== 0;
+      renderApplied(sel);
+      syncURL(sel);
+    };
+
+    const reset = () => {
+      checks.forEach((c) => (c.checked = false));
+      apply();
+    };
+
+    checks.forEach((c) => c.addEventListener('change', apply));
+
+    root
+      .querySelectorAll<HTMLElement>('[data-reset-filters], [data-applied] [class*="reset"]')
+      .forEach((b) =>
+        b.addEventListener('click', (e) => {
+          e.preventDefault();
+          reset();
+        }),
+      );
+
+    appliedChips?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-remove]');
+      if (!btn) return;
+      const cb = checks.find((c) => c.value === btn.dataset.value);
+      if (cb) cb.checked = false;
+      apply();
+    });
+
+    // предвыбор из URL ?category=
+    const params = new URLSearchParams(location.search);
+    (params.get('category') || '')
+      .split(',')
+      .filter(Boolean)
+      .forEach((v) => {
+        const cb = checks.find((c) => c.value === v);
+        if (cb) cb.checked = true;
+      });
+    apply();
+  })();
+</script>

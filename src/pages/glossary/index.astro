@@ -1,0 +1,33 @@
+---
+// /glossary — раздел «Глоссарий» (Figma T_Glossary 36:14854). S_PageHero (ghost
+// «Глоссарий» + зелёная галочка) → S_GlossaryGrid (сайдбар категорий + сетка
+// карточек терминов, фильтрация по категории) → S_Form. Шапка/футер — глобальные.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import S_PageHero from '../../components/superorganisms/S_PageHero/S_PageHero.astro';
+import S_GlossaryGrid from '../../components/superorganisms/S_GlossaryGrid/S_GlossaryGrid.astro';
+import S_Form from '../../components/superorganisms/S_Form/S_Form.astro';
+
+const terms = Object.values(import.meta.glob('../../content/terms/*.json', { eager: true }))
+  .map((m) => m.default)
+  .map((t) => ({ slug: t.slug, term: t.term, definition: t.definition, category: t.category }))
+  .sort((a, b) => a.term.localeCompare(b.term, 'ru'));
+
+// фасеты категорий из данных (по убыванию частоты)
+const counts = new Map<string, number>();
+for (const t of terms) if (t.category) counts.set(t.category, (counts.get(t.category) ?? 0) + 1);
+const categories = [...counts.entries()]
+  .map(([value, count]) => ({ value, count }))
+  .sort((a, b) => b.count - a.count);
+---
+
+<BaseLayout title="Глоссарий — DSHub">
+  <S_PageHero
+    ghostLines={['Глоссарий Глоссарий', 'Глоссарий Глоссарий']}
+    illustration="/illustrations/check-green.png"
+    illustrationAlt="Глоссарий"
+  />
+
+  <S_GlossaryGrid terms={terms} categories={categories} />
+
+  <S_Form />
+</BaseLayout>

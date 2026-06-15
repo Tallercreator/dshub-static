@@ -1,0 +1,92 @@
+---
+// S_ResourcesGrid — суперорганизм. Зона раздела «Ресурсы» (Figma T_Resources
+// 36:7507): центрированные фильтр-табы по типу (M_Segment) + бенто-сетка ресурсов
+// (W_ResourcesGrid: large = span 2 на каждой 5-й позиции, иначе medium).
+// Фильтрация — vanilla <script> (data-type на карточках, aria-current на табе).
+import M_Segment from '../../molecules/M_Segment/M_Segment.astro';
+import A_SegmentItem from '../../atoms/A_SegmentItem/A_SegmentItem.astro';
+import W_ResourcesGrid from '../../wrappers/W_ResourcesGrid/W_ResourcesGrid.astro';
+import O_ResourceCard from '../../organisms/O_ResourceCard/O_ResourceCard.astro';
+import styles from './S_ResourcesGrid.module.css';
+
+interface ResourceItem {
+  type?: string;
+  title: string;
+  source?: string;
+  url: string;
+  coverImage?: string;
+}
+interface Props {
+  items: ResourceItem[];
+  class?: string;
+}
+const { items, class: extra } = Astro.props;
+
+// табы по типам (во множественном), только присутствующие в данных
+const TYPE_LABEL: Record<string, string> = { Статья: 'Статьи', Сайт: 'Сайты', Видео: 'Видео' };
+const order = ['Статья', 'Сайт', 'Видео'];
+const present = order.filter((t) => items.some((r) => r.type === t));
+---
+<section class:list={[styles.resources, extra]} data-resources aria-labelledby="resources-page-title">
+  <h1 class={styles.srTitle} id="resources-page-title">Ресурсы</h1>
+
+  <div class={styles.tabs}>
+    <M_Segment size="md" aria-label="Фильтр ресурсов по типу">
+      <A_SegmentItem size="md" data-filter="all" aria-current="page">Все</A_SegmentItem>
+      {present.map((t) => (
+        <A_SegmentItem size="md" data-filter={t} aria-current="false">{TYPE_LABEL[t] ?? t}</A_SegmentItem>
+      ))}
+    </M_Segment>
+  </div>
+
+  <W_ResourcesGrid>
+    {items.map((r, i) => (
+      <O_ResourceCard
+        size={i % 5 === 0 ? 'large' : 'medium'}
+        surface="page"
+        label={r.type}
+        title={r.title}
+        source={r.source}
+        url={r.url}
+        coverImage={r.coverImage}
+        data-type={r.type}
+      />
+    ))}
+  </W_ResourcesGrid>
+
+  <p class={styles.empty} data-empty hidden>В этой категории пока нет ресурсов.</p>
+</section>
+
+<style is:global>
+  /* активный таб (через aria-current) — белая пилюля; !important перебивает
+     scoped-стили A_SegmentItem (в т.ч. :hover) */
+  [data-resources] [data-filter][aria-current='page'] {
+    background: var(--neutral-0) !important;
+    color: var(--text-primary) !important;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-resources]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll('[data-filter]'));
+    const cards = Array.from(root.querySelectorAll('[data-type]')) as HTMLElement[];
+    const empty = root.querySelector('[data-empty]') as HTMLElement | null;
+
+    function apply(filter: string) {
+      let shown = 0;
+      cards.forEach((c) => {
+        const ok = filter === 'all' || c.getAttribute('data-type') === filter;
+        c.hidden = !ok;
+        if (ok) shown += 1;
+      });
+      if (empty) empty.hidden = shown !== 0;
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.setAttribute('aria-current', t === tab ? 'page' : 'false'));
+        apply(tab.getAttribute('data-filter') || 'all');
+      });
+    });
+  });
+</script>

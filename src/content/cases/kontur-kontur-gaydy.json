@@ -3,7 +3,7 @@
   "title": "Контур.Гайды",
   "company": "Контур",
   "dsName": "Контур.Гайды",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -20,9 +20,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "DS как нормативный документ и система управления (governance), принципы прежде компонентов, единый 8-пиксельный модуль, доступность как стандарт, роли и процессы",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "публичные гайдлайны (guides.kontur.ru), Storybook/playground, npm-пакеты @skbkontur/react-ui и @skbkontur/icons, раздел принципов и доступности (управление клавиатурой), маркер ⚡️ актуальных библиотек"
   },
   "meta": {
     "readingTime": 3

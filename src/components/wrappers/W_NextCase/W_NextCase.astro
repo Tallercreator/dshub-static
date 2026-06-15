@@ -1,0 +1,147 @@
+---
+// W_NextCase — CTA «К следующему кейсу» (Figma 34:4749). Серая плашка
+// (surface/page, скругление 24, паддинг 24) с мягким цветным свечением в правом
+// нижнем углу (variant pink|lime), мини-карточкой следующего кейса (теги фокуса +
+// заголовок) и тёмной кнопкой «Перейти». Вся карточка — ссылка на след. кейс.
+import A_CategoryTag from '../../atoms/A_CategoryTag/A_CategoryTag.astro';
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+
+interface Props {
+  href: string;
+  title: string;
+  tags?: string[];
+  variant?: 'pink' | 'lime';
+}
+const { href, title, tags = [], variant = 'pink' } = Astro.props;
+---
+<a class:list={['next-case', variant]} href={href}>
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="body">
+    <span class="kicker">К следующему кейсу:</span>
+    <div class="card">
+      {tags.length > 0 && (
+        <div class="tags">
+          {tags.slice(0, 2).map((t) => <A_CategoryTag>{t}</A_CategoryTag>)}
+        </div>
+      )}
+      <span class="title" set:html={title} />
+    </div>
+  </div>
+
+  <span class="go">
+    <span class="go-label">Перейти</span>
+    <Q_Icon name="send" size={24} />
+  </span>
+</a>
+
+<style>
+  .next-case {
+    position: relative;
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3xl);
+    padding: var(--space-3xl);
+    border-radius: var(--radius-2xl);
+    background: var(--surface-page);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* мягкое свечение в правом нижнем углу */
+  .glow {
+    position: absolute;
+    right: -38px;
+    bottom: -78px;
+    width: 290px;
+    height: 290px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pink .glow {
+    background: radial-gradient(circle, var(--pink-50) 0%, rgba(255, 107, 126, 0) 70%);
+  }
+  .lime .glow {
+    background: radial-gradient(circle, var(--lime-20) 0%, rgba(173, 227, 7, 0) 70%);
+  }
+
+  .body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-sm);
+  }
+  .kicker {
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-2xl); /* 32px */
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    width: 390px;
+    max-width: 100%;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+  .title {
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-lg); /* 20px */
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+  }
+
+  /* тёмная кнопка «Перейти» */
+  .go {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs, 4px);
+    width: 190px;
+    height: 110px;
+    border-radius: var(--radius-2xl);
+    background: var(--neutral-130);
+    color: var(--neutral-0);
+    transition: background 0.15s ease;
+  }
+  .next-case:hover .go {
+    background: var(--neutral-160);
+  }
+  .go-label {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
+  }
+
+  @media (max-width: 640px) {
+    .next-case {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .card {
+      width: 100%;
+    }
+    .go {
+      width: 100%;
+    }
+  }
+</style>

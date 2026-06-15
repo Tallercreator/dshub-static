@@ -3,13 +3,23 @@
   "term": "Sandbox / playground",
   "category": "Инструменты",
   "visualType": "example",
-  "visualNote": "Стилизованная песочница компонента в браузере",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Изолированное окружение, чтобы «потыкать» компонент.",
+  "purpose": "Безопасно проверить поведение перед использованием.",
+  "usage": "Дизайн-ревью, проверка компонентов.",
+  "relatedCases": [
+    "Dodo",
+    "Gravity UI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Зачем нужен sandbox/playground компонента?",
+    "options": [
+      "Изолированно «потыкать» компонент и проверить поведение",
+      "Хранить релизы",
+      "Считать метрики здоровья",
+      "Рисовать обложки кейсов"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Песочница — безопасное место поэкспериментировать с компонентом."
+  }
 }

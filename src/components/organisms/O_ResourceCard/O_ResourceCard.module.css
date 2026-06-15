@@ -7,7 +7,6 @@
   min-height: 280px;
   padding: var(--space-lg); /* 12 */
   border-radius: var(--radius-2xl); /* 24 */
-  background: var(--neutral-0);
   overflow: hidden;
   color: var(--text-primary);
   transition-property: transform;
@@ -18,6 +17,14 @@
   transform: translateY(-3px);
 }
 
+/* ── вариации фона ── */
+.s-card {
+  background: var(--surface-card);
+} /* белая */
+.s-page {
+  background: var(--surface-page);
+} /* серая (новая) */
+
 .content {
   position: relative;
   z-index: 1;
@@ -25,7 +32,6 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: var(--space-lg);
 }
 
@@ -53,25 +59,19 @@
   outline-offset: 4px;
 }
 
-/* ───────── large: обложка-картинка справа ───────── */
-.large {
-  grid-column: span 2;
-}
-.large .content {
-  flex: 1 1 0;
-  min-width: 0;
-}
-/* тег-тип в large — hug (по контенту), не растягивать на всю ширину колонки */
-.badge {
-  align-self: flex-start;
-}
+/* ── обложка-контейнер (вшита, не на весь фон) ── */
 .cover {
   position: relative;
-  flex: 1.5 1 0;
   min-width: 0;
   border-radius: var(--radius-md); /* 12 */
   overflow: hidden;
+}
+/* фон-плейсхолдер только у обложки С картинкой; пустой блок — невидим */
+.s-card .coverFilled {
   background: var(--surface-page);
+}
+.s-page .coverFilled {
+  background: var(--surface-card);
 }
 .img {
   position: absolute;
@@ -81,27 +81,34 @@
   object-fit: cover;
 }
 
-/* ───────── medium: декоративная иллюстрация фоном ───────── */
-.illustration {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
+/* ───────── medium: источник сверху, обложка/пустой блок в середине, заголовок снизу.
+   Элемент-заполнитель flex:1 заполняет место и прижимает заголовок к нижнему краю;
+   при длинном заголовке сжимается (min 60), поэтому текст не «съезжает». ───────── */
+.medium .cover {
+  flex: 1 1 auto;
+  min-height: 60px;
+}
+
+/* ───────── large: текст слева, обложка справа (span 2) ───────── */
+.large {
+  grid-column: span 2;
+}
+.large .content {
+  justify-content: space-between;
+}
+.large > .cover {
+  flex: 1.5 1 0;
+}
+.badge {
+  align-self: flex-start;
 }
 
 @media (max-width: 640px) {
-  .card {
-    flex-direction: column;
-  }
   .large {
     grid-column: auto;
+    flex-direction: column;
   }
-  .large .content {
-    flex: 0 0 auto;
-  }
-  .cover {
+  .large > .cover {
     min-height: 200px;
   }
 }

@@ -3,13 +3,12 @@
   "term": "Color picker",
   "category": "Компонент · контролы",
   "visualType": "component",
-  "visualNote": "Выбор цвета: HEX/RGB/палитра",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Элемент выбора цвета из палитры, ползунками или по HEX/RGB.",
+  "purpose": "Позволяет задать произвольный цвет в настройках и редакторах.",
+  "usage": "Редакторы, кастомизация темы, дизайн-инструменты.",
+  "relatedCases": [
+    "Dodo",
+    "Студия"
+  ],
+  "quiz": null
 }

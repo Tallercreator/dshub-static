@@ -3,13 +3,23 @@
   "term": "SDUI (Server-Driven UI)",
   "category": "Инфраструктура",
   "visualType": "diagram",
-  "visualNote": "Та же схема, что BDUI (синоним)",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Server-Driven UI — по сути синоним BDUI.",
+  "purpose": "UI управляется сервером, обновления без обновления стора.",
+  "usage": "То же, что BDUI.",
+  "relatedCases": [
+    "Ozon",
+    "Авито"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Как соотносятся SDUI и BDUI?",
+    "options": [
+      "Это по сути синонимы (Server/Backend-Driven UI)",
+      "SDUI — про токены, BDUI — про компоненты",
+      "Это разные платформы",
+      "SDUI работает только офлайн"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "SDUI и BDUI описывают один подход — UI, управляемый сервером."
+  }
 }

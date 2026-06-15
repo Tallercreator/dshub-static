@@ -1,0 +1,37 @@
+/* S_ResourcesGrid.module.css — зона раздела «Ресурсы»: фильтр-табы + бенто-сетка. */
+
+.resources {
+  max-width: 1212px; /* область, не на весь экран */
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-sm); /* 40 */
+  padding-top: var(--layout-lg); /* 64 — отступ от героя (панель solid без top-padding) */
+}
+
+/* H1 «Ресурсы» — для скринридеров (визуально заголовок = ghost-герой) */
+.srTitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ряд табов — слева, с начала области */
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.empty {
+  margin: 0;
+  padding-block: var(--layout-md);
+  text-align: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--text-tertiary);
+}

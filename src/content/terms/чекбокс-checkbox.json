@@ -1,0 +1,14 @@
+{
+  "slug": "чекбокс-checkbox",
+  "term": "Чекбокс (Checkbox)",
+  "category": "Компонент · контролы",
+  "visualType": "interactive",
+  "definition": "Контрол выбора нескольких независимых опций (вкл/выкл/частично).",
+  "purpose": "Множественный выбор и согласия; поддерживает indeterminate.",
+  "usage": "Фильтры, списки, формы согласий.",
+  "relatedCases": [
+    "Dodo",
+    "Ozon"
+  ],
+  "quiz": null
+}

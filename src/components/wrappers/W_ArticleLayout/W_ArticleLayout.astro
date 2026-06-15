@@ -1,0 +1,103 @@
+---
+// W_ArticleLayout — обёртка статьи кейса (Figma 34:3304). Двухколоночная сетка
+// внутри контейнера max-width 1160px (центр): левый мета-сайдбар M_CaseMeta ~300px
+// (sticky — остаётся на виду при скролле) + правая колонка (H1 + слот-контент)
+// 796px, gap 64px. На ≤900px колонки складываются, сайдбар перестаёт быть sticky.
+import M_CaseMeta from '../../molecules/M_CaseMeta/M_CaseMeta.astro';
+
+interface Props {
+  title: string;
+  backHref?: string;
+  themeTag?: string | null; // чёрный тег темы (companyType)
+  focus?: string | null; // «Фокус кейса:»
+  artifacts?: string | null; // «Артефакты в кейсе:»
+  speakerRole?: string | null; // «Роль эксперта:»
+}
+const { title, backHref = '/cases', themeTag, focus, artifacts, speakerRole } = Astro.props;
+---
+<div class="article">
+  <aside class="sidebar">
+    <M_CaseMeta
+      backHref={backHref}
+      themeTag={themeTag}
+      focus={focus}
+      artifacts={artifacts}
+      speakerRole={speakerRole}
+      shareTitle={title}
+    />
+  </aside>
+
+  <div class="content">
+    <h1 class="title" set:html={title} />
+    <div class="blocks">
+      <slot />
+    </div>
+    <div class="footer">
+      <slot name="footer" />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* единый контейнер с /cases (max 1440 + padding 32), сетка прижата влево —
+     левый край сайдбара совпадает со страницей кейсов, переход не «дёргается» */
+  .article {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: var(--layout-xs); /* 32 */
+    display: grid;
+    grid-template-columns: 300px minmax(0, 796px);
+    gap: 64px;
+    justify-content: start;
+    align-items: start;
+  }
+
+  /* мета-сайдбар закреплён под шапкой (O_Header ~64px sticky) */
+  .sidebar {
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+
+  /* ── контент ── */
+  .content {
+    min-width: 0;
+  }
+  /* обычный поток — отступы между блоками заданы margin'ами самих блоков и
+     схлопываются: перед H2 64px (секция), после H2 32px, между текстом 24px */
+  .blocks {
+    display: block;
+  }
+  .footer {
+    margin-top: var(--layout-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--layout-2xl);
+  }
+  .footer:empty {
+    display: none;
+  }
+  /* H1 кейса — Suisse Int'l 48px Book */
+  .title {
+    margin: 0 0 var(--layout-md);
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-regular); /* Book (400–450) */
+    font-size: var(--font-size-4xl); /* 48px */
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 900px) {
+    .article {
+      grid-template-columns: 1fr;
+      gap: var(--layout-md);
+    }
+    .sidebar {
+      position: static;
+    }
+    .title {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>

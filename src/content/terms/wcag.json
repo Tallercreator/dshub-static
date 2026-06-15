@@ -3,13 +3,23 @@
   "term": "WCAG",
   "category": "Термины DS",
   "visualType": "interactive",
-  "visualNote": "Уровни A/AA/AAA на контраст-чекере",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Международный стандарт критериев доступности (уровни A/AA/AAA).",
+  "purpose": "Объективная планка для проверки доступности интерфейса.",
+  "usage": "Чек-листы DoD, аудит компонентов, контраст токенов.",
+  "relatedCases": [
+    "Hexa UI",
+    "VKUI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что задаёт WCAG?",
+    "options": [
+      "Стандарт критериев доступности (уровни A/AA/AAA)",
+      "Формат дизайн-токенов",
+      "Протокол синхронизации Figma и кода",
+      "Метрику time-to-market"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "WCAG — международный стандарт доступности веб-контента."
+  }
 }

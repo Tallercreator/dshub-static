@@ -1,53 +1,61 @@
 ---
-// O_SummaryBox — блок «Выводы» (чек-лист). Блок type:"summary".
-// TODO (вторая волна): пункт → M_CheckItem ← A_Icon(✓) + A_Text; ✓ заменить на Q_Icon.
-import A_Text from '../../atoms/A_Text/A_Text.astro';
-
+// O_SummaryBox — блок «Главное / Выводы» (Figma 34:2937). Серая плашка
+// (surface/page, скругление 24px, паддинг 24px), внутри — нумерованный список
+// ключевых тезисов (как O_NumberedList). items — массив строк ИЛИ {title, text}.
+interface Item {
+  title: string;
+  text?: string;
+}
 interface Props {
-  items: string[];
+  items: (string | Item)[];
 }
 const { items = [] } = Astro.props;
+const norm: Item[] = items.map((it) => (typeof it === 'string' ? { title: it } : it));
 ---
 <div class="block-summary">
-  <ul class="summary-list">
-    {items.map((item) => (
+  <ol class="summary-list">
+    {norm.map((item) => (
       <li class="summary-item">
-        <span class="summary-check" aria-hidden="true">✓</span>
-        <A_Text variant="body" color="primary" set:html={item} />
+        <span class="summary-title" set:html={item.title} />
+        {item.text && <p class="summary-desc" set:html={item.text} />}
       </li>
     ))}
-  </ul>
+  </ol>
 </div>
 
 <style>
   .block-summary {
-    margin-block: var(--layout-xs);
+    margin-block: var(--space-3xl); /* 24 */
     padding: var(--space-3xl);
-    background: var(--surface-card);
-    border: var(--border-hairline) solid var(--stroke-subtle);
-    border-radius: var(--radius-lg);
+    background: var(--surface-page);
+    border-radius: var(--radius-2xl);
   }
   .summary-list {
-    list-style: none;
     margin: 0;
-    padding: 0;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-3xl);
+    list-style: decimal;
   }
   .summary-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-lg);
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-lg);
+    line-height: 1.2;
+    color: var(--text-primary);
   }
-  .summary-check {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--size-icon-md);
-    height: var(--size-icon-md);
-    color: var(--icons-accent);
-    font-weight: var(--font-weight-bold);
+  .summary-item::marker {
+    font-weight: var(--font-weight-medium);
+  }
+  .summary-title {
+    font: inherit;
+  }
+  .summary-desc {
+    margin: var(--space-md) 0 0;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    color: var(--text-secondary);
   }
 </style>

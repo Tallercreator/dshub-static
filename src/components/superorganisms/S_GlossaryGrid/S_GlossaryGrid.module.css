@@ -1,0 +1,83 @@
+/* S_GlossaryGrid.module.css — сайдбар категорий + результаты (Figma T_Glossary 36:14854).
+   Структура зеркалит S_CasesGrid, но фасет один — категория. */
+
+/* full-width белый фон зоны (перекрывает серый body) */
+.wrap {
+  background: var(--neutral-0);
+}
+
+.section {
+  --sidebar-w: 320px; /* = ширина фильтра на /cases, чтобы контент не скакал */
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: var(--layout-md) var(--layout-xs) var(--layout-2xl); /* 48 / 32 / 80 */
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layout-xs); /* 32 */
+}
+
+.srTitle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ── сайдбар категорий ── */
+.sidebar {
+  flex: 0 0 var(--sidebar-w);
+  width: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-sm); /* 40 */
+  position: sticky;
+  top: 88px;
+}
+.reset {
+  align-self: flex-start;
+}
+/* счётчик у пункта категории */
+.optCount {
+  margin-left: var(--space-md);
+  color: var(--text-disabled);
+}
+
+.results {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--layout-sm); /* 40 */
+}
+
+.count {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-lg); /* 20 */
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--text-tertiary);
+}
+
+.empty {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-md);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .section {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: static;
+    width: 100%;
+    flex-basis: auto;
+  }
+}

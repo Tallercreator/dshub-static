@@ -1,0 +1,25 @@
+{
+  "slug": "состояния-компонента",
+  "term": "Состояния компонента",
+  "category": "Архитектура",
+  "visualType": "interactive",
+  "definition": "Варианты под взаимодействие: default, hover, pressed, disabled, error.",
+  "purpose": "Делает поведение предсказуемым во всех ситуациях.",
+  "usage": "Каждый интерактивный компонент.",
+  "relatedCases": [
+    "VKUI",
+    "Skillaz"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что относится к состояниям компонента?",
+    "options": [
+      "default, hover, pressed, disabled, error",
+      "Цвет, шрифт, отступ",
+      "Светлая и тёмная тема",
+      "iOS и Android"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Состояния отражают взаимодействие и статус."
+  }
+}

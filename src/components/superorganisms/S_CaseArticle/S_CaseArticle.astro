@@ -1,0 +1,57 @@
+---
+// S_CaseArticle — суперорганизм статьи кейса (Figma 34:4174). Собирает
+// W_ArticleLayout (мета-сайдбар + H1) и контент-блоки (ContentRenderer по JSON).
+// В подвале контент-колонки — W_NextCase / W_ResourceExpert / W_CaseTerms.
+import W_ArticleLayout from '../../wrappers/W_ArticleLayout/W_ArticleLayout.astro';
+import ContentRenderer from '../../../lib/ContentRenderer.astro';
+import O_FeaturedQuotes from '../../organisms/O_FeaturedQuotes/O_FeaturedQuotes.astro';
+import W_NextCase from '../../wrappers/W_NextCase/W_NextCase.astro';
+import W_ResourceExpert from '../../wrappers/W_ResourceExpert/W_ResourceExpert.astro';
+import W_CaseTerms from '../../wrappers/W_CaseTerms/W_CaseTerms.astro';
+
+interface Props {
+  kase: any;
+  nextCase?: { href: string; title: string; tags?: string[]; variant?: 'pink' | 'lime' } | null;
+  resource?: any | null;
+  terms?: any[];
+}
+const { kase, nextCase, resource, terms = [] } = Astro.props;
+const sb = kase.sidebar ?? {};
+
+// цитаты выносим из инлайна и собираем в один блок «Избранные цитаты»
+const allBlocks = kase.blocks ?? [];
+const quoteBlocks = allBlocks.filter((b: any) => b.type === 'quote');
+const bodyBlocks = allBlocks.filter((b: any) => b.type !== 'quote');
+---
+<section class="case-article">
+  <W_ArticleLayout
+    title={kase.title}
+    themeTag={kase.companyType}
+    focus={sb.focus}
+    artifacts={sb.artifacts}
+    speakerRole={sb.speakerRole}
+  >
+    <ContentRenderer blocks={bodyBlocks} />
+    {quoteBlocks.length > 0 && <O_FeaturedQuotes quotes={quoteBlocks} />}
+
+    <Fragment slot="footer">
+      {nextCase && (
+        <W_NextCase
+          href={nextCase.href}
+          title={nextCase.title}
+          tags={nextCase.tags}
+          variant={nextCase.variant}
+        />
+      )}
+      {resource && <W_ResourceExpert resource={resource} />}
+      {terms.length > 0 && <W_CaseTerms terms={terms} />}
+    </Fragment>
+  </W_ArticleLayout>
+</section>
+
+<style>
+  .case-article {
+    padding-block: var(--layout-2xl);
+    background: var(--surface-card);
+  }
+</style>

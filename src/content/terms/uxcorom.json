@@ -3,13 +3,22 @@
   "term": "UXcorom",
   "category": "Метрики",
   "visualType": "example",
-  "visualNote": "Стилизованный дашборд здоровья Сбер BTO",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Дашборд здоровья/adoption дизайн-системы (пример из Сбера).",
+  "purpose": "Мониторинг состояния DS в большой организации.",
+  "usage": "Управление DS на масштабе.",
+  "relatedCases": [
+    "Сбер"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что представляет собой UXcorom (пример из Сбера)?",
+    "options": [
+      "Дашборд здоровья/adoption дизайн-системы",
+      "Плагин для иконок",
+      "Формат токенов",
+      "CSS-фреймворк"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Это инструмент мониторинга состояния DS (проверь точную формулировку по кейсу)."
+  }
 }

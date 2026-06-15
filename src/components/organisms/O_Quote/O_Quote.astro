@@ -1,8 +1,7 @@
 ---
-// O_Quote — пулл-цитата. Блок type:"quote". (Декоративные «мазки» добавим
-// позже как Q_Illustration; сейчас — акцентная левая граница.)
-import A_Text from '../../atoms/A_Text/A_Text.astro';
-
+// O_Quote — пулл-цитата (Figma 34:2982). Серая плашка (surface/page) с лаймовой
+// верхней границей. Без своего тоггла — на странице кейса все цитаты собраны в
+// один блок «Избранные цитаты» (O_FeaturedQuotes) с общим скрытием/раскрытием.
 interface Props {
   text: string;
   author?: string;
@@ -11,23 +10,38 @@ interface Props {
 const { text, author, title } = Astro.props;
 ---
 <figure class="block-quote">
-  {title && <A_Text variant="caption" color="accent" class="quote-title">{title}</A_Text>}
-  <A_Text as="blockquote" variant="title" color="primary" class="quote-text">{text}</A_Text>
-  {author && <A_Text as="figcaption" variant="caption" color="tertiary">{author}</A_Text>}
+  {title && <span class="quote-label">{title}</span>}
+  <blockquote class="quote-text" set:html={text} />
+  {author && <figcaption class="quote-author">{author}</figcaption>}
 </figure>
 
 <style>
   .block-quote {
-    margin-block: var(--layout-xs);
-    padding: var(--space-2xl) var(--space-3xl);
-    border-left: var(--border-thin) solid var(--stroke-accent);
-    background: var(--surface-accent-subtle);
+    margin: 0;
+    padding: var(--space-3xl);
+    background: var(--surface-page);
+    border-top: 2px solid var(--lime-20);
     border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
+  }
+  .quote-label {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-tertiary);
   }
   .quote-text {
-    font-style: normal;
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    font-size: var(--font-size-md);
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+  .quote-author {
+    font-size: 14px;
+    color: var(--text-tertiary);
   }
 </style>

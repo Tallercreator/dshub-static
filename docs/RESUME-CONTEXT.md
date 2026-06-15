@@ -28,7 +28,55 @@
   `getBoundingClientRect`**, а не только глазами. Для скрина секции в самом низу — приём «спрятать
   соседей»: `[...document.body.children].forEach(el=>{if(el!==target)el.style.display='none'})`.
 
-## ТЕКУЩАЯ ЗАДАЧА: страница кейса T_CasePage
+## ✅ T_CasePage СОБРАН (2026-06-14) — `src/pages/cases/[slug].astro`
+Figma: `node-id=34-4960`. Сборка: **S_PageHero** (ghost-имя бренда + иллюстрация) →
+**S_CaseArticle** → **S_Form** (+ глобальные O_Header/O_Footer). Build зелёный, 17/17 маршрутов.
+
+**Что сделано (1:1 с Figma, сверено скриншотами):**
+- **Hero** = переиспользован `S_PageHero`: ghost = `company`×3 в 2 строки, иллюстрация =
+  `/brand-illustrations/<brandKey>.png`. ⚠️ Пока выгружен **только `dodo.png`** (495×516, 3x);
+  остальные 16 → fallback `switch-green.png`. Дозалить бренд-иллюстрации (Q_BrandMark Large из Figma).
+- **W_ArticleLayout** (`wrappers/W_ArticleLayout`, Figma 34:3304) — 2 колонки в контейнере
+  `width:min(1160px, 100%-64px)` центр: сайдбар **300px** (`M_CaseMeta`, **sticky** `top:88px`) +
+  gap **64** + контент **796px**. H1 = Suisse Bold 48. Слот `footer` (в контент-колонке).
+  На ≤900px колонки складываются, сайдбар становится `static`.
+- **M_CaseMeta** (`molecules/M_CaseMeta`, Figma 34:2964) — мета-сайдбар: верх = кнопка «назад»
+  (ТОЛЬКО стрелка `‹`, серая `neutral-20`, chevron-right + `rotate(180deg)`) + чёрный тег темы
+  (`A_Tag black`, = `companyType`); поля Фокус кейса/Артефакты в кейсе/Роль эксперта (label
+  `text-disabled` 14 + value `text-primary` 14, ← `kase.sidebar.{focus,artifacts,speakerRole}`,
+  пустые скрыты); низ = кнопка **«Поделиться кейсом»** (серая + иконка `link`, vanilla `<script>`:
+  Web Share API → иначе `clipboard.writeText` + фидбэк «Ссылка скопирована»).
+  ✅ sidebar-поля **дозаполнены во всех 17 кейсах** (focus/artifacts у всех; speakerRole — у
+  интервью; у открытых кейсов speakerRole=null → поле скрыто). Тексты синтезированы из контента
+  кейсов (ресёрч сабагентами) и отредактированы. Стиль: строчные, через запятую, как у Dodo.
+  Иконка **`link`** добавлена в `icons.ts` вручную (Figma link_line_16x16, node 15:2541).
+- **S_CaseArticle** (`superorganisms/S_CaseArticle`, Figma 34:4174) = W_ArticleLayout + ContentRenderer
+  + в `footer`: W_NextCase / W_ResourceExpert / W_CaseTerms (все в контент-колонке 796, как в Figma-фрейме).
+- **Блок-организмы выровнены по Figma:** O_Quote (серая плашка `surface-page` + лаймовая верхняя
+  граница 2px, radius 12, p24, Inter Medium **italic** 16, опц. title/author) · O_Paragraph (Inter 16
+  reg, text-secondary, lh1.4) · O_SummaryBox (серый бокс `surface-page` radius24 p24 + нумер. список) ·
+  O_NumberedList (нумер. список) · O_Heading (Suisse Bold, H2=32/H3=24).
+- **W_NextCase** (`wrappers/W_NextCase`, Figma 34:4749) — серая плашка radius24 p24 шир.796, цветное
+  свечение в правом нижнем углу (variant **pink**|lime, CSS-радиал), kicker «К следующему кейсу:»
+  (Suisse 32) + теги фокуса (A_CategoryTag) + заголовок след. кейса + тёмная кнопка «Перейти»
+  190×110 (Q_Icon `send`). Вся карточка — ссылка. Данные: следующий кейс по порядку (с зацикливанием).
+- **W_ResourceExpert** (`wrappers/W_ResourceExpert`, Figma 36:16755) = заголовок «По совету эксперта:»
+  (Suisse 32) + 1× `O_ResourceCard size=medium`. Ресурс выбирается по пересечению тегов с `focus[]`.
+- **W_CaseTerms** (`wrappers/W_CaseTerms`, Figma 36:12486) = заголовок «Термины из кейса:» + сетка
+  `O_TermCard` (auto-fill minmax 232 → 3 в колонке 796), варианты pink/lime по очереди. До 3 терминов:
+  `relatedCases`==slug, иначе термины с определением.
+
+### ⚠️ ДОРАБОТАТЬ (данные/контент, не вёрстка)
+- **Бренд-иллюстрации героя** для 16 кейсов → `public/brand-illustrations/<brandKey>.png` (Q_BrandMark Large).
+- ~~`sidebar.{focus,artifacts,speakerRole}`~~ ✅ дозаполнены во всех 17 кейсах.
+- **numbered-list: title+описание склеены в одну строку** в данных миграции (напр. «…токеновВ базовой…»).
+  Надёжно не разделить (iOS/GitHub). Сейчас рендерим как читаемый абзац 16px. Двухуровневый Figma-вид
+  (жирный заголовок 20 + описание 16) включится, когда данные станут `{title, text}` — задача доразметки.
+- **Связь кейс↔термины/ресурс** сейчас эвристика (теги/наличие определения). Можно завести явные поля.
+- Скриншот-тул превью капризничает на dpr2/после reload (мельчит) — viewport сбрасывается в нативные
+  318px; **перед скрином всегда `preview_resize 1280×900` и сверять числа через `getBoundingClientRect`**.
+
+## (архив задачи) исходная структура T_CasePage
 Figma: `node-id=34-4960` (символ **T_CasePage** на странице Template `34:4169`).
 Страница длинная (1440×**4766**) и формируется из JSON кейса.
 
@@ -66,9 +114,62 @@ Figma: `node-id=34-4960` (символ **T_CasePage** на странице Temp
 cover{brandWordmark,bg,image,darkBadge?}, sidebar{focus,speakerRole,artifacts}, meta{readingTime},
 published, blocks[]`. Пример: Додо — 53 блока (heading, numbered-list, paragraph, quote, summary).
 
+### ✅ T_Resources собран (2026-06-14) — `src/pages/resources/index.astro`
+Figma `36:7507`. Сборка: **S_PageHero** (ghost «Ресурсы» + жёлтая звезда
+`/illustrations/star-yellow.png`, выгружена кропом из рендера, native 1x как heart) →
+**W_PageContainer type=solid-gray** (серая панель radius 48) → **S_ResourcesGrid** → **S_Form**.
+- **S_ResourcesGrid** (`superorganisms/S_ResourcesGrid`) — центрированные фильтр-табы по типу
+  (`M_Segment` + `A_SegmentItem`: Все/Статьи/Сайты/Видео, по данным) + бенто-сетка
+  `W_ResourcesGrid` из `O_ResourceCard` (large = span 2 на каждой 5-й позиции `i%5`, иначе medium).
+  Фильтрация — vanilla `<script>`: клик по табу → `aria-current` + `card.hidden` по `data-type`,
+  пустое состояние. Активный таб (белая пилюля) — глобальный `!important` по `[aria-current=page]`
+  (перебивает scoped A_SegmentItem). `grid-auto-flow:row dense` в W_ResourcesGrid подбивает пропуски.
+- Правки переиспользуемого: `O_ResourceCard` теперь спредит `...rest` (для `data-type`).
+- ⚠️ Обложки/иллюстрации ресурсов НЕ залиты → large-карточки показывают серый плейсхолдер cover,
+  medium — пустую зону иллюстрации. Залить через `coverImage` в `resources/*.json` (как и на Главной).
+
+### ✅ T_Glossary собран (2026-06-14) — `src/pages/glossary/index.astro`
+Figma `36:14854`. Сборка: **S_PageHero** (ghost «Глоссарий» + зелёная галочка
+`/illustrations/check-green.png`, кроп из рендера) → **S_GlossaryGrid** → **S_Form**.
+- **S_GlossaryGrid** (`superorganisms/S_GlossaryGrid`) — зеркалит S_CasesGrid, но фасет один —
+  **категория**. Слева sticky-сайдбар: `W_FilterGroup «Категория»` + `M_FilterOption` (12 категорий
+  из данных, со счётчиками) + «Сбросить все». Справа: бар «Выбрано:» (`M_AppliedFilters` + чипы) +
+  счётчик «Найдено N терминов» + `W_CardGrid cols=3` из `O_TermCard`. **121 термин** (все, не только
+  с определениями; пустые показывают только заголовок). Фильтрация — vanilla `<script>` (мультивыбор
+  категорий, OR, чипы, URL `?category=`, как на /cases). `.js-applied-chip` глобальные стили
+  продублированы (на /glossary нет S_CasesGrid).
+- **Маппинг term→variant РЕШЁН** (`termVariant(category)`): **lime** — «Компонент · *» / Инструменты /
+  Команда (прикладное); **pink** — Архитектура/Процесс/Инфраструктура/Метрики/Термины DS (абстрактное).
+  `image` НЕ используем (нет иллюстраций). Вышло lime 51 / pink 70. ⚠️ На Главной S_TermsSection всё
+  ещё хардкодит варианты — можно перевести на этот же хелпер.
+- Правка переиспользуемого: `O_TermCard` теперь спредит `...rest` (для `data-category`).
+- ⚠️ Карточки терминов href = `/glossary` (self, дефолт) — детальной страницы термина пока нет.
+  Когда соберём **T_Term `36:15116`** → проставить `href={/glossary/<slug>}` + завести маршрут.
+
+### ✅ T_Term собран (2026-06-14) — `src/pages/glossary/[slug].astro`
+Figma `36:15116`. **121 маршрут** (Cyrillic-slug'и работают). Сборка:
+- **S_TermHero** (`superorganisms/S_TermHero`) — кнопка «назад» (стрелка) + ghost-имя термина +
+  H1 + ряд из 3 фактов: **Определение** (check) / **Для чего нужен** (heart) / **Где используется**
+  (loupe). Пустые факты скрыты.
+- **«Взято из кейса»** — `O_CaseCard` по `relatedCases` (имена компаний → slug кейса через карту
+  `CASE_BY_NAME` в `[slug].astro`).
+- **«Проверь себя»** — `O_Quiz` (React-остров `client:visible`), если у термина есть `quiz`.
+  Маппинг: `type:single→single / multi→multiple`, `answerIndex(es)→correct`. ⚠️ Интерактив квиза
+  **не проверить в превью-движке** (React-острова там не гидрируются даже с `client:load`; рендер и
+  данные верные, интеграция `@astrojs/react` на месте, build чистый → в реальном браузере работает).
+- **«Изучать ещё»** — `W_TermsGrid` из `O_TermCard` (термины той же категории, до 4).
+- Галочку героя глоссария брал ранее; для термина hero — ghost = имя термина (Stapel).
+
+**⚠️ Контент терминов ПЕРЕГЕНЕРИРОВАН** из `~/Downloads/квизыитест/dshub-terms-data.json` (прислал
+пользователь). Новая схема: `slug, term, category, visualType, definition, purpose, usage,
+relatedCases[], quiz`. Старые 121 файла (ASCII-slug'и, 90 пустых определений) **заменены** на 121
+новый (Cyrillic-slug'и, все с определениями, 62 с квизами). Источник правды теперь — этот JSON.
+- `termVariant(category)` вынесён в **`src/lib/termVariant.ts`** (общий для S_GlossaryGrid и T_Term).
+- `O_TermCard` спредит `...rest`; карточки глоссария теперь ведут на `/glossary/<slug>`.
+
 ### Прочие темплейты (на потом, та же страница Template)
-T_Cases `34:7599` (✅ готов), T_Resources `36:7507`, T_Glossary `36:14854`, T_Term `36:15116`,
-T_MainPage `36:4495`. Для их hero — переиспользовать `S_PageHero`.
+T_Cases `34:7599` (✅), T_Resources `36:7507` (✅), T_Glossary `36:14854` (✅),
+T_Term `36:15116` (✅), T_MainPage `36:4495`. Для их hero — переиспользовать `S_PageHero`.
 
 ## Правила проекта (выстраданные — соблюдать)
 - Имя в Figma = имя в коде. Состояния (hover/pressed) = CSS, не пропсы. Стиль — в `*.module.css`,

@@ -1,0 +1,45 @@
+---
+// S_TermHero — суперорганизм. Шапка страницы термина (Figma T_Term 36:15116):
+// кнопка «назад» (стрелка) + ghost-имя + H1 + ряд фактов (Определение / Для чего
+// нужен / Где используется). Пустые факты скрываются.
+import Q_Icon from '../../quarks/Q_Icon/Q_Icon.astro';
+import styles from './S_TermHero.module.css';
+
+interface Props {
+  term: string;
+  definition?: string;
+  purpose?: string;
+  usage?: string;
+  backHref?: string;
+}
+const { term, definition, purpose, usage, backHref = '/glossary' } = Astro.props;
+
+const facts = [
+  { icon: 'check', label: 'Определение', value: definition },
+  { icon: 'lightbulb', label: 'Для чего нужен', value: purpose },
+  { icon: 'loupe', label: 'Где используется', value: usage },
+].filter((f) => f.value);
+---
+<section class={styles.hero}>
+  <span class={styles.ghost} aria-hidden="true">{term}</span>
+  <div class={styles.veil}></div>
+
+  <div class={styles.inner}>
+    <div class={styles.topRow}>
+      <a class={styles.back} href={backHref} aria-label="Назад в глоссарий">
+        <span class={styles.backIcon}><Q_Icon name="chevron-right" size={16} /></span>
+      </a>
+      <h1 class={styles.name}>{term}</h1>
+    </div>
+
+    <div class={styles.facts}>
+      {facts.map((f) => (
+        <div class={styles.fact}>
+          <Q_Icon name={f.icon} size={20} class={styles.factIcon} />
+          <span class={styles.factLabel}>{f.label}</span>
+          <p class={styles.factValue}>{f.value}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

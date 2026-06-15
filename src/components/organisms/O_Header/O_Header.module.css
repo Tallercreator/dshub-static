@@ -1,6 +1,5 @@
-/* O_Header.module.css — шапка. Sticky, сплошной белый фон (Surface/card) —
- * сливается с белым первым экраном, без стекла. Серый Surface/page — только
- * у пилюли M_Segment. */
+/* O_Header.module.css — шапка. Sticky, сплошной белый фон (Surface/card).
+ * На ≤1024 nav и CTA прячутся в бургер-меню. */
 
 .header {
   position: sticky;
@@ -12,8 +11,6 @@
 }
 
 .inner {
-  /* Тот же контейнер, что у S_Hero .content (1440 + 32) — чтобы лого/CTA шапки
-   * были на одной сетке с H1/«Смотреть все кейсы» героя. */
   max-width: 1440px;
   margin-inline: auto;
   padding-inline: var(--layout-xs);
@@ -36,8 +33,78 @@
   flex: 0 0 auto;
 }
 
+/* бургер — только на мобайле */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin-inline: auto;
+  border-radius: 2px;
+  background: var(--text-primary);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.burger[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+.burger[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* выпадающее мобильное меню */
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md) var(--layout-xs) var(--space-2xl);
+  border-top: var(--border-hairline) solid var(--stroke-subtle);
+}
+.mobileLink {
+  padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.mobileLink:hover {
+  background: var(--surface-page);
+}
+.mobileActive {
+  color: var(--text-primary);
+  background: var(--surface-page);
+}
+.mobileCta {
+  margin-top: var(--space-md);
+}
+
 @media (max-width: 1024px) {
-  .nav {
-    display: none; /* мобильное меню — следующая итерация */
+  .nav,
+  .cta {
+    display: none;
+  }
+  .burger {
+    display: flex;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mobileNav {
+    display: none !important;
   }
 }

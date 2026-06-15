@@ -1,11 +1,12 @@
 ---
 // A_Tag — атом. = Figma A_Tag (node 19:416). Бейдж типа/источника.
-// variant (black/white) × size (sm/md), опц. правая иконка слотом "icon".
-// Состояния hover/pressed — CSS (работают, если тег интерактивный).
+// variant (black/white/card) × size (sm/md), опц. правая иконка слотом "icon".
+// white — серый (surface/page) для белых поверхностей; card — белый (surface/card)
+// для серых. Состояния hover/pressed — CSS (работают, если тег интерактивный).
 import styles from './A_Tag.module.css';
 
 interface Props {
-  variant?: 'black' | 'white';
+  variant?: 'black' | 'white' | 'card';
   size?: 'sm' | 'md';
   disabled?: boolean;
   class?: string;

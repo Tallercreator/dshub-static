@@ -3,13 +3,23 @@
   "term": "Library Analytics (Figma)",
   "category": "Метрики",
   "visualType": "example",
-  "visualNote": "Стилизованный дашборд аналитики использования",
-  "definition": "",
-  "meta": {
-    "usedIn": null,
-    "relatedTo": []
-  },
-  "sources": null,
-  "relatedCases": [],
-  "relatedTerms": []
+  "definition": "Аналитика Figma об использовании компонентов (вставки, detach).",
+  "purpose": "Показывает, как команды реально используют библиотеку.",
+  "usage": "Мониторинг здоровья DS.",
+  "relatedCases": [
+    "Dodo",
+    "ОТП"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что показывает Library Analytics в Figma?",
+    "options": [
+      "Использование компонентов: вставки, отвязки (detach) и т.п.",
+      "Скорость интернета",
+      "Конверсию продукта",
+      "Список лицензий"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Это аналитика того, как команды реально используют библиотеку."
+  }
 }

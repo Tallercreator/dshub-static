@@ -1,0 +1,14 @@
+{
+  "slug": "ds-снизу-bottom-up",
+  "term": "DS снизу (bottom-up)",
+  "category": "Процесс",
+  "visualType": "text",
+  "definition": "Развитие системы bottom-up — от реальных задач продукта.",
+  "purpose": "Система растёт из практики, а не насаждается сверху.",
+  "usage": "Команды без отдельного мандата на DS.",
+  "relatedCases": [
+    "ОТП",
+    "Студия"
+  ],
+  "quiz": null
+}

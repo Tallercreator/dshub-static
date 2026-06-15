@@ -1,44 +1,69 @@
 ---
-// O_NumberedList — нумерованный список. Блок type:"numbered-list".
-// TODO (вторая волна): декомпозировать пункт в M_NumberedItem ← A_Badge + A_Text.
-import A_Text from '../../atoms/A_Text/A_Text.astro';
-
+// O_NumberedList — нумерованный список (Figma 34:2894 ← M_NumberedItem 34:2851).
+// Полный вид пункта: жирный нумерованный заголовок (Inter Medium 20px) + описание
+// (Inter Regular 16px). items — массив {title, text} ИЛИ строк.
+//
+// ⚠️ В текущих данных кейсов пункт — одна строка (заголовок+описание склеены без
+// разделителя, напр. «…моды токеновВ базовой…»). Надёжно разделить нельзя
+// (внутренние заглавные: iOS, GitHub). Поэтому строки рендерим как читаемый
+// абзац 16px. Двухуровневый вид (жирный заголовок) включается, когда в данных
+// появятся объекты {title, text} — это задача доразметки контента.
+interface Item {
+  title?: string;
+  text?: string;
+}
 interface Props {
-  items: string[];
+  items: (string | Item)[];
 }
 const { items = [] } = Astro.props;
+const norm: Item[] = items.map((it) => (typeof it === 'string' ? { text: it } : it));
 ---
 <ol class="block-numbered">
-  {items.map((item, i) => (
-    <li class="numbered-item">
-      <span class="numbered-badge"><A_Text variant="caption" color="on-accent">{i + 1}</A_Text></span>
-      <A_Text variant="body" color="secondary" set:html={item} />
+  {norm.map((item) => (
+    <li class:list={['numbered-item', { 'with-title': !!item.title }]}>
+      {item.title && <span class="numbered-title" set:html={item.title} />}
+      {item.text && <p class="numbered-desc" set:html={item.text} />}
     </li>
   ))}
 </ol>
 
 <style>
   .block-numbered {
-    list-style: none;
-    margin-block: var(--layout-xs);
-    padding: 0;
+    margin-block: var(--space-3xl); /* 24 */
+    padding-left: 28px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-2xl);
+    list-style: decimal;
   }
   .numbered-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-lg);
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-md); /* 16px (строки-абзацы) */
+    line-height: 1.4;
+    color: var(--text-secondary);
   }
-  .numbered-badge {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--size-icon-lg);
-    height: var(--size-icon-lg);
-    border-radius: var(--radius-pill);
-    background: var(--surface-accent);
+  /* двухуровневый пункт: маркер и заголовок 20px medium */
+  .numbered-item.with-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+  .numbered-item::marker {
+    font-weight: inherit;
+  }
+  .numbered-title {
+    display: block;
+  }
+  .numbered-desc {
+    margin: 0;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    color: var(--text-secondary);
+  }
+  .with-title .numbered-desc {
+    margin-top: var(--space-md);
   }
 </style>

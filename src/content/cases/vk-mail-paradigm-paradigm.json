@@ -3,7 +3,7 @@
   "title": "Paradigm",
   "company": "VK/Mail (Paradigm)",
   "dsName": "Paradigm",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -19,9 +19,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "долгоживущая DS и проблема принятия командами, федеративная архитектура (общие токены при независимых компонентах), коммуникация на три аудитории (дизайнер/разработчик/менеджер)",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "публичный сайт paradigm.mail.ru, общий репозиторий токенов с VKUI (vkui-tokens), 120 общих токенов цветов и типографики, темы по базам (VK base / Paradigm base), Figma-библиотеки и UI-kits"
   },
   "meta": {
     "readingTime": 3

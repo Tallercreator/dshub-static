@@ -1,0 +1,14 @@
+{
+  "slug": "поиск-search",
+  "term": "Поиск (Search)",
+  "category": "Компонент · контролы",
+  "visualType": "component",
+  "definition": "Поле для ввода запроса с подсказками и очисткой.",
+  "purpose": "Быстрый доступ к контенту по запросу.",
+  "usage": "Шапка, каталоги, списки, глоссарий.",
+  "relatedCases": [
+    "Ozon",
+    "Skillaz"
+  ],
+  "quiz": null
+}

@@ -1,0 +1,25 @@
+{
+  "slug": "cell-паттерн",
+  "term": "Cell-паттерн",
+  "category": "Архитектура",
+  "visualType": "anatomy",
+  "definition": "Базовая строка списка с вариациями (SimpleCell, RichCell).",
+  "purpose": "Единый кирпич списков с предсказуемым поведением.",
+  "usage": "Настройки, меню, мобильные списки.",
+  "relatedCases": [
+    "VKUI",
+    "Студия"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что такое Cell-паттерн?",
+    "options": [
+      "Базовая строка списка с вариациями (SimpleCell, RichCell)",
+      "Ячейка таблицы Excel",
+      "Тип сетки",
+      "Анимация"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "Cell — переиспользуемая строка списка с набором вариантов."
+  }
+}

@@ -7,9 +7,9 @@
   gap: var(--space-lg);
   width: 100%;
   text-align: left;
-  padding: var(--space-xl) var(--space-2xl);
+  padding: var(--space-xl); /* 16 со всех сторон (Figma) */
   background: var(--surface-card);
-  border: var(--border-hairline) solid var(--stroke-default);
+  border: var(--border-hairline) solid var(--stroke-subtle);
   border-radius: var(--radius-md);
   cursor: pointer;
   font-family: var(--font-family-base);
@@ -17,37 +17,46 @@
   color: var(--text-primary);
   transition: border-color var(--duration-fast) ease, background var(--duration-fast) ease;
 }
-.option:hover:not(:disabled) { border-color: var(--stroke-strong); }
+.option:hover:not(:disabled) { border-color: var(--stroke-subtle); }
 .option:disabled { cursor: default; }
 
 .marker {
   flex: 0 0 auto;
   width: var(--size-icon-md);
   height: var(--size-icon-md);
-  border: var(--border-thin) solid var(--stroke-strong);
-  background: var(--surface-page);
+  border: 1.5px solid var(--stroke-subtle);
+  background: var(--neutral-0);
 }
 .radio { border-radius: var(--radius-pill); }
 .checkbox { border-radius: var(--radius-xs); }
 
 .text { flex: 1 1 auto; line-height: var(--line-normal); }
 
-/* ───────── состояния ───────── */
+/* метка результата «Верно!» / «Неверно» справа */
+.verdict {
+  flex: 0 0 auto;
+  margin-left: var(--space-lg);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-md);
+  white-space: nowrap;
+}
+
+/* ───────── состояния (белый фон, цветная рамка — как в Figma 36:11632) ───────── */
 .s-selected {
   border-color: var(--stroke-accent);
-  background: var(--surface-accent-subtle);
 }
 .s-selected .marker { border-color: var(--stroke-accent); background: var(--surface-accent); }
 
 .s-right,
 .s-right-selected {
-  border-color: var(--stroke-success);
-  background: var(--surface-success-subtle);
+  border-color: var(--lime-20);
 }
-.s-right-selected .marker { border-color: var(--stroke-success); background: var(--stroke-success); }
+.s-right .verdict,
+.s-right-selected .verdict { color: var(--stroke-success); }
+.s-right-selected .marker { border-color: var(--lime-20); background: var(--lime-20); }
 
 .s-error {
   border-color: var(--stroke-error);
-  background: var(--surface-error-subtle);
 }
+.s-error .verdict { color: var(--stroke-error); }
 .s-error .marker { border-color: var(--stroke-error); background: var(--stroke-error); }

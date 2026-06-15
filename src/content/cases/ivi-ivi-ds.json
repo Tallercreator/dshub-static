@@ -3,7 +3,7 @@
   "title": "IVI DS",
   "company": "IVI",
   "dsName": "IVI DS",
-  "companyType": "Бигтех",
+  "companyType": "Bigtech",
   "caseType": "Открытый кейс",
   "caseFormat": "Обзор",
   "focus": [
@@ -19,9 +19,9 @@
     "darkBadge": true
   },
   "sidebar": {
-    "focus": null,
+    "focus": "кросс-платформенная архитектура без «обычной» модели (iOS/Android/Web/Smart TV/email), примитивы и компоненты, JSON как единый источник правды, модульная сетка вместо media queries, deprecation на уровне данных",
     "speakerRole": null,
-    "artifacts": null
+    "artifacts": "JSON-формат данных как универсальный стандарт, публичный превьюер компонентов (design.ivi.ru), автогенерация документации из данных (HTML + JSON), модульная сетка, iviuikit на iOS, статьи на Habr/vc"
   },
   "meta": {
     "readingTime": 3

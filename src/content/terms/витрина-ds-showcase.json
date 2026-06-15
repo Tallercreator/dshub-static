@@ -1,0 +1,13 @@
+{
+  "slug": "витрина-ds-showcase",
+  "term": "Витрина DS (showcase)",
+  "category": "Процесс",
+  "visualType": "example",
+  "definition": "Showcase-файл — единая «витрина» компонентов для дизайнеров.",
+  "purpose": "Быстрый просмотр и копирование; ориентирование в системе.",
+  "usage": "Главный файл библиотеки.",
+  "relatedCases": [
+    "Dodo"
+  ],
+  "quiz": null
+}

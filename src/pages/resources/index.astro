@@ -1,0 +1,36 @@
+---
+// /resources — раздел «Ресурсы» (Figma T_Resources 36:7507). S_PageHero (ghost
+// «Ресурсы» + звезда) → S_ResourcesGrid (фильтр-табы по типу + бенто-сетка) →
+// S_Form. Шапка/футер — глобальные из BaseLayout.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import S_PageHero from '../../components/superorganisms/S_PageHero/S_PageHero.astro';
+import S_ResourcesGrid from '../../components/superorganisms/S_ResourcesGrid/S_ResourcesGrid.astro';
+import S_Form from '../../components/superorganisms/S_Form/S_Form.astro';
+import W_PageContainer from '../../components/wrappers/W_PageContainer/W_PageContainer.astro';
+
+const resources = Object.values(
+  import.meta.glob('../../content/resources/*.json', { eager: true }),
+).map((m) => m.default);
+
+const items = resources.map((r) => ({
+  type: r.type,
+  title: r.title,
+  source: r.source,
+  url: r.url,
+  coverImage: r.coverImage,
+}));
+---
+
+<BaseLayout title="Ресурсы — DSHub">
+  <S_PageHero
+    ghostLines={['Ресурсы Ресурсы', 'Ресурсы Ресурсы']}
+    illustration="/illustrations/star-yellow.png"
+    illustrationAlt="Ресурсы"
+  />
+
+  <W_PageContainer type="solid">
+    <S_ResourcesGrid items={items} />
+  </W_PageContainer>
+
+  <S_Form />
+</BaseLayout>

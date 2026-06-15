@@ -1,0 +1,25 @@
+{
+  "slug": "css-переменные-css-custom-properties",
+  "term": "CSS-переменные (CSS custom properties)",
+  "category": "Инфраструктура",
+  "visualType": "example",
+  "definition": "CSS custom properties (--x) как носитель токенов.",
+  "purpose": "Рантайм-темизация без пересборки.",
+  "usage": "Веб-реализация токенов и тем.",
+  "relatedCases": [
+    "Gravity UI",
+    "VKUI"
+  ],
+  "quiz": {
+    "type": "single",
+    "question": "Что дают CSS-переменные (custom properties) для DS?",
+    "options": [
+      "Хранить токены и менять тему в рантайме без пересборки",
+      "Ускорять сеть",
+      "Заменять JavaScript",
+      "Рисовать в Figma"
+    ],
+    "answerIndex": 0,
+    "explainWrong": "CSS-переменные — рантайм-носитель токенов, удобны для темизации."
+  }
+}
