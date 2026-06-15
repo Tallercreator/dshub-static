@@ -23,14 +23,21 @@ export default function M_QuizOption({ text, state, type = 'radio', disabled, on
   const selected = state === 'selected' || state === 'right-selected' || state === 'error';
   const verdict =
     state === 'right' || state === 'right-selected' ? 'Верно!' : state === 'error' ? 'Неверно' : null;
+  const showCheck = selected;
   return (
     <button type="button" className={cls} onClick={onClick} disabled={disabled} aria-pressed={selected}>
       <span
         className={`${styles.marker} ${type === 'checkbox' ? styles.checkbox : styles.radio}`}
         aria-hidden="true"
-      />
+      >
+        {showCheck && (
+          <svg className={styles.check} viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.5 6.2L5 8.7L9.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        )}
+      </span>
       <span className={styles.text}>{text}</span>
-      {verdict && <span className={styles.verdict}>{verdict}</span>}
+      <span className={styles.verdict} aria-hidden={!verdict}>{verdict ?? ''}</span>
     </button>
   );
 }

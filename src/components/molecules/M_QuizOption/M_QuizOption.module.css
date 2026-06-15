@@ -2,7 +2,8 @@
  * (success/error) — через surface-*-subtle и stroke-success/error. */
 
 .option {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 72px; /* маркер | текст | слот вердикта (всегда зарезервирован) */
   align-items: center;
   gap: var(--space-lg);
   width: 100%;
@@ -26,26 +27,34 @@
   height: var(--size-icon-md);
   border: 1.5px solid var(--stroke-subtle);
   background: var(--neutral-0);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-0); /* цвет галочки */
 }
 .radio { border-radius: var(--radius-pill); }
 .checkbox { border-radius: var(--radius-xs); }
+.check { width: 60%; height: 60%; }
 
-.text { flex: 1 1 auto; line-height: var(--line-normal); }
+.text { min-width: 0; line-height: var(--line-normal); }
 
-/* метка результата «Верно!» / «Неверно» справа */
+/* метка результата «Верно!» / «Неверно» справа — слот всегда зарезервирован */
 .verdict {
-  flex: 0 0 auto;
-  margin-left: var(--space-lg);
+  justify-self: end;
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-md);
   white-space: nowrap;
+  min-height: 1em;
 }
 
 /* ───────── состояния (белый фон, цветная рамка — как в Figma 36:11632) ───────── */
 .s-selected {
-  border-color: var(--stroke-accent);
+  border-color: var(--stroke-default);
 }
-.s-selected .marker { border-color: var(--stroke-accent); background: var(--surface-accent); }
+.s-selected .marker {
+  border-color: var(--surface-button);
+  background: var(--surface-button);
+}
 
 .s-right,
 .s-right-selected {

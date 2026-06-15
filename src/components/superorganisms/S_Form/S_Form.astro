@@ -18,11 +18,16 @@ interface Props {
 const { action = '/.netlify/functions/submit-case', class: extra } = Astro.props;
 ---
 
-<section class:list={[styles.section, extra]} aria-labelledby="form-title">
+<section class:list={[styles.section, extra]} aria-labelledby="form-title" data-form-section>
   <div class={styles.glowLeft} aria-hidden="true"></div>
   <div class={styles.glowRight} aria-hidden="true"></div>
   <img class={styles.illoLeft} src="/illustrations/form-lime.png" alt="" aria-hidden="true" width="335" height="616" />
   <img class={styles.illoRight} src="/illustrations/form-pink.png" alt="" aria-hidden="true" width="423" height="504" />
+
+  <div class={styles.thanks} data-thanks aria-hidden="true">
+    <img src="/illustrations/check-green.png" alt="" width="160" height="160" class={styles.thanksIcon} />
+    <p class={styles.thanksText}>Спасибо! Мы свяжемся<br />с вами в скором времени</p>
+  </div>
 
   <h2 id="form-title" class={styles.title}>Хотите поделиться<br />своим кейсом?</h2>
 
@@ -78,7 +83,17 @@ const { action = '/.netlify/functions/submit-case', class: extra } = Astro.props
         });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
-        setStatus('Заявка отправлена — спасибо! Свяжемся с вами.', 'ok');
+        setStatus('', '');
+        const section = form.closest<HTMLElement>('[data-form-section]');
+        const thanks = section?.querySelector<HTMLElement>('[data-thanks]');
+        if (section && thanks) {
+          section.dataset.state = 'sent';
+          thanks.setAttribute('aria-hidden', 'false');
+          setTimeout(() => {
+            section.dataset.state = '';
+            thanks.setAttribute('aria-hidden', 'true');
+          }, 3700);
+        }
       } catch {
         setStatus('Не удалось отправить. Попробуйте позже или напишите нам в Telegram.', 'error');
       } finally {

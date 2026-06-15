@@ -114,6 +114,32 @@
   border: 0;
 }
 
+/* экран благодарности — поверх формы, иллюстрации по бокам остаются */
+.thanks {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+  text-align: center;
+}
+.thanksIcon {
+  width: clamp(120px, 14vw, 180px);
+  height: auto;
+}
+.thanksText {
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-3xl);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+.section[data-state='sent'] .thanks { display: flex; }
+.section[data-state='sent'] .title,
+.section[data-state='sent'] .form { display: none; }
+
 /* статус отправки */
 .status {
   margin: 0;

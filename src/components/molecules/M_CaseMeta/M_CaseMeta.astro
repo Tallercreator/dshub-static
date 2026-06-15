@@ -133,34 +133,33 @@ const fields = [
 </style>
 
 <script>
-  // Поделиться: Web Share API (мобайл) → иначе копируем ссылку в буфер + фидбэк.
+  // Поделиться: копируем ссылку в буфер обмена + меняем подпись на «Ссылка скопирована».
   document.querySelectorAll('.share').forEach((btn) => {
     const el = btn as HTMLButtonElement;
     const label = el.querySelector('.share-label');
     el.addEventListener('click', async () => {
       const url = window.location.href;
-      const title = el.dataset.shareTitle || document.title;
-      if (navigator.share) {
-        try {
-          await navigator.share({ title, url });
-        } catch {
-          /* пользователь отменил — ничего не делаем */
-        }
-        return;
-      }
       try {
         await navigator.clipboard.writeText(url);
-        if (label) {
-          const prev = label.textContent;
-          label.textContent = 'Ссылка скопирована';
-          el.classList.add('copied');
-          setTimeout(() => {
-            label.textContent = prev;
-            el.classList.remove('copied');
-          }, 2000);
-        }
       } catch {
-        /* буфер недоступен */
+        // fallback для старых браузеров / отсутствия HTTPS
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch {}
+        ta.remove();
+      }
+      if (label) {
+        const prev = label.textContent;
+        label.textContent = 'Ссылка скопирована';
+        el.classList.add('copied');
+        setTimeout(() => {
+          label.textContent = prev;
+          el.classList.remove('copied');
+        }, 2000);
       }
     });
   });
